@@ -88,8 +88,19 @@ public class PlayerController : MonoBehaviour
             // 移動方向を設定
             float dirX = Input.GetAxisRaw("Horizontal");
             float dirZ = Input.GetAxisRaw("Vertical");
-            moveDir = new Vector3(dirX, 0, dirZ); // 入力された値を方向として設定
-            moveDir.Normalize(); // 正規化
+            //　カメラの向いている方向に進行方向を合わせる(後ろ、左はマイナスの値として評価する)
+            Vector3 forward = cameraTransform.forward; // カメラの前方向の値を取得
+            Vector3 right = cameraTransform.right; // カメラの右方向の値を取得
+            // y軸方向には関与しない(水平)
+            forward.y = 0;
+            right.y = 0;
+
+            // 個別の方向を正規化
+            forward.Normalize();
+            right.Normalize();
+
+            // 移動ベクトルの計算
+            moveDir = (dirZ * forward + dirX * right).normalized;
         }
     }
 
