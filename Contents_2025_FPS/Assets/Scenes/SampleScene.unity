@@ -589,7 +589,7 @@ MonoBehaviour:
   standHeight: 1.7
   crouchMoveSpeed: 2
   crouchHeight: 0.5
-  crouchSpeed: 4
+  crouchSpeed: 6
   dashMoveSpeed: 8
   jumpHeight: 4
   standCameraY: 1.7
