@@ -570,12 +570,15 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   standCenter: {x: 0, y: 1, z: 0}
   crouchCenter: {x: 0, y: 0.5, z: 0}
-  speed: 3
+  moveSpeed: 4
   standHeight: 1.7
-  crouchSpeed: 1
+  crouchMoveSpeed: 2
   crouchHeight: 0.5
-  dashSpeed: 8
+  crouchSpeed: 4
+  dashMoveSpeed: 8
   jumpHeight: 4
+  standCameraY: 1.7
+  crouchCameraY: 0.8
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

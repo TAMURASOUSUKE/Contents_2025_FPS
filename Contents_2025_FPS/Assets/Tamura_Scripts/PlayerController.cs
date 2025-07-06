@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb; // 移動に使う
     Vector3 moveDir = Vector3.zero; // 移動方向
     Vector3 moveValue = Vector3.zero; // 移動する量
-    Vector3 defaultScale = Vector3.one; // 通常状態の大きさ(しゃがみ時に参照)
     float currentSpeed = 0.0f; // 現在のスピードを取得
     bool isJump = false; // ジャンプ用のフラグ
     bool isCrouch = false; // しゃがみ用のフラグ
@@ -32,7 +31,7 @@ public class PlayerController : MonoBehaviour
     // ------------------------------------------関数---------------------------------------
 
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody>(); // Rigidbodyを取得
         capsuleCollider = rb.GetComponent<CapsuleCollider>(); // カプセルコライダーを取得　　
@@ -40,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
 
     // 入力処理はUpdate
-    private void Update()
+    void Update()
     {
         InputMove();
         InputJump();
