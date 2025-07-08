@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 standCenter = new Vector3(0, 1.0f, 0); // 立っている時の判定の中心
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0); // しゃがんでいるときの判定の中心
     [SerializeField] float moveSpeed = 1.0f; // 通常の移動速度
-    [SerializeField] float standHeight = 1.7f; // 立っている時の高さ
+    [SerializeField] float standHeight = 1.5f; // 立っている時の高さ
     [SerializeField] float crouchMoveSpeed = 1.0f; //　しゃがんだ時の移動速度
     [SerializeField] float crouchHeight = 1.0f; // しゃがんだ時の高さ
     [SerializeField] float crouchSpeed = 1.0f;　//　しゃがむときのスピード
     [SerializeField] float dashMoveSpeed = 1.0f; // ダッシュ時の移動速度
     [SerializeField] float jumpHeight = 1.0f; // ジャンプの高さ
-    [SerializeField] float standCameraY = 1.7f; // 通常のカメラの高さ
+    [SerializeField] float standCameraY = 1.5f; // 通常のカメラの高さ
     [SerializeField] float crouchCameraY = 0.8f; // しゃがんだ時のカメラの高さ
     CapsuleCollider capsuleCollider; // しゃがみに使う
     Rigidbody rb; // 移動に使う
@@ -76,12 +76,19 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                isCrouch = false; // しゃがんでいない時はfalse
-                currentSpeed = moveSpeed; // 通常のスピード
-                // 各変数をカプセルコライダーに適用
-                capsuleCollider.height = standHeight;
-                capsuleCollider.center = standCenter;
+                if (CanStandUp())
+                {
+                    //　trueなら上に何もないfalseならあると判定
+                    isCrouch = false; // しゃがんでいない時はfalse
+                    currentSpeed = moveSpeed; // 通常のスピード
+                                              // 各変数をカプセルコライダーに適用
+                    capsuleCollider.height = standHeight;
+                    capsuleCollider.center = standCenter;
+
+                }
+
             }
+        
 
             CrouchCamera();
 
@@ -133,6 +140,21 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             isJump = true;
         }
+    }
+
+    //　頭上にものがあれば立てない
+    bool CanStandUp()
+    {
+        float headClearance = 0.1f; // 少し余裕を持たせる
+        Vector3 rayOrigin = transform.position + capsuleCollider.center; // キャラ中心
+        float rayLength = (standHeight - crouchHeight) + headClearance; // 必要な高さ
+
+        // デバッグ用に Ray を可視化（赤:障害物あり, 緑:クリア）
+        bool hit = Physics.Raycast(rayOrigin, Vector3.up, rayLength, ~0, QueryTriggerInteraction.Ignore);
+        Color rayColor = hit ? Color.red : Color.green;
+        Debug.DrawRay(rayOrigin, Vector3.up * rayLength, rayColor, 0.1f); // 0.1秒表示
+
+        return !hit; // ヒットしてなければ立てる
     }
 
     //　着地用
