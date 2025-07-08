@@ -32,7 +32,7 @@ public class ColorManager : MonoBehaviour
             if (colorAdjustments != null)
             {
                 // 例：赤い色フィルターを設定
-                colorAdjustments.colorFilter.value = new Color(1f, 0f, 0f, 1f);
+                colorAdjustments.colorFilter.value = new Color(1f, 0f, 0f, 0.5f);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -40,7 +40,7 @@ public class ColorManager : MonoBehaviour
             if (colorAdjustments != null)
             {
                 // 例：緑色フィルターを設定
-                colorAdjustments.colorFilter.value = new Color(0f, 1f, 0f, 1f);
+                colorAdjustments.colorFilter.value = new Color(0f, 1f, 0f, 0.5f);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -48,7 +48,7 @@ public class ColorManager : MonoBehaviour
             if (colorAdjustments != null)
             {
                 // 例：青色フィルターを設定
-                colorAdjustments.colorFilter.value = new Color(0f, 0f, 1f, 1f);
+                colorAdjustments.colorFilter.value = new Color(0f, 0f, 1f, 0.5f);
             }
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
