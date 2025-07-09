@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Rigidbodyを取得
-        capsuleCollider = rb.GetComponent<CapsuleCollider>(); // カプセルコライダーを取得　　
+        capsuleCollider = rb.GetComponent<CapsuleCollider>(); // カプセルコライダーを取得
     }
 
 
@@ -134,8 +134,8 @@ public class PlayerController : MonoBehaviour
     //　ジャンプ用の入力
     void InputJump()
     {
-        if (isJump) return; // すでにジャンプ中なら終了する
-        if (Input.GetKeyDown(KeyCode.Space))
+       
+        if (Input.GetKeyDown(KeyCode.Space) && !isJump)
         {
             rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
             isJump = true;
