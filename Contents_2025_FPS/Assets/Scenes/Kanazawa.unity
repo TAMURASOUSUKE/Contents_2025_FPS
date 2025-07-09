@@ -181,7 +181,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -557,6 +557,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   standCenter: {x: 0, y: 1, z: 0}
   crouchCenter: {x: 0, y: 0.5, z: 0}
+  hp: 100
   moveSpeed: 2
   standHeight: 1.5
   crouchMoveSpeed: 1
