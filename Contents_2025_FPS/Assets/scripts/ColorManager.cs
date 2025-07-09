@@ -7,7 +7,11 @@ public class ColorManager : MonoBehaviour
 {
     private Volume volume;
     private ColorAdjustments colorAdjustments;
-    private bool isColor = false;
+    float timer = 0;
+    float redTimer = 0;
+    float greenTimer = 0;
+    float blueTimer = 0;
+    bool isColorChange = true;
 
     void Start()
     {
@@ -21,43 +25,85 @@ public class ColorManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("ColorAdjustments が VolumeProfile に設定されていません！");
+            Debug.Log("ColorAdjustments が VolumeProfile に設定されていません！");
         }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        SelectColor();
+        Timer();
+    }
+
+
+    void Timer()
+    {
+        if (isColorChange)
         {
-            if (colorAdjustments != null)
+            ChangeTimer();
+        }
+    }
+    void SelectColor()
+    {
+        if (isColorChange)
+        {
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                // 例：赤い色フィルターを設定
-                colorAdjustments.colorFilter.value = new Color(1f, 0.6f, 0.6f, 1f);
+                if (colorAdjustments != null)
+                {
+                    RedColor();
+                    isColorChange = true;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                if (colorAdjustments != null)
+                {
+                    GreenColor();
+                    isColorChange = true;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                if (colorAdjustments != null)
+                {
+                    BlueColor();
+                    isColorChange = true;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                if (colorAdjustments != null)
+                {
+                   DefaultColor();
+                }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (colorAdjustments != null)
-            {
-                // 例：緑色フィルターを設定
-                colorAdjustments.colorFilter.value = new Color(0.6f, 1f, 0.6f, 1f);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (colorAdjustments != null)
-            {
-                // 例：青色フィルターを設定
-                colorAdjustments.colorFilter.value = new Color(0.6f, 0.6f, 1f, 1f);
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            if (colorAdjustments != null)
-            {
-                // 例：元の色に戻す
-                colorAdjustments.colorFilter.value = new Color(1f, 1f, 1f, 1f);
-            }
-        }
+    }
+
+    void RedColor()
+    {
+        //赤い色フィルターを設定
+        colorAdjustments.colorFilter.value = new Color(1f, 0.6f, 0.6f, 1f);
+    }
+    void GreenColor()
+    {
+        // 例：緑色フィルターを設定
+        colorAdjustments.colorFilter.value = new Color(0.6f, 1f, 0.6f, 1f);
+    }
+    void BlueColor() 
+    {
+        //青色フィルターを設定
+        colorAdjustments.colorFilter.value = new Color(0.6f, 0.6f, 1f, 1f);
+    }
+    void DefaultColor()
+    {
+        // 例：元の色に戻す
+        colorAdjustments.colorFilter.value = new Color(1f, 1f, 1f, 1f);
+    }
+    void ChangeTimer()
+    {
+        timer += Time.deltaTime;
     }
 }
