@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform cameraTransform; // しゃがむ際のカメラ移動に使う
     [SerializeField] Vector3 standCenter = new Vector3(0, 1.0f, 0); // 立っている時の判定の中心
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0); // しゃがんでいるときの判定の中心
+    [SerializeField] int hp = 100;
     [SerializeField] float moveSpeed = 1.0f; // 通常の移動速度
     [SerializeField] float standHeight = 1.5f; // 立っている時の高さ
     [SerializeField] float crouchMoveSpeed = 1.0f; //　しゃがんだ時の移動速度
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     float currentSpeed = 0.0f; // 現在のスピードを取得
     bool isJump = false; // ジャンプ用のフラグ
     bool isCrouch = false; // しゃがみ用のフラグ
+    bool isDash = false; // ダッシュしているかのフラグ
 
     // ------------------------------------------関数---------------------------------------
 
@@ -51,6 +53,17 @@ public class PlayerController : MonoBehaviour
         CalculateMove();
     }
 
+    // Hpを取得する用
+    public int GetHp()
+    {
+        return hp;
+    }
+
+    // Hp変更用(中身を変える)
+    public void SetHp(int hp)
+    {
+        this.hp = hp;
+    }
 
 
     //  移動に関する入力を受け付ける
@@ -64,11 +77,29 @@ public class PlayerController : MonoBehaviour
             // 各状態を設定 (通常移動, ダッシュ, しゃがみ) 
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                currentSpeed = dashMoveSpeed; // ダッシュ用のスピード
+               isDash = true;
+               isCrouch = false ;
             }
             else if (Input.GetKey(KeyCode.LeftControl))
             {
                 isCrouch = true;
+                isDash = false ;
+                
+            }
+            else
+            {
+                isDash= false;
+                isCrouch = false;
+            }
+
+
+            // 移動する際の値変更
+            if (isDash && !isCrouch)
+            {
+                currentSpeed = dashMoveSpeed; // ダッシュ用のスピード
+            }
+            else if (isCrouch && !isDash)
+            {
                 currentSpeed = crouchMoveSpeed; // しゃがみ用のスピード
                 // 各変数をカプセルコライダーに適用
                 capsuleCollider.height = crouchHeight;
@@ -76,21 +107,20 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                // 何もフラグが立っていない時は通常移動
                 if (CanStandUp())
                 {
                     //　trueなら上に何もないfalseならあると判定
-                    isCrouch = false; // しゃがんでいない時はfalse
                     currentSpeed = moveSpeed; // 通常のスピード
-                                              // 各変数をカプセルコライダーに適用
+                    // 各変数をカプセルコライダーに適用
                     capsuleCollider.height = standHeight;
                     capsuleCollider.center = standCenter;
 
                 }
-
             }
-        
 
-            CrouchCamera();
+
+                CrouchCamera();
 
             // 移動方向を設定
             float dirX = Input.GetAxisRaw("Horizontal");
