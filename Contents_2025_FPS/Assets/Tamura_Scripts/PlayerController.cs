@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     float currentSpeed = 0.0f; // 現在のスピードを取得
     bool isJump = false; // ジャンプ用のフラグ
     bool isCrouch = false; // しゃがみ用のフラグ
-    bool isDash = false; // ダッシュしているかのフラグ
+    bool isDash = false; // ダッシュ用のフラグ
 
     // ------------------------------------------関数---------------------------------------
 
@@ -74,53 +74,55 @@ public class PlayerController : MonoBehaviour
 
         if (this.gameObject != null)
         {
-            // 各状態を設定 (通常移動, ダッシュ, しゃがみ) 
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-               isDash = true;
-               isCrouch = false ;
-            }
-            else if (Input.GetKey(KeyCode.LeftControl))
+
+
+            // 状態切り替え：キーを押した「瞬間」でのみ判定
+            if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 isCrouch = true;
-                isDash = false ;
-                
+                isDash = false;
             }
-            else
+            else if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                isDash= false;
-                isCrouch = false;
-            }
-
-
-            // 移動する際の値変更
-            if (isDash && !isCrouch)
-            {
-                currentSpeed = dashMoveSpeed; // ダッシュ用のスピード
-            }
-            else if (isCrouch && !isDash)
-            {
-                currentSpeed = crouchMoveSpeed; // しゃがみ用のスピード
-                // 各変数をカプセルコライダーに適用
-                capsuleCollider.height = crouchHeight;
-                capsuleCollider.center = crouchCenter;
-            }
-            else
-            {
-                // 何もフラグが立っていない時は通常移動
-                if (CanStandUp())
+                if (CanStandUp()) // 頭上に障害がないときのみダッシュに移行
                 {
-                    //　trueなら上に何もないfalseならあると判定
-                    currentSpeed = moveSpeed; // 通常のスピード
-                    // 各変数をカプセルコライダーに適用
-                    capsuleCollider.height = standHeight;
-                    capsuleCollider.center = standCenter;
-
+                    isDash = true;
+                    isCrouch = false;
                 }
             }
 
+            // 両方のキーが離されたら、通常状態へ
+            if (!Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.LeftShift))
+            {
+                if (CanStandUp())
+                {
+                    isCrouch = false;
+                    isDash = false;
+                }
+            }
 
-                CrouchCamera();
+            // スピードとコライダーの設定
+            if (isCrouch)
+            {
+                currentSpeed = crouchMoveSpeed;
+                capsuleCollider.height = crouchHeight;
+                capsuleCollider.center = crouchCenter;
+            }
+            else if (isDash)
+            {
+                currentSpeed = dashMoveSpeed;
+                capsuleCollider.height = standHeight;
+                capsuleCollider.center = standCenter;
+            }
+            else
+            {
+                currentSpeed = moveSpeed;
+                capsuleCollider.height = standHeight;
+                capsuleCollider.center = standCenter;
+            }
+
+
+            CrouchCamera();
 
             // 移動方向を設定
             float dirX = Input.GetAxisRaw("Horizontal");
