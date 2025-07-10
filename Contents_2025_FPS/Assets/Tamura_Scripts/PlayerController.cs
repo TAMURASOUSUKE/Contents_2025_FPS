@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         InputMove();
         InputJump();
+        LimitHp();
     }
 
     //•¨—‹““®‚ÍFixedUpdate‚Å•ª‚¯‚é
@@ -67,7 +68,13 @@ public class PlayerController : MonoBehaviour
         this.hp = hp;
     }
 
-
+    void LimitHp()
+    {
+        if (hp <= 0)
+        {
+            hp = 0;
+        }
+    }
     //  ˆÚ“®‚ÉŠÖ‚·‚é“ü—Í‚ğó‚¯•t‚¯‚é
     void InputMove()
     {
