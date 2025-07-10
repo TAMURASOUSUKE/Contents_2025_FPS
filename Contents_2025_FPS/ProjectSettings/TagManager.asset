@@ -8,6 +8,9 @@ TagManager:
   - Ladder
   - LadderTop
   - LadderBottom
+  - RedObject
+  - GreenObject
+  - BlueObject
   layers:
   - Default
   - TransparentFX
