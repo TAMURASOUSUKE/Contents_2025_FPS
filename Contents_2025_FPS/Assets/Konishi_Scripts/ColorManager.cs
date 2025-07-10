@@ -5,7 +5,8 @@ using UnityEngine.Rendering.Universal;
 
 public class ColorManager : MonoBehaviour
 {
-    [SerializeField] GameObject cube;
+    [SerializeField] GameObject otosiana;
+    [SerializeField] GameObject torabasami;
     MeshRenderer cubeMesh;
     private Volume volume;
     private ColorAdjustments colorAdjustments;
@@ -25,7 +26,7 @@ public class ColorManager : MonoBehaviour
     {
         // Volumeコンポーネントを取得
         volume = GetComponent<Volume>();
-        cubeMesh = cube.GetComponent<MeshRenderer>();
+        cubeMesh = otosiana.GetComponent<MeshRenderer>();
         // VolumeProfile から ColorAdjustments を取得
         if (volume.profile.TryGet<ColorAdjustments>(out var color))
         {
