@@ -1127,12 +1127,12 @@ MonoBehaviour:
   standCenter: {x: 0, y: 1, z: 0}
   crouchCenter: {x: 0, y: 0.5, z: 0}
   hp: 100
-  moveSpeed: 2
+  moveSpeed: 1.8
   standHeight: 1.5
   crouchMoveSpeed: 1
   crouchHeight: 0.5
   crouchSpeed: 6
-  dashMoveSpeed: 4
+  dashMoveSpeed: 3.6
   jumpHeight: 4
   standCameraY: 1.5
   crouchCameraY: 0.8

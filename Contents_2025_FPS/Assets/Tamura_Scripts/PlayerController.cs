@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
 
             // 状態切り替え：キーを押した「瞬間」でのみ判定
-            if (Input.GetKeyDown(KeyCode.LeftControl))
+            if (Input.GetKeyDown(KeyCode.LeftControl) && !isCliming)
             {
                 isCrouch = true;
                 isDash = false;
@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             }
 
             // スピードとコライダーの設定
-            if (isCrouch && !isCliming) // (梯子を上るときはしゃがめないようにする)
+            if (isCrouch) // (梯子を上るときはしゃがめないようにする)
             {
                 currentSpeed = crouchMoveSpeed;
                 capsuleCollider.height = crouchHeight;
