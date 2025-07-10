@@ -5,6 +5,8 @@ using UnityEngine.Rendering.Universal;
 
 public class ColorManager : MonoBehaviour
 {
+    [SerializeField] GameObject cube;
+    MeshRenderer cubeMesh;
     private Volume volume;
     private ColorAdjustments colorAdjustments;
     float redTimer = 0;         //赤フィルターの切り替えクールタイム
@@ -23,7 +25,7 @@ public class ColorManager : MonoBehaviour
     {
         // Volumeコンポーネントを取得
         volume = GetComponent<Volume>();
-
+        cubeMesh = cube.GetComponent<MeshRenderer>();
         // VolumeProfile から ColorAdjustments を取得
         if (volume.profile.TryGet<ColorAdjustments>(out var color))
         {
@@ -45,9 +47,12 @@ public class ColorManager : MonoBehaviour
     
     void SelectColor()  //カラー変更の大元  Updateで使う
     {
+        bool isRed = Input.GetKeyDown(KeyCode.Alpha1);
+        bool isGreen = Input.GetKeyDown(KeyCode.Alpha2);
+        bool isBule = Input.GetKeyDown(KeyCode.Alpha3);
         if (!isColorChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))   //1キー
+            if (isRed)   //1キー
             {
                 if (!isRedTimer)
                 {
@@ -56,10 +61,11 @@ public class ColorManager : MonoBehaviour
                         RedColor();             //赤フィルター
                         isColorChange = true;   //フィルターが有効になった
                         isRedTimer = true;      //赤フィルターのクールタイム
+                       cubeMesh.enabled = false;
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2))   //2キー
+            if (isGreen)   //2キー
             {
                 if (!isGreenTimer)
                 {
@@ -71,7 +77,7 @@ public class ColorManager : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3))   //3キー
+            if (isBule)   //3キー
             {
                 if (!isBlueTimer)
                 {
@@ -141,6 +147,8 @@ public class ColorManager : MonoBehaviour
         {
             redTimer = 0;
             isRedTimer = false;
+            
+
         }
     }
     void GreenTimer()
@@ -150,6 +158,7 @@ public class ColorManager : MonoBehaviour
         {
             greenTimer = 0;
             isGreenTimer = false;
+            
         }
     }
     void BlueTimer()
@@ -169,6 +178,7 @@ public class ColorManager : MonoBehaviour
             colorAdjustments.colorFilter.value = new Color(1f, 1f, 1f, 1f); // 例：元の色に戻す
             timer = 0;
             isColorChange = false;
+            cubeMesh.enabled = true;
         }
     }
 }
