@@ -22,12 +22,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpHeight = 1.0f; // ジャンプの高さ
     [SerializeField] float standCameraY = 1.5f; // 通常のカメラの高さ
     [SerializeField] float crouchCameraY = 0.8f; // しゃがんだ時のカメラの高さ
+    [SerializeField] float ladderReenterDelay = 0.5f; // 梯子に再度上れるようになる時間
     CapsuleCollider capsuleCollider; // しゃがみに使う
     Rigidbody rb; // 移動に使う
     Vector3 moveDir = Vector3.zero; // 移動方向
     Vector3 moveValue = Vector3.zero; // 移動する量
     float currentSpeed = 0.0f; // 現在のスピードを取得
-    float climingY = 0.0f; // 梯子を上るとき用の変数
+    float climbingY = 0.0f; // 梯子を上るとき用の変数
+    float lastLadderCancelTime = int.MinValue; // キャンセルした時間を記録する変数
     bool isJump = false; // ジャンプ用のフラグ
     bool isCrouch = false; // しゃがみ用のフラグ
     bool isDash = false; // ダッシュ用のフラグ
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
     // 入力処理はUpdate
     void Update()
     {
+        
         InputMove();
         InputJump();
         LimitHp();
@@ -156,12 +159,19 @@ public class PlayerController : MonoBehaviour
             // 梯子を上るとき用
             else
             {
-                climingY = Input.GetAxis("Vertical"); // 上下方向
+                climbingY = Input.GetAxis("Vertical"); // 上下方向
+                // 登っているときに左Controlで梯子解除
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    CancelClimbing();
+                }
             }
 
 
         }
     }
+
+   
 
     // 実際の移動を計算
     void CalculateMove()
@@ -176,7 +186,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 // rb.useGravity = false; // 落下しないようにする
-                rb.velocity = new Vector3(0, climingY * currentSpeed, 0);
+                rb.velocity = new Vector3(0, climbingY * currentSpeed, 0);
             }
 
         }
@@ -218,6 +228,8 @@ public class PlayerController : MonoBehaviour
         return !hit; // ヒットしてなければ立てる
     }
 
+  
+
     //　着地用
     void OnCollisionEnter(Collision other)
     {
@@ -229,12 +241,33 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
     // 梯子用
-    
+
+    // 梯子キャンセル用
+    void CancelClimbing()
+    {
+        isCliming = false;
+        rb.useGravity = true;
+        rb.velocity = Vector3.zero;
+        lastLadderCancelTime = Time.time; // キャンセルした時間を記録
+
+        // 障害物にめり込まないように少し手前に押し戻す（オプション）
+        Vector3 backDirection = -cameraTransform.forward;
+        transform.position += backDirection * 0.01f; // 小さく後ろに動かす
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Ladder"))
         {
+            // 再び登れるようになるまで時間制限を設ける
+            if (Time.time - lastLadderCancelTime < ladderReenterDelay)
+            {
+                return;
+            }
+
+
             float vertical = Input.GetAxis("Vertical");
             if (vertical != 0f && !isCliming)
             {
