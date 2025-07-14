@@ -101,6 +101,7 @@ public class ColorManager : MonoBehaviour
     {
         //赤い色フィルターを設定
         colorAdjustments.colorFilter.value = new Color(1f, 0.6f, 0.6f, 1f);
+
     }
     void GreenColor()//緑
     {

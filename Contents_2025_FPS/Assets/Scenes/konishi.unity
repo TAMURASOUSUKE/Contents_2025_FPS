@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 259287762}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: RedObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -946,6 +946,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b7375323ef9a09140bb0994b2831fa9b, type: 2}
+    - target: {fileID: 8754944508746261094, guid: 7fcd1dc88eff62e419e126ef4e9af22d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
