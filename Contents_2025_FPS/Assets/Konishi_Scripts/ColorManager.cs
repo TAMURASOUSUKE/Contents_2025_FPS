@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
+/*
+ if elseでtrueをfalseにしてfalseをtrueにして透明化させる
+*/
 public class ColorManager : MonoBehaviour
 {
     [SerializeField] GameObject otosiana;
@@ -10,12 +13,12 @@ public class ColorManager : MonoBehaviour
     MeshRenderer cubeMesh;
     private Volume volume;
     private ColorAdjustments colorAdjustments;
-    float redTimer = 0;         //赤フィルターの切り替えクールタイム
-    float greenTimer = 0;       //緑フィルターの切り替えクールタイム
-    float blueTimer = 0;        //青フィルターの切り替えクールタイム
-    float timer = 0;            //秒カウンター
-    float filterCoolTime = 7;   //フィルター切り替えのクールタイム
-    float colorTiemr = 3;       //フィルターの有効時間
+    float timer = 0;            //秒カウンターフィルターの有効時間で使う
+    float redTimer = 0;      //各フィルターのタイム計測に使用   
+    float greenTimer = 0;       
+    float blueTimer = 0;        
+    public float filterCoolTime = 7;   //フィルター切り替えのクールタイム
+    public float colorTiemr = 3;       //フィルターの有効時間
     bool isColorChange = false; //フィルターが有効か
     bool isRedTimer = false;
     bool isGreenTimer = false;
@@ -26,7 +29,7 @@ public class ColorManager : MonoBehaviour
     {
         // Volumeコンポーネントを取得
         volume = GetComponent<Volume>();
-        cubeMesh = otosiana.GetComponent<MeshRenderer>();
+        //cubeMesh = otosiana.GetComponent<MeshRenderer>();
         // VolumeProfile から ColorAdjustments を取得
         if (volume.profile.TryGet<ColorAdjustments>(out var color))
         {
@@ -55,47 +58,41 @@ public class ColorManager : MonoBehaviour
         {
             if (isRed)   //1キー
             {
+                //Debug.Log("赤");
                 if (!isRedTimer)
                 {
-                    if (colorAdjustments != null)
-                    {
+                    Debug.Log("timer");
+                    //if (colorAdjustments != null)
+                    //{
+                        Debug.Log("フィルター起動");
                         RedColor();             //赤フィルター
                         isColorChange = true;   //フィルターが有効になった
                         isRedTimer = true;      //赤フィルターのクールタイム
-                       cubeMesh.enabled = false;
-                    }
+                       //cubeMesh.enabled = false;
+                    //}
                 }
             }
             if (isGreen)   //2キー
             {
                 if (!isGreenTimer)
                 {
-                    if (colorAdjustments != null)
-                    {
-                        GreenColor();           //緑フィルター
-                        isColorChange = true;
-                        isGreenTimer = true;
-                    }
+                    GreenColor();           //緑フィルター
+                    isColorChange = true;
+                    isGreenTimer = true;
                 }
             }
             if (isBule)   //3キー
             {
                 if (!isBlueTimer)
                 {
-                    if (colorAdjustments != null)
-                    {
-                        BlueColor();            //青フィルター
-                        isColorChange = true;
-                        isBlueTimer = true;
-                    }
+                    BlueColor();            //青フィルター
+                    isColorChange = true;
+                    isBlueTimer = true;
                 }
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))   //4キー
             {
-                if (colorAdjustments != null)
-                {
-                   DefaultColor();
-                }
+                DefaultColor();
             }
         }
     }
@@ -148,8 +145,6 @@ public class ColorManager : MonoBehaviour
         {
             redTimer = 0;
             isRedTimer = false;
-            
-
         }
     }
     void GreenTimer()
@@ -159,7 +154,6 @@ public class ColorManager : MonoBehaviour
         {
             greenTimer = 0;
             isGreenTimer = false;
-            
         }
     }
     void BlueTimer()
@@ -179,7 +173,7 @@ public class ColorManager : MonoBehaviour
             colorAdjustments.colorFilter.value = new Color(1f, 1f, 1f, 1f); // 例：元の色に戻す
             timer = 0;
             isColorChange = false;
-            cubeMesh.enabled = true;
+            //cubeMesh.enabled = true;
         }
     }
 }
