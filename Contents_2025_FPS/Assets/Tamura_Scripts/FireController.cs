@@ -5,9 +5,11 @@ using UnityEngine;
 public class FireController : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] Camera cam;
     [SerializeField] Sprite[] sprites = new Sprite[15]; // アニメーションする枚数分用意
     [SerializeField] SpriteRenderer spriteRenderer;
     int index = 0; // インデックス操作用
+    bool isInCamera = false; // カメラ内に入っているか
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -16,12 +18,21 @@ public class FireController : MonoBehaviour
 
     void Update()
     {
-        FireAnim();
+        isInCamera = IsVisibleFrom(spriteRenderer, cam);
+        if (isInCamera)
+        {
+            FireAnim();
+        }
+       
+        
     }
 
     private void LateUpdate()
     {
-        LookAnim();
+        if (isInCamera)
+        {
+            LookAnim();
+        }
     }
 
 
@@ -47,5 +58,12 @@ public class FireController : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
         }
 
+    }
+
+    bool IsVisibleFrom(Renderer rend, Camera cam)
+    {
+        if(!rend || !cam) return false;
+        var planes = GeometryUtility.CalculateFrustumPlanes(cam);
+        return GeometryUtility.TestPlanesAABB(planes, rend.bounds);
     }
 }
