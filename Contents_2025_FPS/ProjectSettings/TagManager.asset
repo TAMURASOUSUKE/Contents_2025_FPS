@@ -12,6 +12,15 @@ TagManager:
   - GreenObject
   - BlueObject
   - Wall
+  - Red_Visible
+  - Red_Hidden
+  - Red_ColliderOnry
+  - Green_Visible
+  - Green_Hidden
+  - Green_ColliderOnry
+  - Blue_Visible
+  - Blue_Hidden
+  - Blue_ColliderOnry
   layers:
   - Default
   - TransparentFX
