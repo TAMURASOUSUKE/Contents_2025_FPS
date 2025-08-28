@@ -23,8 +23,18 @@ public class ColorManager : MonoBehaviour
     bool isRedTimer = false;
     bool isGreenTimer = false;
     bool isBlueTimer = false;
-
-
+    MeshRenderer meshRender;
+    BoxCollider boxCollider;
+    GameObject[] redVisibles;
+    GameObject[] redHiddens;
+    GameObject[] redColliderOnrys;
+    GameObject[] greenVisibles;
+    GameObject[] greenHiddens;
+    GameObject[] greenColliderOnrys;
+    GameObject[] blueVisibles;
+    GameObject[] blueHiddens;
+    GameObject[] blueColliderOnrys;
+    
     void Start()
     {
         // Volumeコンポーネントを取得
@@ -39,6 +49,54 @@ public class ColorManager : MonoBehaviour
         {
             Debug.Log("ColorAdjustments が VolumeProfile に設定されていません！");
         }
+
+        redVisibles = GameObject.FindGameObjectsWithTag("Red_Visible");    //findはstartの中で
+        redHiddens = GameObject.FindGameObjectsWithTag("Red_Hidden");    
+        redColliderOnrys = GameObject.FindGameObjectsWithTag("Red_ColliderOnry");
+        greenVisibles = GameObject.FindGameObjectsWithTag("Green_Visible");
+        greenHiddens = GameObject.FindGameObjectsWithTag("Green_Hidden");
+        greenColliderOnrys = GameObject.FindGameObjectsWithTag("Green_ColliderOnry");
+        blueVisibles = GameObject.FindGameObjectsWithTag("Blue_Visible");
+        blueHiddens = GameObject.FindGameObjectsWithTag("Blue_Hidden");
+        blueColliderOnrys = GameObject.FindGameObjectsWithTag("Blue_ColliderOnry");
+        foreach (GameObject red in redHiddens)
+        {
+            MeshRenderer mr = red.GetComponent<MeshRenderer>();
+            BoxCollider bc = red.GetComponent<BoxCollider>();
+            mr.enabled = false;
+            bc.enabled = false;
+        }
+        foreach (GameObject red in greenHiddens)
+        {
+            MeshRenderer mr = red.GetComponent<MeshRenderer>();
+            BoxCollider bc = red.GetComponent<BoxCollider>();
+            mr.enabled = false;
+            bc.enabled = false;
+        }
+        foreach (GameObject red in blueHiddens)
+        {
+            MeshRenderer mr = red.GetComponent<MeshRenderer>();
+            BoxCollider bc = red.GetComponent<BoxCollider>();
+            mr.enabled = false;
+            bc.enabled = false;
+        }
+        foreach (GameObject red in redColliderOnrys)
+        {
+            MeshRenderer mr = red.GetComponent<MeshRenderer>();
+            mr.enabled = false;
+        }
+        foreach (GameObject green in greenColliderOnrys)
+        {
+            MeshRenderer mr = green.GetComponent<MeshRenderer>();
+            mr.enabled = false;
+        }
+        foreach (GameObject blue in blueColliderOnrys)
+        {
+            MeshRenderer mr = blue.GetComponent<MeshRenderer>();
+            mr.enabled = false;
+        }
+        //meshRender = GetComponent<MeshRenderer>();
+        //boxCollider = GetComponent<BoxCollider>();
     }
 
     void Update()
@@ -53,7 +111,7 @@ public class ColorManager : MonoBehaviour
     {
         bool isRed = Input.GetKeyDown(KeyCode.Alpha1);
         bool isGreen = Input.GetKeyDown(KeyCode.Alpha2);
-        bool isBule = Input.GetKeyDown(KeyCode.Alpha3);
+        bool isBlue = Input.GetKeyDown(KeyCode.Alpha3);
         if (!isColorChange)
         {
             if (isRed)   //1キー
@@ -61,10 +119,10 @@ public class ColorManager : MonoBehaviour
                 //Debug.Log("赤");
                 if (!isRedTimer)
                 {
-                    Debug.Log("timer");
+                    //Debug.Log("timer");
                     //if (colorAdjustments != null)
                     //{
-                        Debug.Log("フィルター起動");
+                        //Debug.Log("フィルター起動");
                         RedColor();             //赤フィルター
                         isColorChange = true;   //フィルターが有効になった
                         isRedTimer = true;      //赤フィルターのクールタイム
@@ -81,7 +139,7 @@ public class ColorManager : MonoBehaviour
                     isGreenTimer = true;
                 }
             }
-            if (isBule)   //3キー
+            if (isBlue)   //3キー
             {
                 if (!isBlueTimer)
                 {
@@ -96,22 +154,70 @@ public class ColorManager : MonoBehaviour
             }
         }
     }
-
+    
     void RedColor() //赤
     {
         //赤い色フィルターを設定
         colorAdjustments.colorFilter.value = new Color(1f, 0.6f, 0.6f, 1f);
-
+        foreach (GameObject redVisible in redVisibles)
+        {
+            redVisible.SetActive(false);
+            //Debug.Log(redObject);
+        }
+        foreach (GameObject redHidden in redHiddens)
+        {
+            MeshRenderer mr = redHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = redHidden.GetComponent<BoxCollider>();
+            mr.enabled = true;
+            bc.enabled = true;
+        }
+        foreach (GameObject red in redColliderOnrys)
+        {
+            MeshRenderer mr = red.GetComponent<MeshRenderer>();
+            mr.enabled = true;
+        }
     }
     void GreenColor()//緑
     {
-        // 例：緑色フィルターを設定
+        //緑色フィルターを設定
         colorAdjustments.colorFilter.value = new Color(0.6f, 1f, 0.6f, 1f);
+        foreach (GameObject greenObject in greenVisibles)
+        {
+            greenObject.SetActive(false);
+        }
+        foreach (GameObject greenHidden in greenHiddens)
+        {
+            MeshRenderer mr = greenHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = greenHidden.GetComponent<BoxCollider>();
+            mr.enabled = true;
+            bc.enabled = true;
+        }
+        foreach (GameObject green in greenColliderOnrys)
+        {
+            MeshRenderer mr = green.GetComponent<MeshRenderer>();
+            mr.enabled = true;
+        }
     }
     void BlueColor() //青
     {
         //青色フィルターを設定
         colorAdjustments.colorFilter.value = new Color(0.6f, 0.6f, 1f, 1f);
+        foreach (GameObject blueObject in blueVisibles)
+        {
+            blueObject.SetActive(false);
+        }
+        foreach (GameObject blueHidden in blueHiddens)
+        {
+            MeshRenderer mr = blueHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = blueHidden.GetComponent<BoxCollider>();
+            mr.enabled = true;
+            bc.enabled = true;
+        }
+        foreach (GameObject blue in blueColliderOnrys)
+        {
+            MeshRenderer mr = blue.GetComponent<MeshRenderer>();
+            mr.enabled = true;
+        }
     }
     void DefaultColor()//デフォルトの色
     {
@@ -175,6 +281,57 @@ public class ColorManager : MonoBehaviour
             timer = 0;
             isColorChange = false;
             //cubeMesh.enabled = true;
+            //赤
+            foreach (GameObject redObject in redVisibles)
+            {
+                redObject.SetActive(true);
+            }
+            foreach (GameObject redHidden in redHiddens)
+            {
+                MeshRenderer mr = redHidden.GetComponent<MeshRenderer>();
+                BoxCollider bc = redHidden.GetComponent<BoxCollider>();
+                mr.enabled = false;
+                bc.enabled = false;
+            }
+            foreach (GameObject red in redColliderOnrys)
+            {
+                MeshRenderer mr = red.GetComponent<MeshRenderer>();
+                mr.enabled = false;
+            }
+            //緑
+            foreach (GameObject greenObject in greenVisibles)
+            {
+                greenObject.SetActive(true);
+            }
+            foreach (GameObject greenHidden in greenHiddens)
+            {
+                MeshRenderer mr = greenHidden.GetComponent<MeshRenderer>();
+                BoxCollider bc = greenHidden.GetComponent<BoxCollider>();
+                mr.enabled = false;
+                bc.enabled = false;
+            }
+            foreach (GameObject green in greenColliderOnrys)
+            {
+                MeshRenderer mr = green.GetComponent<MeshRenderer>();
+                mr.enabled = false;
+            }
+            //青
+            foreach (GameObject blueObject in blueVisibles)
+            {
+                blueObject.SetActive(true);
+            }
+            foreach (GameObject blueHidden in blueHiddens)
+            {
+                MeshRenderer mr = blueHidden.GetComponent<MeshRenderer>();
+                BoxCollider bc = blueHidden.GetComponent<BoxCollider>();
+                mr.enabled = false;
+                bc.enabled = false;
+            }
+            foreach (GameObject blue in blueColliderOnrys)
+            {
+                MeshRenderer mr = blue.GetComponent<MeshRenderer>();
+                mr.enabled = false;
+            }
         }
     }
 }
