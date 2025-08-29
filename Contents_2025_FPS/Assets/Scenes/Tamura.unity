@@ -12300,6 +12300,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6868181943883061187, guid: 7fcd1dc88eff62e419e126ef4e9af22d,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 1d68fddc093e5b842b8b8adf38bd996d,
+        type: 2}
+    - target: {fileID: 7913151726631359393, guid: 7fcd1dc88eff62e419e126ef4e9af22d,
+        type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
