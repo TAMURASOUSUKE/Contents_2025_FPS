@@ -11336,7 +11336,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 330585546}
   standCenter: {x: 0, y: 1, z: 0}
   crouchCenter: {x: 0, y: 0.5, z: 0}
-  hp: 100
+  hp: 150
   moveSpeed: 1.8
   standHeight: 1.5
   crouchMoveSpeed: 1
