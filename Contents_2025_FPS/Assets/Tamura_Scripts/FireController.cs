@@ -8,6 +8,7 @@ public class FireController : MonoBehaviour
     [SerializeField] Camera cam;
     [SerializeField] Sprite[] sprites = new Sprite[15]; // アニメーションする枚数分用意
     [SerializeField] SpriteRenderer spriteRenderer;
+    [SerializeField] int drawFps;
     int index = 0; // インデックス操作用
     bool isInCamera = false; // カメラ内に入っているか
     void Start()
@@ -18,13 +19,10 @@ public class FireController : MonoBehaviour
 
     void Update()
     {
-        isInCamera = IsVisibleFrom(spriteRenderer, cam);
         if (isInCamera)
         {
             FireAnim();
         }
-       
-        
     }
 
     private void LateUpdate()
@@ -39,7 +37,7 @@ public class FireController : MonoBehaviour
     void FireAnim()
     {
         // 2フレームごとに描画
-        if (Time.frameCount % 2 == 0)
+        if (Time.frameCount % drawFps == 0)
         {
             index = (index + 1) % sprites.Length;
             spriteRenderer.sprite = sprites[index];
@@ -60,10 +58,16 @@ public class FireController : MonoBehaviour
 
     }
 
-    bool IsVisibleFrom(Renderer rend, Camera cam)
+    // 写っていない時はフラグを立てない
+    private void OnBecameInvisible()
     {
-        if(!rend || !cam) return false;
-        var planes = GeometryUtility.CalculateFrustumPlanes(cam);
-        return GeometryUtility.TestPlanesAABB(planes, rend.bounds);
+        isInCamera = false;
     }
+
+    // 写っているときはフラグを立てる
+    private void OnBecameVisible()
+    {
+        isInCamera = true;
+    }
+
 }
