@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour
 {
-    [SerializeField] GameObject player;
-    [SerializeField] Camera cam;
+   
     [SerializeField] Sprite[] sprites = new Sprite[15]; // アニメーションする枚数分用意
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] int drawFps;
+    Camera cam; // メインカメラ
+    GameObject player; // プレイヤー
     int index = 0; // インデックス操作用
     bool isInCamera = false; // カメラ内に入っているか
     void Start()
     {
+        cam = Camera.main; // メインカメラを探す
+        player = GameObject.FindWithTag("Player"); // タグでプレイヤーを探す
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
