@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        Application.targetFrameRate = 60; // フレームレートを固定
         rb = GetComponent<Rigidbody>(); // Rigidbodyを取得
         capsuleCollider = rb.GetComponent<CapsuleCollider>(); // カプセルコライダーを取得
     }
