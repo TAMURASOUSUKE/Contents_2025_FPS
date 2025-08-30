@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
     // Hp•ÏX—p(’†g‚ğ•Ï‚¦‚é)
     public void SetHp(int hp)
     {
-        this.hp = hp;
+        this.hp = this.hp - hp;
     }
 
     void LimitHp()
