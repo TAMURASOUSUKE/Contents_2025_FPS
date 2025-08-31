@@ -776,6 +776,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 1937193685478008621, guid: e3ffbf0f6df63ff48a08b35cab682357,
+        type: 3}
+      propertyPath: m_TagString
+      value: Red_Visible
+      objectReference: {fileID: 0}
     - target: {fileID: 3177995963061979913, guid: e3ffbf0f6df63ff48a08b35cab682357,
         type: 3}
       propertyPath: m_Size.x
