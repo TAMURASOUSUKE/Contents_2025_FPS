@@ -24,14 +24,16 @@ public class FogController : MonoBehaviour
     
     float startValue = 0f; // 計算上の最初の値
     float endValue = 1f; // 計算上の最後の値
-   
+
+    // ----------------------------------------------------関数------------------------------------------------
+
     void Start()
     {
         RenderSettings.fogDensity = startDuration; // fogの初期設定
         RenderSettings.fogColor = startColor; // fogの色の初期設定
     }
 
-    // ----------------------------------------------------関数
+   
     
     void Update()
     {
