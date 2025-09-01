@@ -16,14 +16,15 @@ public class FogController : MonoBehaviour
     [SerializeField] Transform endPoint; // fogの操作を終えるところ(一番濃い状態)
     [SerializeField] Transform goalStart; // ゴールするとき色を変え始める位置
     [SerializeField] Transform goalEnd; // ゴールするとき色を変え終える位置
-    [SerializeField] Color startColor;
+    [SerializeField] Color startColor; // 最初のfogの色
+    [SerializeField] Color endFogColor = Color.white; // fogのゴールするときの色
     [SerializeField] float startDuration = 0.27f; // 最初のfogの強さ
     [SerializeField] float maxDuration = 0.8f; // 霧の最大の濃さ
     [SerializeField] float adj = 0.5f; // 霧の増加を調整する値
     
     float startValue = 0f; // 計算上の最初の値
     float endValue = 1f; // 計算上の最後の値
-    Color endFogColor = Color.white; // fogのゴールするときの色
+   
     void Start()
     {
         RenderSettings.fogDensity = startDuration; // fogの初期設定
@@ -34,26 +35,25 @@ public class FogController : MonoBehaviour
     
     void Update()
     {
-        calculatFog();
+        CalculatDensity();
+        CalculatColor();
     }
 
-    void calculatFog()
+    void CalculatDensity()
     {
-        // それぞれの軸で比較する
+        // それぞれのz軸で比較する
        float zPlayer = player.position.z;
-       float xPlayer = player.position.x;
        float zStart = startPoint.position.z;
        float zEnd = endPoint.position.z;
-       float xGoalStart = goalStart.position.x;
-       float xGoalEnd = goalEnd.position.x;
+       
+
+        // 濃さの調整
 
         //startからendまでどれくらい進んだか
         float t = Mathf.InverseLerp(zStart, zEnd, zPlayer); // fogの濃さを切り替えるとき用
-        float tColor = Mathf.InverseLerp(xGoalStart, xGoalEnd, xPlayer); // fogの色を切り替えるとき用
 
         // 値を補完
         float value = Mathf.Lerp(startValue, endValue, t);
-        Color valueColor = Color.Lerp(startColor, endFogColor, tColor);
 
         // 実際に代入する
         float totalDuration = (value * adj)  + startDuration;
@@ -61,12 +61,29 @@ public class FogController : MonoBehaviour
         {
             totalDuration = maxDuration; // 最大値を設定
         }
+        RenderSettings.fogDensity = totalDuration;
+    }
 
-        if (zPlayer > zEnd)
+    void CalculatColor()
+    {
+        // ゴール前の坂を下った後でしか計算しないようにする
+        if (player.position.z > endPoint.position.z)
         {
+            // それぞれのx軸で比較
+            float xPlayer = player.position.x;
+            float xGoalStart = goalStart.position.x;
+            float xGoalEnd = goalEnd.position.x;
+
+
+            // fogの色を切り替えるとき用
+            float tColor = Mathf.InverseLerp(xGoalStart, xGoalEnd, xPlayer);
+
+            // 値の補完
+            Color valueColor = Color.Lerp(startColor, endFogColor, tColor);
+
+            // 実際の代入
             RenderSettings.fogColor = valueColor;
         }
-
-        RenderSettings.fogDensity = totalDuration;
+        
     }
 }
