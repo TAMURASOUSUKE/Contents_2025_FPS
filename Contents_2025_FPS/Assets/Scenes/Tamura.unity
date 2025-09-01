@@ -423,7 +423,7 @@ Transform:
   m_GameObject: {fileID: 785520680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.01, y: 2.108, z: 15.62}
+  m_LocalPosition: {x: 1.087, y: -0.189, z: 19.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -919,7 +919,7 @@ Transform:
   m_GameObject: {fileID: 1563379960}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.31, y: -4.16, z: 42.769}
+  m_LocalPosition: {x: -4.15, y: -4.13, z: 42.769}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1008,6 +1008,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1853828406188902714, guid: cca95c116e1d48b45af10c7d2703930c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 1853828406188902714, guid: cca95c116e1d48b45af10c7d2703930c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.21
+      objectReference: {fileID: 0}
     - target: {fileID: 6816154220184736380, guid: cca95c116e1d48b45af10c7d2703930c,
         type: 3}
       propertyPath: m_Name
@@ -1018,6 +1028,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 785520683}
+    - target: {fileID: 8278835454282256169, guid: cca95c116e1d48b45af10c7d2703930c,
+        type: 3}
+      propertyPath: maxDuration
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278835454282256169, guid: cca95c116e1d48b45af10c7d2703930c,
+        type: 3}
+      propertyPath: endFogColor.b
+      value: 0.93962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278835454282256169, guid: cca95c116e1d48b45af10c7d2703930c,
+        type: 3}
+      propertyPath: endFogColor.g
+      value: 0.93962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278835454282256169, guid: cca95c116e1d48b45af10c7d2703930c,
+        type: 3}
+      propertyPath: endFogColor.r
+      value: 0.93962264
+      objectReference: {fileID: 0}
     - target: {fileID: 8555732747683035247, guid: cca95c116e1d48b45af10c7d2703930c,
         type: 3}
       propertyPath: m_LocalPosition.x
