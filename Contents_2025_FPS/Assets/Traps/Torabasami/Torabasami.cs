@@ -29,6 +29,6 @@ public class Torabasami : MonoBehaviour
     {
         int nowHp = player.GetHp();
 
-        player.SetHp(nowHp - DAMAGE);
+        player.TakeDamage(nowHp - DAMAGE);
     }
 }

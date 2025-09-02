@@ -28,12 +28,17 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir = Vector3.zero; // 移動方向
     Vector3 moveValue = Vector3.zero; // 移動する量
     float currentSpeed = 0.0f; // 現在のスピードを取得
+    float prevMoveSpeed = 0;
+    float prevCrouchSpeed = 0;
+    float prevDashSpeed = 0;
+    float adjSpeed = 0.0f;
     float climbingY = 0.0f; // 梯子を上るとき用の変数
     float lastLadderCancelTime = int.MinValue; // キャンセルした時間を記録する変数
     bool isJump = false; // ジャンプ用のフラグ
     bool isCrouch = false; // しゃがみ用のフラグ
     bool isDash = false; // ダッシュ用のフラグ
     bool isCliming = false; // 梯子を上るとき用のフラグ
+    bool isDamage = false; // ダメージを受けたときの判定
     // ------------------------------------------関数---------------------------------------
 
 
@@ -41,6 +46,11 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); // Rigidbodyを取得
         capsuleCollider = rb.GetComponent<CapsuleCollider>(); // カプセルコライダーを取得
+
+        // もともとの速度を保存しておく
+        prevMoveSpeed = moveSpeed;
+        prevCrouchSpeed = crouchSpeed;
+        prevDashSpeed = dashMoveSpeed;
     }
 
 
@@ -51,6 +61,7 @@ public class PlayerController : MonoBehaviour
         InputMove();
         InputJump();
         LimitHp();
+        ChangeSpeed();
     }
 
     //物理挙動はFixedUpdateで分ける
@@ -66,9 +77,16 @@ public class PlayerController : MonoBehaviour
     }
 
     // Hp変更用(中身を変える)
-    public void SetHp(int hp)
+    public void TakeDamage(int damage)
     {
-        this.hp = hp;
+        hp -= damage;
+        isDamage = true;
+    }
+
+    public void SetSpeed(float adj)
+    {
+        // それぞれのスピードを調整
+        adjSpeed = adj;
     }
 
     void LimitHp()
@@ -189,6 +207,27 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector3(0, climbingY * currentSpeed, 0);
             }
 
+        }
+    }
+
+    // ダメージを受けたときに
+    void ChangeSpeed()
+    {
+        if (isDamage)
+        {
+            float timer = 0f;
+            timer += Time.deltaTime;
+            moveSpeed *= adjSpeed;
+            crouchMoveSpeed *= adjSpeed;
+            dashMoveSpeed *= adjSpeed;
+            if (timer >= 1f)
+            {
+                isDamage = false;
+                moveSpeed = prevMoveSpeed;
+                crouchMoveSpeed = prevCrouchSpeed;
+                dashMoveSpeed = prevDashSpeed;
+                timer = 0f;
+            }
         }
     }
 
