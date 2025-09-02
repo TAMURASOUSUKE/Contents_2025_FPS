@@ -8,6 +8,7 @@ public class DamageOtosiana : MonoBehaviour
     {
         //Ž€‚Ê‚Ì‚ÅHP‚Í0‚É‚È‚é
         PlayerController player = collision.gameObject.GetComponent<PlayerController>();
-        player.SetHp(0);
+        player.TakeDamage(player.GetHp());
+        player.SetSpeed(0.5f);
     }
 }
