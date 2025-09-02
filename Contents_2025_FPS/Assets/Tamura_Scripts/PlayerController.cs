@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float standCameraY = 1.5f; // 通常のカメラの高さ
     [SerializeField] float crouchCameraY = 0.8f; // しゃがんだ時のカメラの高さ
     [SerializeField] float ladderReenterDelay = 0.5f; // 梯子に再度上れるようになる時間
+    [SerializeField] float damageSpeedTimer = 3f; // 足が遅くなる秒数
     CapsuleCollider capsuleCollider; // しゃがみに使う
     Rigidbody rb; // 移動に使う
     Vector3 moveDir = Vector3.zero; // 移動方向
@@ -34,11 +35,14 @@ public class PlayerController : MonoBehaviour
     float adjSpeed = 0.0f;
     float climbingY = 0.0f; // 梯子を上るとき用の変数
     float lastLadderCancelTime = int.MinValue; // キャンセルした時間を記録する変数
+    float timer = 0f;
+    float adjTimer = 0.2f;
     bool isJump = false; // ジャンプ用のフラグ
     bool isCrouch = false; // しゃがみ用のフラグ
     bool isDash = false; // ダッシュ用のフラグ
     bool isCliming = false; // 梯子を上るとき用のフラグ
     bool isDamage = false; // ダメージを受けたときの判定
+    bool isTake = false; // スピード補正をかけたかどうか
     // ------------------------------------------関数---------------------------------------
 
 
@@ -215,17 +219,26 @@ public class PlayerController : MonoBehaviour
     {
         if (isDamage)
         {
-            float timer = 0f;
             timer += Time.deltaTime;
-            moveSpeed *= adjSpeed;
-            crouchMoveSpeed *= adjSpeed;
-            dashMoveSpeed *= adjSpeed;
-            if (timer >= 1f)
+            if (!isTake)
+            {
+                if (timer > adjTimer)
+                {
+                    moveSpeed *= adjSpeed;
+                    crouchMoveSpeed *= adjSpeed;
+                    dashMoveSpeed *= adjSpeed;
+                    isTake = true;
+                }
+            }
+            
+            if (timer >= damageSpeedTimer)
             {
                 isDamage = false;
+                isTake = false;
                 moveSpeed = prevMoveSpeed;
                 crouchMoveSpeed = prevCrouchSpeed;
                 dashMoveSpeed = prevDashSpeed;
+                Debug.Log("ここ通ったよ");
                 timer = 0f;
             }
         }
