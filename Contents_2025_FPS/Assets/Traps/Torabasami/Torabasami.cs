@@ -20,15 +20,7 @@ public class Torabasami : MonoBehaviour
             animator.SetTrigger("PlayerEntry");
 
             PlayerController player = other.GetComponent<PlayerController>();
-            Damage(player);
+            player.TakeDamage(DAMAGE);
         }
-    }
-
-    //É_ÉÅÅ[ÉW
-    void Damage(PlayerController player)
-    {
-        int nowHp = player.GetHp();
-
-        player.TakeDamage(nowHp - DAMAGE);
     }
 }
