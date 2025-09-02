@@ -14,7 +14,7 @@ public class HariDamageScript : MonoBehaviour
 
             int nowHp = player.GetHp();
 
-            player.SetHp(nowHp - damage);
+            player.TakeDamage(nowHp - damage);
         }
     }
 }
