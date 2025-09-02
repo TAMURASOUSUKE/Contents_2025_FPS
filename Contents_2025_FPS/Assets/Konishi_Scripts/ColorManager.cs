@@ -8,9 +8,6 @@ using UnityEngine.Rendering.Universal;
 */
 public class ColorManager : MonoBehaviour
 {
-    [SerializeField] GameObject otosiana;
-    [SerializeField] GameObject torabasami;
-    MeshRenderer cubeMesh;
     private Volume volume;
     private ColorAdjustments colorAdjustments;
     float timer = 0;            //秒カウンターフィルターの有効時間で使う
@@ -23,8 +20,6 @@ public class ColorManager : MonoBehaviour
     bool isRedTimer = false;
     bool isGreenTimer = false;
     bool isBlueTimer = false;
-    MeshRenderer meshRender;
-    BoxCollider boxCollider;
     GameObject[] redVisibles;   //それぞれのオブジェクトを構造体で取得
     GameObject[] redHiddens;
     GameObject[] redColliderOnrys;
