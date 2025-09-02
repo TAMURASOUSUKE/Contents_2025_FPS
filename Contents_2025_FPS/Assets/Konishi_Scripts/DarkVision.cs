@@ -8,15 +8,12 @@ public class DarkVision : MonoBehaviour
 {
     private Volume volume;
     private Vignette vignette;
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        volume = GetComponent<Volume>();
+        volume.profile.TryGet(out vignette);
+        vignette.intensity.value = 0.4f;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
