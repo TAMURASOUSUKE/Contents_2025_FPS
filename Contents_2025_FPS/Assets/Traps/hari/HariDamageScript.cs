@@ -12,9 +12,8 @@ public class HariDamageScript : MonoBehaviour
         {
             PlayerController player = other.GetComponent<PlayerController>();
 
-            int nowHp = player.GetHp();
-
-            player.SetHp(nowHp - DAMAGE);
+            player.TakeDamage(DAMAGE);
+            player.SetSpeed(0.5f);
         }
     }
 }
