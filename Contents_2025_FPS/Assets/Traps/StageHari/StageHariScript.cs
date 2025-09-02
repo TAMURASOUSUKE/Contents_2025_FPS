@@ -20,7 +20,7 @@ public class StageHariScript : MonoBehaviour
             if (time >= coolTime)
             {
                 time = 0.0f;
-                Damage();
+                player.TakeDamage(DAMAGE);
             }
         }
     }
@@ -32,7 +32,7 @@ public class StageHariScript : MonoBehaviour
         {
             player = other.GetComponent<PlayerController>();
             isPlayer = true;
-            Damage();
+            player.TakeDamage(DAMAGE);
             time = 0.0f;
         }
     }
@@ -45,11 +45,5 @@ public class StageHariScript : MonoBehaviour
             isPlayer = false;
             time = 0.0f;
         }
-    }
-    private void Damage()
-    {
-        //É_ÉÅÅ[ÉW
-        int nowHp = player.GetHp();
-        player.SetHp(nowHp - DAMAGE);
     }
 }
