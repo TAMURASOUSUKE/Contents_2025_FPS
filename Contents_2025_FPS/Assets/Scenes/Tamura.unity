@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 614248875}
   - component: {fileID: 614248876}
   - component: {fileID: 614248877}
+  - component: {fileID: 614248878}
   m_Layer: 0
   m_Name: Volume
   m_TagString: Untagged
@@ -343,6 +344,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filterCoolTime: 7
   colorTiemr: 3
+--- !u!114 &614248878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614248874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c39af26dad23f74b8fbfe6335670f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxValue: 0.5
 --- !u!1 &785520680
 GameObject:
   m_ObjectHideFlags: 0
