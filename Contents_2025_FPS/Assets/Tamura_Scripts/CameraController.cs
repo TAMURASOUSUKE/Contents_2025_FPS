@@ -11,7 +11,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] float topCameraLimit = 0.0f; // カメラの上側向きの制限
     [SerializeField] float bottomCameraLimit = 0.0f; //　カメラの下側の向きの制限
     [SerializeField] float sensitivity = 2f; // 感度
+    PlayerController playerController;
     float xRotation = 0f; // 上下回転の蓄積
+    float timer = 0f; // ダメージ演出の時間
 
 
     // --------------------------------------------------------関数-----------------------------------------
@@ -19,6 +21,7 @@ public class CameraController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked; // マウスカーソルを画面中央に固定
         Cursor.visible = false; // マウスカーソルを非表示
+        playerController = playerBody.GetComponent<PlayerController>(); // プレイヤーのスクリプトを取得
     }
 
 

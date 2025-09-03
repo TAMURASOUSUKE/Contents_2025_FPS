@@ -80,6 +80,12 @@ public class PlayerController : MonoBehaviour
         return hp;
     }
 
+    // ダメージを受けたか取得する
+    public bool GetDamage()
+    {
+        return isDamage;
+    }
+
     // Hp変更用(中身を変える)
     public void TakeDamage(int damage)
     {
@@ -238,7 +244,6 @@ public class PlayerController : MonoBehaviour
                 moveSpeed = prevMoveSpeed;
                 crouchMoveSpeed = prevCrouchSpeed;
                 dashMoveSpeed = prevDashSpeed;
-                Debug.Log("ここ通ったよ");
                 timer = 0f;
             }
         }
