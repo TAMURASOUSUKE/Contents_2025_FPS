@@ -55,7 +55,7 @@ public class ColorManager : MonoBehaviour
         blueVisibles = GameObject.FindGameObjectsWithTag("Blue_Visible");
         blueHiddens = GameObject.FindGameObjectsWithTag("Blue_Hidden");
         blueColliderOnrys = GameObject.FindGameObjectsWithTag("Blue_ColliderOnry");
-        //消したいところの削除
+        //消したいところの削除,初期化
         foreach (GameObject red in redHiddens)
         {
             MeshRenderer mr = red.GetComponent<MeshRenderer>(); //見た目
@@ -99,8 +99,6 @@ public class ColorManager : MonoBehaviour
         SelectColor();  //フィルター変更
         Timer();        //クールタイム関連
     }
-
-
     
     void SelectColor()  //カラー変更の大元  Updateで使う
     {
@@ -114,15 +112,9 @@ public class ColorManager : MonoBehaviour
                 //Debug.Log("赤");
                 if (!isRedTimer)
                 {
-                    //Debug.Log("timer");
-                    //if (colorAdjustments != null)
-                    //{
-                        //Debug.Log("フィルター起動");
-                        RedColor();             //赤フィルター
-                        isColorChange = true;   //フィルターが有効になった
-                        isRedTimer = true;      //赤フィルターのクールタイム
-                       //cubeMesh.enabled = false;
-                    //}
+                    RedColor();             //赤フィルター
+                    isColorChange = true;   //フィルターが有効になった
+                    isRedTimer = true;      //赤フィルターのクールタイム
                 }
             }
             if (isGreen)   //2キー
