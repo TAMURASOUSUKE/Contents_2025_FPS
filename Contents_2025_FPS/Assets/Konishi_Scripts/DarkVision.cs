@@ -6,25 +6,25 @@ using UnityEngine.Rendering.Universal;
 
 public class DarkVision : MonoBehaviour
 {
-    int test1 = 70;
-    int test2 = 100;
-    float test3;
-    float currentValue;    //Œ»İ‚Ì‹ŠE‚ÌˆÃ‚³
+    float currentHp;        //ƒvƒŒƒCƒ„[‚ÌŒ»İ‚ÌHP
+    float maxHp;            //ƒvƒŒƒCƒ„‚ÌÅ‘åHP
+    float currentValue;     //Œ»İ‚Ì‹ŠE‚ÌˆÃ‚³
+    public float maxValue = 0.5f;  //‹ŠE‚Ì”Z‚³‚ÌÅ‘å
     private Volume volume;
     private Vignette vignette;
     PlayerController Player;
 
     void Start()
     {
-        test3 = test1 / test2;
-        Player = GetComponent<PlayerController>();
+        Player = GetComponentInParent<PlayerController>();
         volume = GetComponent<Volume>();
         volume.profile.TryGet(out vignette);
-        Debug.Log(test3);
+        maxHp = (float)Player.GetHp();
     }
     void Update()
     {
-        //Debug.Log(Player.GetHp());
+        currentHp = (float)Player.GetHp();
+        currentValue = (1f - currentHp / maxHp) * maxValue;
         vignette.intensity.value = currentValue;
     }
 }
