@@ -53,39 +53,27 @@ public class ColorManager : MonoBehaviour
         //消したいところの削除,初期化
         foreach (GameObject red in redHiddens)
         {
-            MeshRenderer mr = red.GetComponent<MeshRenderer>(); //見た目
-            BoxCollider bc = red.GetComponent<BoxCollider>();   //collider
-            mr.enabled = false;
-            bc.enabled = false;
+            OffRedHidden();
         }
         foreach (GameObject red in greenHiddens)
         {
-            MeshRenderer mr = red.GetComponent<MeshRenderer>();
-            BoxCollider bc = red.GetComponent<BoxCollider>();
-            mr.enabled = false;
-            bc.enabled = false;
+            OffGreenHidden();
         }
         foreach (GameObject red in blueHiddens)
         {
-            MeshRenderer mr = red.GetComponent<MeshRenderer>();
-            BoxCollider bc = red.GetComponent<BoxCollider>();
-            mr.enabled = false;
-            bc.enabled = false;
+            OffBlueHidden();
         }
         foreach (GameObject red in redColliderOnrys)
         {
-            MeshRenderer mr = red.GetComponent<MeshRenderer>();
-            mr.enabled = false;
+            OffRedColliderOnry();
         }
         foreach (GameObject green in greenColliderOnrys)
         {
-            MeshRenderer mr = green.GetComponent<MeshRenderer>();
-            mr.enabled = false;
+            OffGreenColliderOnry();
         }
         foreach (GameObject blue in blueColliderOnrys)
         {
-            MeshRenderer mr = blue.GetComponent<MeshRenderer>();
-            mr.enabled = false;
+            OffBlueColliderOnry();
         }
     }
 
@@ -131,24 +119,18 @@ public class ColorManager : MonoBehaviour
         colorAdjustments.colorFilter.value = new Color(1f, 0.6f, 0.6f, 1f);
         isColorChange = true;
         //Visible
-        foreach (GameObject redVisible in redVisibles)
-        {
-            redVisible.SetActive(false);
-        }
+        OnRedVisible();
         //Hidden
-        foreach (GameObject redHidden in redHiddens)
-        {
-            MeshRenderer mr = redHidden.GetComponent<MeshRenderer>();
-            BoxCollider bc = redHidden.GetComponent<BoxCollider>();
-            mr.enabled = true;
-            bc.enabled = true;
-        }
+        OnRedHidden();
         //ColliderOnry
-        foreach (GameObject red in redColliderOnrys)
-        {
-            MeshRenderer mr = red.GetComponent<MeshRenderer>();
-            mr.enabled = true;
-        }
+        OnRedColliderOnry();
+        //それ以外の無効化
+        OffGreenVisible();
+        OffBlueVisible();
+        OffGreenHidden();
+        OffBlueHidden();
+        OffGreenColliderOnry();
+        OffBlueColliderOnry();
     }
     //--------------緑--------------
     void GreenColor()
@@ -157,24 +139,18 @@ public class ColorManager : MonoBehaviour
         colorAdjustments.colorFilter.value = new Color(0.6f, 1f, 0.6f, 1f);
         isColorChange = true;
         //Visible
-        foreach (GameObject greenObject in greenVisibles)
-        {
-            greenObject.SetActive(false);
-        }
+        OnGreenVisible();
         //Hidden
-        foreach (GameObject greenHidden in greenHiddens)
-        {
-            MeshRenderer mr = greenHidden.GetComponent<MeshRenderer>();
-            BoxCollider bc = greenHidden.GetComponent<BoxCollider>();
-            mr.enabled = true;
-            bc.enabled = true;
-        }
+        OnGreenHidden();
         //ColliderOnry
-        foreach (GameObject green in greenColliderOnrys)
-        {
-            MeshRenderer mr = green.GetComponent<MeshRenderer>();
-            mr.enabled = true;
-        }
+        OnGreenColliderOnry();
+        //それ以外の無効化
+        OffRedVisible();
+        OffBlueVisible();
+        OffRedHidden();
+        OffBlueHidden();
+        OffRedColliderOnry();
+        OffBlueColliderOnry();
     }
     //--------------青--------------
     void BlueColor() 
@@ -183,24 +159,18 @@ public class ColorManager : MonoBehaviour
         colorAdjustments.colorFilter.value = new Color(0.6f, 0.6f, 1f, 1f);
         isColorChange = true;
         //Visible
-        foreach (GameObject blueObject in blueVisibles)
-        {
-            blueObject.SetActive(false);
-        }
+        OnBlueVisible();
         //Hidden
-        foreach (GameObject blueHidden in blueHiddens)
-        {
-            MeshRenderer mr = blueHidden.GetComponent<MeshRenderer>();
-            BoxCollider bc = blueHidden.GetComponent<BoxCollider>();
-            mr.enabled = true;
-            bc.enabled = true;
-        }
+        OnBlueHidden();
         //ColliderOnry
-        foreach (GameObject blue in blueColliderOnrys)
-        {
-            MeshRenderer mr = blue.GetComponent<MeshRenderer>();
-            mr.enabled = true;
-        }
+        OnBlueColliderOnry();
+        //それ以外の無効化
+        OffRedVisible();
+        OffGreenVisible();
+        OffRedHidden();
+        OffGreenHidden();
+        OffRedColliderOnry();
+        OffGreenColliderOnry();
     }
     void DefaultColor()//デフォルトの色
     {
@@ -213,64 +183,25 @@ public class ColorManager : MonoBehaviour
         canFilterChange = false;
         //--------------赤--------------
         //Visible
-        foreach (GameObject redObject in redVisibles)
-        {
-            redObject.SetActive(true);
-        }
+        OffRedVisible();
         //Hidden
-        foreach (GameObject redHidden in redHiddens)
-        {
-            MeshRenderer mr = redHidden.GetComponent<MeshRenderer>();
-            BoxCollider bc = redHidden.GetComponent<BoxCollider>();
-            mr.enabled = false;
-            bc.enabled = false;
-        }
+        OffRedHidden();
         //ColliderOnry
-        foreach (GameObject red in redColliderOnrys)
-        {
-            MeshRenderer mr = red.GetComponent<MeshRenderer>();
-            mr.enabled = false;
-        }
+        OffRedColliderOnry();
         //--------------緑--------------
         //Visible
-        foreach (GameObject greenObject in greenVisibles)
-        {
-            greenObject.SetActive(true);
-        }
+        OffGreenVisible();
         //Hidden
-        foreach (GameObject greenHidden in greenHiddens)
-        {
-            MeshRenderer mr = greenHidden.GetComponent<MeshRenderer>();
-            BoxCollider bc = greenHidden.GetComponent<BoxCollider>();
-            mr.enabled = false;
-            bc.enabled = false;
-        }
+        OffGreenHidden();
         //ColliderOnry
-        foreach (GameObject green in greenColliderOnrys)
-        {
-            MeshRenderer mr = green.GetComponent<MeshRenderer>();
-            mr.enabled = false;
-        }
+        OffGreenColliderOnry();
         //--------------青--------------
         //Visible
-        foreach (GameObject blueObject in blueVisibles)
-        {
-            blueObject.SetActive(true);
-        }
+        OffBlueVisible();
         //Hidden
-        foreach (GameObject blueHidden in blueHiddens)
-        {
-            MeshRenderer mr = blueHidden.GetComponent<MeshRenderer>();
-            BoxCollider bc = blueHidden.GetComponent<BoxCollider>();
-            mr.enabled = false;
-            bc.enabled = false;
-        }
+        OffBlueHidden();
         //ColliderOnry
-        foreach (GameObject blue in blueColliderOnrys)
-        {
-            MeshRenderer mr = blue.GetComponent<MeshRenderer>();
-            mr.enabled = false;
-        }
+        OffBlueColliderOnry();
     }
     void Timer()
     {
@@ -286,6 +217,163 @@ public class ColorManager : MonoBehaviour
         {
             timer = 0;
             canFilterChange = true;
+        }
+    }
+    //-----------------------フィルターのON,OFF-----------------------
+
+    //------------赤------------
+    void OnRedVisible()
+    {
+        foreach (GameObject redVisible in redVisibles)
+        {
+            redVisible.SetActive(false);
+        }
+    }
+    void OffRedVisible()
+    {
+        foreach (GameObject redObject in redVisibles)
+        {
+            redObject.SetActive(true);
+        }
+    }
+    void OnRedHidden()
+    {
+        foreach (GameObject redHidden in redHiddens)
+        {
+            MeshRenderer mr = redHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = redHidden.GetComponent<BoxCollider>();
+            mr.enabled = true;
+            bc.enabled = true;
+        }
+    }
+    void OffRedHidden()
+    {
+        foreach (GameObject redHidden in redHiddens)
+        {
+            MeshRenderer mr = redHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = redHidden.GetComponent<BoxCollider>();
+            mr.enabled = false;
+            bc.enabled = false;
+        }
+    }
+    void OnRedColliderOnry()
+    {
+        foreach (GameObject red in redColliderOnrys)
+        {
+            MeshRenderer mr = red.GetComponent<MeshRenderer>();
+            mr.enabled = true;
+        }
+    }
+    void OffRedColliderOnry()
+    {
+        foreach (GameObject red in redColliderOnrys)
+        {
+            MeshRenderer mr = red.GetComponent<MeshRenderer>();
+            mr.enabled = false;
+        }
+    }
+
+    //------------緑------------
+    void OnGreenVisible()
+    {
+        foreach (GameObject greenObject in greenVisibles)
+        {
+            greenObject.SetActive(false);
+        }
+    }
+    void OffGreenVisible()
+    {
+        foreach (GameObject greenObject in greenVisibles)
+        {
+            greenObject.SetActive(true);
+        }
+    }
+    void OnGreenHidden()
+    {
+        foreach (GameObject greenHidden in greenHiddens)
+        {
+            MeshRenderer mr = greenHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = greenHidden.GetComponent<BoxCollider>();
+            mr.enabled = true;
+            bc.enabled = true;
+        }
+    }
+    void OffGreenHidden()
+    {
+        foreach (GameObject greenHidden in greenHiddens)
+        {
+            MeshRenderer mr = greenHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = greenHidden.GetComponent<BoxCollider>();
+            mr.enabled = false;
+            bc.enabled = false;
+        }
+    }
+    void OnGreenColliderOnry()
+    {
+        foreach (GameObject green in greenColliderOnrys)
+        {
+            MeshRenderer mr = green.GetComponent<MeshRenderer>();
+            mr.enabled = true;
+        }
+    }
+    void OffGreenColliderOnry()
+    {
+        foreach (GameObject green in greenColliderOnrys)
+        {
+            MeshRenderer mr = green.GetComponent<MeshRenderer>();
+            mr.enabled = false;
+        }
+    }
+
+    //------------青------------
+    void OnBlueVisible()
+    {
+        foreach (GameObject blueObject in blueVisibles)
+        {
+            blueObject.SetActive(false);
+        }
+    }
+    void OffBlueVisible()
+    {
+        foreach (GameObject blueObject in blueVisibles)
+        {
+            blueObject.SetActive(true);
+        }
+    }
+    void OnBlueHidden()
+    {
+        foreach (GameObject blueHidden in blueHiddens)
+        {
+            MeshRenderer mr = blueHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = blueHidden.GetComponent<BoxCollider>();
+            mr.enabled = true;
+            bc.enabled = true;
+        }
+    }
+    void OffBlueHidden()
+    {
+        foreach (GameObject blueHidden in blueHiddens)
+        {
+            MeshRenderer mr = blueHidden.GetComponent<MeshRenderer>();
+            BoxCollider bc = blueHidden.GetComponent<BoxCollider>();
+            mr.enabled = false;
+            bc.enabled = false;
+        }
+    }
+    void OnBlueColliderOnry()
+    {
+        foreach (GameObject blue in blueColliderOnrys)
+        {
+            MeshRenderer mr = blue.GetComponent<MeshRenderer>();
+            mr.enabled = true;
+        }
+    }
+    void OffBlueColliderOnry()
+    {
+        foreach (GameObject blue in blueColliderOnrys)
+        {
+            MeshRenderer mr = blue.GetComponent<MeshRenderer>();
+            mr.enabled = false;
         }
     }
 }
