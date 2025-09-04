@@ -8,23 +8,25 @@ public class KyosekiScript : MonoBehaviour
     Rigidbody kyosekiRigidBody;
 
     //巨石の位置情報の保存に使用
+    private float previousPosY;
+    private float previousPosZ;
+    private float currentPosY;
+    private float currentPosZ;
 
     Vector3 kyosekiPos = new Vector3(0,0,0);
     Vector3 startKyosekiPos = new Vector3(1, 4, 22);
-    Vector3 finishKyosekiPos = new Vector3(1,-15,44);
 
 
-    //巨石の移動速度の保存で仕様
-    private float moveSpeedX;
+    //巨石の移動速度の保存で使用
     private float moveSpeedY;
+    private float moveSpeedZ;
+    private float currentMoveSpeed;
 
     //巨石の召喚位置の指定で使用
-    float KYOSEKISTARTPOSX = 0.974f;
-    float KYOSEKISTARTPOSY = 4.08f;
-    float KYOSEKISTARTPOSZ = 21.35f;
+    float KYOSEKISTARTPOSY = 4;
+    float KYOSEKISTARTPOSZ = 22;
 
     //巨石を消滅させる位置の指定で使用
-    float KYOSEKIFINISHPOSX = 1;
     float KYOSEKIFINISHPOSY = -14;
     float KYOSEKIFINISHPOSZ = 43;
 
@@ -38,6 +40,8 @@ public class KyosekiScript : MonoBehaviour
     void Start()
     {
         transform.position = startKyosekiPos;
+        previousPosY = currentPosY = KYOSEKISTARTPOSY;
+        previousPosZ = currentPosZ = KYOSEKISTARTPOSZ;
     }
 
     // Update is called once per frame
@@ -45,11 +49,34 @@ public class KyosekiScript : MonoBehaviour
     {
         kyosekiPos = transform.position;
 
-        if(kyosekiPos.y <= KYOSEKIFINISHPOSY && kyosekiPos.z >= KYOSEKIFINISHPOSZ)
+
+
+        previousPosY = currentPosY;
+        previousPosZ = currentPosZ;
+
+        currentPosY = kyosekiPos.y;
+        currentPosZ = kyosekiPos.z;
+
+        moveSpeedY = currentPosY - previousPosY;
+        moveSpeedZ = currentPosZ - previousPosZ;
+
+        currentMoveSpeed = Mathf.Sqrt((moveSpeedY * moveSpeedY) + (moveSpeedZ * moveSpeedZ));
+
+        moveSpeedY = moveSpeedY * (KYOSEKIMAXMOVESPEED / currentMoveSpeed);
+        moveSpeedZ = moveSpeedZ * (KYOSEKIMAXMOVESPEED / currentMoveSpeed);
+
+
+
+
+
+
+
+
+
+
+        if (kyosekiPos.y <= KYOSEKIFINISHPOSY && kyosekiPos.z >= KYOSEKIFINISHPOSZ)
         {
             Destroy(gameObject);
         }
-        Debug.Log(kyosekiPos.z);
-
     }
 }
