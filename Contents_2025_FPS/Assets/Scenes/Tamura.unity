@@ -596,7 +596,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c7afc9615cde94342977710a8b3b6e65,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.165
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c7afc9615cde94342977710a8b3b6e65,
         type: 3}
@@ -1155,7 +1155,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cca95c116e1d48b45af10c7d2703930c, type: 3}
---- !u!1001 &5448181982437570484
+--- !u!1001 &7869525110262910048
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1163,66 +1163,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7381934054465601361, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_Name
-      value: 002_zennkiseisaku_meiro2_01_38
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478741493456632236, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_Name
+      value: FI_002_zennkiseisaku_meiro2_01_40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9eabf93a0d7369f4d8096751933ed29a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1232,5 +1232,5 @@ SceneRoots:
   - {fileID: 1379855867978978639}
   - {fileID: 804224275}
   - {fileID: 1116932200}
-  - {fileID: 5448181982437570484}
   - {fileID: 1472536835}
+  - {fileID: 7869525110262910048}
