@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
     {
         
         InputMove();
-        InputJump();
         LimitHp();
         ChangeSpeed();
     }
@@ -258,18 +257,6 @@ public class PlayerController : MonoBehaviour
         cameraTransform.localPosition = new Vector3(currentPos.x, newY, currentPos.z); // カメラの位置を設定
     }
 
-
-    //　ジャンプ用の入力
-    void InputJump()
-    {
-
-        if (Input.GetKeyDown(KeyCode.Space) && !isJump && !isCliming)
-        {
-            rb.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
-            isJump = true;
-        }
-    }
-
     //　頭上にものがあれば立てない
     bool CanStandUp()
     {
@@ -284,20 +271,6 @@ public class PlayerController : MonoBehaviour
 
         return !hit; // ヒットしてなければ立てる
     }
-
-  
-
-    //　着地用
-    void OnCollisionEnter(Collision other)
-    {
-        if (!isJump) return; // ジャンプ中でないなら終了
-        if (other.gameObject.CompareTag("Ground")) // フィールドのタグをGroundにしているがフィールド班の要望によって変更可
-        {
-            isJump = false;
-        }
-    }
-
-
 
     // 梯子用
 
