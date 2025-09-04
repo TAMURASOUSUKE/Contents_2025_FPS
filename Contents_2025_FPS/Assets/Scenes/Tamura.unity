@@ -343,7 +343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filterCoolTime: 7
-  colorTiemr: 3
 --- !u!114 &614248878
 MonoBehaviour:
   m_ObjectHideFlags: 0
