@@ -7,6 +7,8 @@ public class Torabasami : MonoBehaviour
     Animator animator;
 
     const int DAMAGE = 60;
+
+    bool isActive = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,12 +17,25 @@ public class Torabasami : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(isActive == true)
         {
-            animator.SetTrigger("PlayerEntry");
+            if (other.CompareTag("Player"))
+            {
+                animator.SetTrigger("PlayerEntry");
 
-            PlayerController player = other.GetComponent<PlayerController>();
-            player.TakeDamage(DAMAGE);
-        }
+                PlayerController player = other.GetComponent<PlayerController>();
+                //ダメージ処理
+                player.TakeDamage(DAMAGE);
+                player.SetSpeed(0.2f);
+
+                isActive = false;
+            }
+        } 
+    }
+
+    //アニメーションが終わったら実行する関数
+    private void EndAnimation()
+    {
+        isActive = true;
     }
 }
