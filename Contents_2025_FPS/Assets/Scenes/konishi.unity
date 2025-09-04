@@ -869,74 +869,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &869197544
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7381934054465601361, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_Name
-      value: 002_zennkiseisaku_meiro2_01_38
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7870661872833766891, guid: 9eabf93a0d7369f4d8096751933ed29a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9eabf93a0d7369f4d8096751933ed29a, type: 3}
 --- !u!1 &893434082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1815,6 +1747,74 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1529320858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135149145515664150, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5478741493456632236, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3,
+        type: 3}
+      propertyPath: m_Name
+      value: FI_002_zennkiseisaku_meiro2_01_40
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4af6eaee4c8a9e14fa7a38f6a7aea0b3, type: 3}
 --- !u!1 &1624963292
 GameObject:
   m_ObjectHideFlags: 0
@@ -2848,7 +2848,7 @@ SceneRoots:
   - {fileID: 672339366}
   - {fileID: 2381776685462773130}
   - {fileID: 323381194}
-  - {fileID: 869197544}
+  - {fileID: 1529320858}
   - {fileID: 2122973450}
   - {fileID: 1327653893}
   - {fileID: 1865123841}
