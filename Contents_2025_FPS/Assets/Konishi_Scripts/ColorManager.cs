@@ -81,7 +81,6 @@ public class ColorManager : MonoBehaviour
     {
         SelectColor();  //フィルター変更
         Timer();
-        Debug.Log(canFilterChange);
     }
     
     void SelectColor()  //カラー変更の大元  Updateで使う

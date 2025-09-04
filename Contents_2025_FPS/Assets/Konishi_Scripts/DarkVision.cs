@@ -6,10 +6,10 @@ using UnityEngine.Rendering.Universal;
 
 public class DarkVision : MonoBehaviour
 {
-    float currentHp;        //プレイヤーの現在のHP
-    float maxHp;            //プレイヤの最大HP
-    float currentValue;     //現在の視界の暗さ
-    public float maxValue = 0.5f;  //視界の濃さの最大
+    float currentHp;                //プレイヤーの現在のHP
+    float maxHp;                    //プレイヤの最大HP
+    float currentValue;             //現在の視界の暗さ
+    public float maxValue = 0.5f;   //視界の濃さの最大
     private Volume volume;
     private Vignette vignette;
     PlayerController Player;
