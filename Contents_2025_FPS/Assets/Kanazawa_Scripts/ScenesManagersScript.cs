@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManagersScripts : MonoBehaviour
 {
-    bool isGoal = false;
-    [SerializeField] PlayerController playerController;
-    int currentHP;
+    [SerializeField] PlayerController playerController; //プレイヤーの現在の数値の取得に使用
+    int currentHP;                      //現在の体力の保存で使用
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +18,8 @@ public class ScenesManagersScripts : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentHP = playerController.GetHp();
-        if(currentHP <= 0)
+        currentHP = playerController.GetHp();   //現在の体力の取得
+        if(currentHP <= 0)                      //体力が０以下の時ゲームオーバーシーンに移行
         {
             SceneManager.LoadScene("GameOverScene");
         }
@@ -28,7 +27,7 @@ public class ScenesManagersScripts : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player"))         //ゴール判定のコライダーにプレイヤーが接触したときゴールシーンに移行
         {
            Debug.Log("Goal");
            SceneManager.LoadScene("GoalScene");
