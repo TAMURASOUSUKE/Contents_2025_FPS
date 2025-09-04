@@ -32,12 +32,11 @@ public class PlayerController : MonoBehaviour
     float prevMoveSpeed = 0;
     float prevCrouchSpeed = 0;
     float prevDashSpeed = 0;
-    float adjSpeed = 0.0f;
+    float adjSpeed = 1.0f;
     float climbingY = 0.0f; // 梯子を上るとき用の変数
     float lastLadderCancelTime = int.MinValue; // キャンセルした時間を記録する変数
     float timer = 0f;
     float adjTimer = 0.2f;
-    bool isJump = false; // ジャンプ用のフラグ
     bool isCrouch = false; // しゃがみ用のフラグ
     bool isDash = false; // ダッシュ用のフラグ
     bool isCliming = false; // 梯子を上るとき用のフラグ
@@ -77,12 +76,6 @@ public class PlayerController : MonoBehaviour
     public int GetHp()
     {
         return hp;
-    }
-
-    // ダメージを受けたか取得する
-    public bool GetDamage()
-    {
-        return isDamage;
     }
 
     // Hp変更用(中身を変える)
