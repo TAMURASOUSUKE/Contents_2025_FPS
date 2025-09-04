@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     bool isCliming = false; // 梯子を上るとき用のフラグ
     bool isDamage = false; // ダメージを受けたときの判定
     bool isTake = false; // スピード補正をかけたかどうか
+    bool isGround = false; // 地面に接触しているかどうか
     // ------------------------------------------関数---------------------------------------
 
 
@@ -175,6 +176,12 @@ public class PlayerController : MonoBehaviour
 
                 // 移動ベクトルの計算
                 moveDir = (dirZ * forward + dirX * right).normalized;
+
+                // 入力がないときは速度を0にする
+                if (dirX == 0 && dirZ == 0 && isGround)
+                {
+                    rb.velocity = Vector3.zero;
+                }
             }
             // 梯子を上るとき用
             else
@@ -186,6 +193,7 @@ public class PlayerController : MonoBehaviour
                     CancelClimbing();
                 }
             }
+
 
 
         }
@@ -263,6 +271,25 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(rayOrigin, Vector3.up * rayLength, rayColor, 0.1f); // 0.1秒表示
 
         return !hit; // ヒットしてなければ立てる
+    }
+
+    // 重力操作(坂を登るとき滑らないようにするため)
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            rb.useGravity = false;
+            isGround = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            rb.useGravity = true;
+            isGround = false;
+        }
     }
 
     // 梯子用

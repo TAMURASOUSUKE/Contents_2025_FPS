@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 2.37
+  m_AmbientIntensity: 1.9
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -691,11 +691,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4777017077690108104, guid: a0b951aa55a90b64bbb47864a20c9592,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7711667923739012783, guid: a0b951aa55a90b64bbb47864a20c9592,
         type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8427181605110762735, guid: a0b951aa55a90b64bbb47864a20c9592,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9d011dc830b3dc741a0fbbaca53e5bdf,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -709,6 +720,43 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 789131652351715031, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b23139f077308dc4ca51fa80c8298005,
+        type: 2}
+    - target: {fileID: 1098794376522950313, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Green_Hidden
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258208235276587287, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b23139f077308dc4ca51fa80c8298005,
+        type: 2}
+    - target: {fileID: 2222576531899819643, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Red_Hidden
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770578433276812719, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Blue_Hidden
+      objectReference: {fileID: 0}
+    - target: {fileID: 3282344440862683939, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 3734557730617284846, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3884744734035341077, guid: 78f6ff91c4152d041b770aa4f92339fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -759,10 +807,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4266553096307829173, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4377730217012225086, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b23139f077308dc4ca51fa80c8298005,
+        type: 2}
     - target: {fileID: 4513365954604742063, guid: 78f6ff91c4152d041b770aa4f92339fc,
         type: 3}
       propertyPath: m_Name
       value: FI_002_zennkiseisaku_meiro2_01_42
+      objectReference: {fileID: 0}
+    - target: {fileID: 5622235570588172745, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: b23139f077308dc4ca51fa80c8298005,
+        type: 2}
+    - target: {fileID: 7898909613030174559, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 1d68fddc093e5b842b8b8adf38bd996d,
+        type: 2}
+    - target: {fileID: 8619464423959862640, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Red_Hidden
+      objectReference: {fileID: 0}
+    - target: {fileID: 9134017998799251382, guid: 78f6ff91c4152d041b770aa4f92339fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
