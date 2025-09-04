@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -11,8 +12,11 @@ public class ColorManager : MonoBehaviour
 {
     private Volume volume;
     private ColorAdjustments colorAdjustments;
+    const int DAMAGE = 10;
     public float filterCoolTime = 4f;    //フィルター切り替えのクールタイム
     float timer;
+    float hitTimer;
+    float damageTimer;
     bool isColorChange = false;         //フィルターが有効か
     bool canFilterChange = true;        //フィルターに切り替え可能か
     GameObject[] redVisibles;           //それぞれのオブジェクトを構造体で取得
@@ -24,7 +28,8 @@ public class ColorManager : MonoBehaviour
     GameObject[] blueVisibles;
     GameObject[] blueHiddens;
     GameObject[] blueColliderOnrys;
-    
+    PlayerController Player;
+
     void Start()
     {
         // Volumeコンポーネントを取得
@@ -39,6 +44,8 @@ public class ColorManager : MonoBehaviour
         {
             Debug.Log("ColorAdjustments が VolumeProfile に設定されていません！");
         }
+
+        Player = GetComponentInParent<PlayerController>();
 
         //構造体をtagで識別
         redVisibles = GameObject.FindGameObjectsWithTag("Red_Visible");    //findはstartの中で
@@ -81,6 +88,25 @@ public class ColorManager : MonoBehaviour
     {
         SelectColor();  //フィルター変更
         Timer();
+        if (isColorChange)
+        {
+            float damageTime = 2f;
+            float invincibleTime = 0.5f;
+            damageTimer += Time.deltaTime;
+            if (damageTimer >= damageTime)
+            {
+                hitTimer += Time.deltaTime;
+                if (hitTimer >= invincibleTime)
+                {
+                    Player.TakeDamage(DAMAGE);
+                    hitTimer = 0;
+                }
+            }
+        }
+        else if (!isColorChange)
+        {
+            damageTimer = 0;
+        }
     }
     
     void SelectColor()  //カラー変更の大元  Updateで使う
@@ -109,6 +135,7 @@ public class ColorManager : MonoBehaviour
             {
                 DefaultColor();
             }
+            Damage();
         }
     }
     //--------------赤--------------
@@ -218,6 +245,13 @@ public class ColorManager : MonoBehaviour
             canFilterChange = true;
         }
     }
+
+    //---------------ダメージ関連---------------
+    void Damage()
+    {
+        
+    }
+
     //-----------------------フィルターのON,OFF-----------------------
 
     //------------赤------------
