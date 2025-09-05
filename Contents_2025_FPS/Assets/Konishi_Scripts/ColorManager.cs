@@ -12,12 +12,12 @@ public class ColorManager : MonoBehaviour
 {
     private Volume volume;
     private ColorAdjustments colorAdjustments;
-    const int DAMAGE = 10;
-    public float filterCoolTime = 4f;    //フィルター切り替えのクールタイム
-    float timer;
-    float hitTimer;
-    float damageTimer;
-    bool isColorChange = false;         //フィルターが有効か
+    const int DAMAGE = 10;              //使用時のダメージ
+    public float filterCoolTime = 4f;   //切り替えのクールタイム
+    float timer;                        //クールタイムの時間計測
+    float hitTimer;                     //ダメージを食らうまでのタイマー
+    float damageTimer;                  //ダメージを食らった時に使うタイマー
+    public bool isColorChange = false;         //フィルターが有効か
     bool canFilterChange = true;        //フィルターに切り替え可能か
     GameObject[] redVisibles;           //それぞれのオブジェクトを構造体で取得
     GameObject[] redHiddens;
@@ -87,55 +87,36 @@ public class ColorManager : MonoBehaviour
     void Update()
     {
         SelectColor();  //フィルター変更
-        Timer();
-        if (isColorChange)
-        {
-            float damageTime = 2f;
-            float invincibleTime = 0.5f;
-            damageTimer += Time.deltaTime;
-            if (damageTimer >= damageTime)
-            {
-                hitTimer += Time.deltaTime;
-                if (hitTimer >= invincibleTime)
-                {
-                    Player.TakeDamage(DAMAGE);
-                    hitTimer = 0;
-                }
-            }
-        }
-        else if (!isColorChange)
-        {
-            damageTimer = 0;
-        }
+        Timer();        //フィルターのクールタイム
+        UseDamage();    //フィルター使用時間に応じてダメージ
     }
     
     void SelectColor()  //カラー変更の大元  Updateで使う
     {
-        bool isRed = Input.GetKeyDown(KeyCode.Alpha1);
-        bool isGreen = Input.GetKeyDown(KeyCode.Alpha2);
-        bool isBlue = Input.GetKeyDown(KeyCode.Alpha3);
+        bool isRed = Input.GetKeyDown(KeyCode.Alpha1);  //1キー
+        bool isGreen = Input.GetKeyDown(KeyCode.Alpha2);//2キー
+        bool isBlue = Input.GetKeyDown(KeyCode.Alpha3); //3キー
         if (canFilterChange)
         {
-            if (isRed)   //1キー
+            if (isRed)   
             {
                 RedColor();             //赤フィルター
             }
-            if (isGreen)   //2キー
+            if (isGreen)   
             {
                 GreenColor();           //緑フィルター
             }
-            if (isBlue)   //3キー
+            if (isBlue)   
             {
                 BlueColor();            //青フィルター
             }
         }
         if (isColorChange)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha4))   //4キー
+            if (Input.GetKeyDown(KeyCode.Alpha4))       //4キー
             {
                 DefaultColor();
             }
-            Damage();
         }
     }
     //--------------赤--------------
@@ -233,23 +214,37 @@ public class ColorManager : MonoBehaviour
     {
         if (!canFilterChange)
         {
-            FilterCoolTime();
-        }
-    }
-    void FilterCoolTime()
-    {
-        timer += Time.deltaTime;
-        if (timer >= filterCoolTime)
-        {
-            timer = 0;
-            canFilterChange = true;
+            timer += Time.deltaTime;
+            if (timer >= filterCoolTime)
+            {
+                timer = 0;
+                canFilterChange = true;
+            }
         }
     }
 
     //---------------ダメージ関連---------------
-    void Damage()
+    void UseDamage()
     {
-        
+        if (isColorChange)
+        {
+            float damageTime = 2f;
+            float invincibleTime = 0.5f;
+            damageTimer += Time.deltaTime;
+            if (damageTimer >= damageTime)
+            {
+                hitTimer += Time.deltaTime;
+                if (hitTimer >= invincibleTime)
+                {
+                    Player.TakeDamage(DAMAGE);
+                    hitTimer = 0;
+                }
+            }
+        }
+        else if (!isColorChange)
+        {
+            damageTimer = 0;
+        }
     }
 
     //-----------------------フィルターのON,OFF-----------------------

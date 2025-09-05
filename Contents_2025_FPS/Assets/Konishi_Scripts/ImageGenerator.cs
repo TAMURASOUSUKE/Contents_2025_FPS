@@ -6,16 +6,24 @@ public class ImageGenerator : MonoBehaviour
 {
     public int imageMax;
     public Canvas canvas;
-    public GameObject[] Image;
+    public GameObject[] image;
     ColorManager colorManager;
 
     void Start()
     {
-        colorManager = GetComponent<ColorManager>();
+        colorManager = FindObjectOfType<ColorManager>();
+        
     }
 
     void Update()
     {
-
+        if (colorManager.isColorChange)
+        {
+            int index = Random.Range(0, image.Length);
+            GameObject prefab = image[index];
+            GameObject newImage = Instantiate(prefab, canvas.transform);
+            RectTransform rt = newImage.GetComponent<RectTransform>();
+            rt.anchoredPosition = Vector2.zero;
+        }
     }
 }
