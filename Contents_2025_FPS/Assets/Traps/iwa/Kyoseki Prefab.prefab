@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0d567d0439da74c4193c494855a52083,
         type: 3}
       propertyPath: m_Name
-      value: Kyoseki
+      value: Kyoseki Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43dc005c0797a46499dc4fe1c35688be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KYOSEKIMAXMOVESPEED: 3
+  KYOSEKIMAXMOVESPEED: 7
