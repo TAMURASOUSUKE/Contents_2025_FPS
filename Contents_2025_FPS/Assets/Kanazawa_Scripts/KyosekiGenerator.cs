@@ -6,8 +6,8 @@ public class KyosekiGenerator : MonoBehaviour
 {
     //プレファブの取得と生成速度の設定
     public GameObject KyosekiPrefab;
-    public float span1 = 0.6f;
-    public float delta = 1.2f;
+    public float span1;
+    public float delta;
 
     void Update()
     {
