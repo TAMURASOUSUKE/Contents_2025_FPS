@@ -8,19 +8,7 @@ public class KyosekiScript : MonoBehaviour
     Rigidbody kyosekiRigidBody;
 
     //巨石の位置情報の保存に使用
-    private float previousPosY;
-    private float previousPosZ;
-    private float currentPosX;
-    private float currentPosY;
-    private float currentPosZ;
-
     Vector3 kyosekiPos = new Vector3(0,0,0);
-    Vector3 startKyosekiPos = new Vector3(1, 4, 22);
-
-
-    //巨石の召喚位置の指定で使用
-    float KYOSEKISTARTPOSY = 4;
-    float KYOSEKISTARTPOSZ = 22;
 
     //巨石を消滅させる位置の指定で使用
     float KYOSEKIFINISHPOSY = -14;
@@ -34,17 +22,14 @@ public class KyosekiScript : MonoBehaviour
     void Start()
     {
         kyosekiRigidBody = GetComponent<Rigidbody>();
-
-        transform.position = startKyosekiPos;
-        previousPosY = currentPosY = KYOSEKISTARTPOSY;
-        previousPosZ = currentPosZ = KYOSEKISTARTPOSZ;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //座標の取得
         kyosekiPos = transform.position;
-
+        //削除する位置に来たらオブジェクトを削除
         if (kyosekiPos.y <= KYOSEKIFINISHPOSY && kyosekiPos.z >= KYOSEKIFINISHPOSZ)
         {
             Destroy(gameObject);
@@ -61,7 +46,7 @@ public class KyosekiScript : MonoBehaviour
             kyosekiRigidBody.velocity = kyosekiSpeed.normalized * KYOSEKIMAXMOVESPEED;
         }
     }
-
+    //プレイヤーに触れたとき150ダメージを与える
     private void OnCollisionEnter(Collision player)
     {
         if(player.gameObject.CompareTag("Player"))
