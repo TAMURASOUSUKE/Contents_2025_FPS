@@ -9,7 +9,7 @@ public class GhostTest : MonoBehaviour
 
     const int DAMAGE = 10;
 
-    Vector3 offset = new Vector3(0, 1.5f, 0);
+    Vector3 offset = new Vector3(0, 1.3f, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +19,15 @@ public class GhostTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = (player.transform.position - transform.position).normalized;
+        Vector3 targetPos = player.transform.position + offset;
+        Vector3 dir = (targetPos - transform.position).normalized;
 
         Vector3 moveVec = dir * 0.01f;
 
         transform.position += moveVec;
 
-        transform.LookAt(player.transform.position + offset);
+        transform.LookAt(targetPos);
+        
     }
 
     private void OnTriggerEnter(Collider other)
