@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float crouchCameraY = 0.8f; // しゃがんだ時のカメラの高さ
     [SerializeField] float ladderReenterDelay = 0.5f; // 梯子に再度上れるようになる時間
     [SerializeField] float damageSpeedTimer = 3f; // 足が遅くなる秒数
+    List<GameObject> keys = new List<GameObject>(); // 鍵用
     CapsuleCollider capsuleCollider; // しゃがみに使う
     Rigidbody rb; // 移動に使う
     Vector3 moveDir = Vector3.zero; // 移動方向
@@ -281,6 +282,15 @@ public class PlayerController : MonoBehaviour
             rb.useGravity = false;
             isGround = true;
         }
+
+        // テスト用
+        if (other.gameObject.CompareTag("Key"))
+        {
+            keys.Add(other.gameObject);
+            other.gameObject.SetActive(false);
+            Debug.Log("取得した");
+        }
+
     }
 
     private void OnCollisionExit(Collision other)
@@ -326,6 +336,9 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = Vector3.zero;
                 Debug.Log("梯子に入った（登り/降り）");
             }
+
+
+           
         }
     }
 

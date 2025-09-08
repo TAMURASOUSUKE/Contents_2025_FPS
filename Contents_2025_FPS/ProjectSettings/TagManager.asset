@@ -21,6 +21,7 @@ TagManager:
   - Blue_Visible
   - Blue_Hidden
   - Blue_ColliderOnry
+  - Key
   layers:
   - Default
   - TransparentFX
