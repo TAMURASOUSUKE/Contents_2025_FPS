@@ -2846,7 +2846,7 @@ PrefabInstance:
     - target: {fileID: 310796383213535845, guid: f240132d51cdedb44a1d17acdca24fe9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0.011
       objectReference: {fileID: 0}
     - target: {fileID: 310796383213535845, guid: f240132d51cdedb44a1d17acdca24fe9,
         type: 3}
@@ -3786,6 +3786,11 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6267722062990760413, guid: a0b951aa55a90b64bbb47864a20c9592,
+        type: 3}
+      propertyPath: hp
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 7711667923739012783, guid: a0b951aa55a90b64bbb47864a20c9592,
         type: 3}
       propertyPath: m_Name
@@ -3864,6 +3869,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FI_002_zennkiseisaku_meiro2_01_42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943382535936740753, guid: cdd9b9c0f6c172143b5516a8a6b0c344,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.148844
+      objectReference: {fileID: 0}
+    - target: {fileID: 4943382535936740753, guid: cdd9b9c0f6c172143b5516a8a6b0c344,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 2.3545723
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
