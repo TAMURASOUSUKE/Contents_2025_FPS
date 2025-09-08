@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
         // ‚à‚Æ‚à‚Æ‚Ì‘¬“x‚ð•Û‘¶‚µ‚Ä‚¨‚­
         prevMoveSpeed = moveSpeed;
-        prevCrouchSpeed = crouchSpeed;
+        prevCrouchSpeed = crouchMoveSpeed;
         prevDashSpeed = dashMoveSpeed;
     }
 
