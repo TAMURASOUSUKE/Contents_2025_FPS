@@ -12,7 +12,7 @@ public class ColorManager : MonoBehaviour
 {
     private Volume volume;
     private ColorAdjustments colorAdjustments;
-    const int DAMAGE = 10;              //使用時のダメージ
+    const int DAMAGE = 1;              //使用時のダメージ
     public float filterCoolTime = 4f;   //切り替えのクールタイム
     float timer;                        //クールタイムの時間計測
     float hitTimer;                     //ダメージを食らうまでのタイマー
@@ -250,7 +250,7 @@ public class ColorManager : MonoBehaviour
     //-----------------------フィルターのON,OFF-----------------------
 
     //------------赤------------
-    void OnRedVisible()
+    void OnRedVisible() 
     {
         foreach (GameObject redVisible in redVisibles)
         {
