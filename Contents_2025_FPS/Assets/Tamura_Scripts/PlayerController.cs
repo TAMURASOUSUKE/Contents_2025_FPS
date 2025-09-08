@@ -30,18 +30,16 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDir = Vector3.zero; // 移動方向
     Vector3 moveValue = Vector3.zero; // 移動する量
     float currentSpeed = 0.0f; // 現在のスピードを取得
-    float prevMoveSpeed = 0;
-    float prevCrouchSpeed = 0;
-    float prevDashSpeed = 0;
-    float adjSpeed = 1.0f;
+    float baseMoveSpeed = 0;
+    float baseCrouchSpeed = 0;
+    float baseDashSpeed = 0;
     float climbingY = 0.0f; // 梯子を上るとき用の変数
     float lastLadderCancelTime = int.MinValue; // キャンセルした時間を記録する変数
-    float timer = 0f;
-    float adjTimer = 0.2f;
+    float slowFactor = 1f; // 1通常　0.5半分 0完全停止
+    float slowTimer = 0f; // 減速の残り時間
     bool isCrouch = false; // しゃがみ用のフラグ
     bool isDash = false; // ダッシュ用のフラグ
     bool isCliming = false; // 梯子を上るとき用のフラグ
-    bool isDamage = false; // ダメージを受けたときの判定
     bool isTake = false; // スピード補正をかけたかどうか
     bool isGround = false; // 地面に接触しているかどうか
     // ------------------------------------------関数---------------------------------------
@@ -53,19 +51,20 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = rb.GetComponent<CapsuleCollider>(); // カプセルコライダーを取得
 
         // もともとの速度を保存しておく
-        prevMoveSpeed = moveSpeed;
-        prevCrouchSpeed = crouchMoveSpeed;
-        prevDashSpeed = dashMoveSpeed;
+        baseMoveSpeed = moveSpeed;
+        baseCrouchSpeed = crouchMoveSpeed;
+        baseDashSpeed = dashMoveSpeed;
     }
 
 
     // 入力処理はUpdate
     void Update()
     {
-        
+
         InputMove();
         LimitHp();
         ChangeSpeed();
+        RecoveryHp();
     }
 
     //物理挙動はFixedUpdateで分ける
@@ -84,13 +83,12 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         hp -= damage;
-        isDamage = true;
     }
-
     public void SetSpeed(float adj)
     {
         // それぞれのスピードを調整
-        adjSpeed = adj;
+        slowFactor = Mathf.Clamp01(adj);
+        slowTimer = damageSpeedTimer;
     }
 
     void LimitHp()
@@ -138,19 +136,19 @@ public class PlayerController : MonoBehaviour
             // スピードとコライダーの設定
             if (isCrouch) // (梯子を上るときはしゃがめないようにする)
             {
-                currentSpeed = crouchMoveSpeed;
+                currentSpeed = baseCrouchSpeed * slowFactor;
                 capsuleCollider.height = crouchHeight;
                 capsuleCollider.center = crouchCenter;
             }
             else if (isDash)
             {
-                currentSpeed = dashMoveSpeed;
+                currentSpeed = baseDashSpeed * slowFactor;
                 capsuleCollider.height = standHeight;
                 capsuleCollider.center = standCenter;
             }
             else
             {
-                currentSpeed = moveSpeed;
+                currentSpeed = baseMoveSpeed * slowFactor;
                 capsuleCollider.height = standHeight;
                 capsuleCollider.center = standCenter;
             }
@@ -200,7 +198,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   
+    // Hpの自動回復
+    void RecoveryHp()
+    {
+        if (Time.frameCount % 180 == 0)
+        {
+            hp++;
+            if (hp >= 150)
+            {
+                hp = 150;
+            }
+        }
+    }
+
 
     // 実際の移動を計算
     void CalculateMove()
@@ -224,28 +234,13 @@ public class PlayerController : MonoBehaviour
     // ダメージを受けたときに
     void ChangeSpeed()
     {
-        if (isDamage)
+        if (slowTimer > 0)
         {
-            timer += Time.deltaTime;
-            if (!isTake)
+            slowTimer -= Time.deltaTime;
+            if (slowTimer <= 0)
             {
-                if (timer > adjTimer)
-                {
-                    moveSpeed *= adjSpeed;
-                    crouchMoveSpeed *= adjSpeed;
-                    dashMoveSpeed *= adjSpeed;
-                    isTake = true;
-                }
-            }
-            
-            if (timer >= damageSpeedTimer)
-            {
-                isDamage = false;
-                isTake = false;
-                moveSpeed = prevMoveSpeed;
-                crouchMoveSpeed = prevCrouchSpeed;
-                dashMoveSpeed = prevDashSpeed;
-                timer = 0f;
+                slowFactor = 1f; // 解除
+                slowTimer = 0f;
             }
         }
     }
@@ -338,7 +333,7 @@ public class PlayerController : MonoBehaviour
             }
 
 
-           
+
         }
     }
 
