@@ -60,6 +60,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7862391691550088030, guid: 8266eb64de9cb7a4a8803c1d596d9726,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7862391691550088030, guid: 8266eb64de9cb7a4a8803c1d596d9726,
+        type: 3}
       propertyPath: m_TagString
       value: Red_Visible
       objectReference: {fileID: 0}
@@ -153,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966086f31d5d93046bebbbc64000d3ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hari: {fileID: 5858811284301187622}
 --- !u!1 &5858811284301187622 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7862391691550088030, guid: 8266eb64de9cb7a4a8803c1d596d9726,

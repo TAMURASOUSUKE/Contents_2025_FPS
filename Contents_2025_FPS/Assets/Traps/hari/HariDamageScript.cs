@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HariDamageScript : MonoBehaviour
 {
-
     const int DAMAGE = 70;
     private void OnTriggerEnter(Collider other)
     {
