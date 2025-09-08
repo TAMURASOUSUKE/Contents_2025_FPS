@@ -456,8 +456,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KyosekiPrefab: {fileID: 2904043367015058568, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
     type: 3}
-  span1: 8
-  delta: 0
+  span1: 3
+  delta: 3
 --- !u!4 &1015141171
 Transform:
   m_ObjectHideFlags: 0
@@ -466,7 +466,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015141169}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.8793715, y: -14.559639, z: 43.56537}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -539,80 +539,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f406edc91ca64b04bb05d602a8710188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
---- !u!1001 &1951839100
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2523964825171875378, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2904043367015058568, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: m_Name
-      value: Kyoseki Prefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 7692740959120024313, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
-        type: 3}
-      propertyPath: KYOSEKIMAXMOVESPEED
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1e61b560e1923ba4ab3cf0fcabecdaab, type: 3}
+  playerController: {fileID: 1915608138}
+--- !u!114 &1915608138 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6267722062990760413, guid: a0b951aa55a90b64bbb47864a20c9592,
+    type: 3}
+  m_PrefabInstance: {fileID: 706512461}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba5f9f9e739db0c4f9b636514de6a3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -622,5 +561,4 @@ SceneRoots:
   - {fileID: 1267842702}
   - {fileID: 706512461}
   - {fileID: 1015141171}
-  - {fileID: 1951839100}
   - {fileID: 445709228}
