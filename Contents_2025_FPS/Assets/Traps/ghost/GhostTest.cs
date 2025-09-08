@@ -8,6 +8,8 @@ public class GhostTest : MonoBehaviour
     GameObject player;
 
     const int DAMAGE = 10;
+
+    Vector3 offset = new Vector3(0, 1.5f, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,8 @@ public class GhostTest : MonoBehaviour
         Vector3 moveVec = dir * 0.01f;
 
         transform.position += moveVec;
+
+        transform.LookAt(player.transform.position + offset);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5,6 +5,8 @@ using UnityEngine;
 public class HariScript : MonoBehaviour
 {
     Animator animator;
+    [SerializeField]
+    GameObject hari;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +17,13 @@ public class HariScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            hari.SetActive(true);
             animator.SetTrigger("PlayerEntry");
         }
+    }
+
+    private void OnEndAnimation()
+    {
+        hari.SetActive(false);
     }
 }
