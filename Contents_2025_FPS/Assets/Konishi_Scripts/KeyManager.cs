@@ -42,22 +42,18 @@ public class KeyManager : MonoBehaviour
         if (isRedKeyHave)
         {
             animator.SetTrigger("RedKey");
-            animator.SetBool("isRedIdle", true);
         }
         if (isGreenKeyHave)
         {
             animator.SetTrigger("GreenKey");
-            animator.SetBool("isGreenIdle", true);
         }
         if (isBlueKeyHave)
         {
             animator.SetTrigger("BlueKey");
-            animator.SetBool("isBlueIdle", true);
         }
         if (isWhiteKeyHave)
         {
             animator.SetTrigger("WhiteKey");
-            animator.SetBool("isWhiteIdle", true);
         }
     }
 }
