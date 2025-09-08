@@ -17,13 +17,15 @@ public class HariScript : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            hari.SetActive(true);
+            hari.GetComponent<MeshRenderer>().enabled = true;
+            hari.GetComponent<BoxCollider>().enabled = true;
             animator.SetTrigger("PlayerEntry");
         }
     }
 
     private void OnEndAnimation()
     {
-        hari.SetActive(false);
+        hari.GetComponent<MeshRenderer>().enabled = false;
+        hari.GetComponent<BoxCollider>().enabled = false;
     }
 }

@@ -61,7 +61,7 @@ PrefabInstance:
     - target: {fileID: -7862391691550088030, guid: 8266eb64de9cb7a4a8803c1d596d9726,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7862391691550088030, guid: 8266eb64de9cb7a4a8803c1d596d9726,
         type: 3}
@@ -78,6 +78,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 006_hariwana_01_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407187375235809858, guid: 8266eb64de9cb7a4a8803c1d596d9726,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -188,7 +193,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1.2856858, y: 1.1305147, z: 1.6464424}
   m_Center: {x: 0.11091024, y: 0.00000041723263, z: 0.99389035}
