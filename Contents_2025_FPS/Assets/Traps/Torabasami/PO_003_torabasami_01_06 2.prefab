@@ -62,27 +62,27 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6606e09838fb45b418616125f37a5b58, type: 2}
+      objectReference: {fileID: 2100000, guid: e8ed1c26d6e2a0145b8be8c62934ecc9, type: 2}
     - target: {fileID: 919132149155446097, guid: ae497a55f76633549a7eadd1c83ec61e,
         type: 3}
       propertyPath: m_Name
-      value: PO_003_torabasami_01_06
+      value: PO_003_torabasami_01_06 2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae497a55f76633549a7eadd1c83ec61e,
         type: 3}
       propertyPath: m_TagString
-      value: Red_Visible
+      value: Green_Visible
       objectReference: {fileID: 0}
     - target: {fileID: 1720906609736186320, guid: ae497a55f76633549a7eadd1c83ec61e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6606e09838fb45b418616125f37a5b58, type: 2}
+      objectReference: {fileID: 2100000, guid: e8ed1c26d6e2a0145b8be8c62934ecc9, type: 2}
     - target: {fileID: 3117896029615178870, guid: ae497a55f76633549a7eadd1c83ec61e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6606e09838fb45b418616125f37a5b58, type: 2}
+      objectReference: {fileID: 2100000, guid: e8ed1c26d6e2a0145b8be8c62934ecc9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
