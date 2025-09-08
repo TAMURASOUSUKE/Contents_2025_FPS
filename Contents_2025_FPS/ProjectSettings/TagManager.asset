@@ -22,6 +22,7 @@ TagManager:
   - Blue_Hidden
   - Blue_ColliderOnry
   - Takarabako
+  - Key
   layers:
   - Default
   - TransparentFX
