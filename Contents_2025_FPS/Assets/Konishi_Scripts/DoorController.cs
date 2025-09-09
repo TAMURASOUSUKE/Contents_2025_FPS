@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    [SerializeField] KeyManager keyManager;
+    [SerializeField] KeyAnim keyAnim;
     Animator animator;
     void Start()
     {
@@ -13,7 +13,7 @@ public class DoorController : MonoBehaviour
 
     void Update()
     {
-        if (keyManager.CanDoorOpen())
+        if (keyAnim.CanDoorOpen())
         {
             animator.SetTrigger("isDoorOpen");
         }

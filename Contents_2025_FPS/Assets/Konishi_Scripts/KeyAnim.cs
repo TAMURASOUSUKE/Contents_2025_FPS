@@ -11,6 +11,10 @@ public class KeyAnim : MonoBehaviour
     bool isGreenKeyHave;
     bool isBlueKeyHave;
     bool isWhiteKeyHave;
+    bool useRedKey = false;
+    bool useGreenKey = false;
+    bool useBlueKey = false;
+    bool useWhiteKey = false;
 
 
     void Start()
@@ -20,31 +24,84 @@ public class KeyAnim : MonoBehaviour
 
     private void Update()
     {
+        InputKey();
         IsKeyHave();
+        Initialize();
+    }
+
+    void InputKey()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (isRedKeyHave)
+            {
+                animator.SetTrigger("RedKey");
+                useRedKey = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.G)) 
+        {
+            if (isGreenKeyHave)
+            {
+                Debug.Log("hokora");
+                animator.SetTrigger("GreenKey");
+                useGreenKey = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (isBlueKeyHave)
+            {
+                animator.SetTrigger("BlueKey");
+                useBlueKey = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (isWhiteKeyHave)
+            {
+                animator.SetTrigger("WhiteKey");
+                useWhiteKey = true;
+            }
+        }
+    }
+
+    void IsKeyHave()
+    {//InputKey‚Ì“à—e‚ðˆÚ‚·‚Æ‚±‚ë
+        
+    }
+    void Initialize()
+    {
         isRedKeyHave = keyManager.GetIsRedKeyHave();
         isGreenKeyHave = keyManager.GetIsGreenKeyHave();
         isBlueKeyHave = keyManager.GetIsBlueKeyHave();
         isWhiteKeyHave = keyManager.GetIsWhiteKeyHave();
     }
-
-    void IsKeyHave()
+    public bool CanDoorOpen()
     {
-        if (isRedKeyHave)
+        if (useRedKey && useGreenKey && useBlueKey && useWhiteKey)
         {
-            Debug.Log("anim");
-            animator.SetTrigger("RedKey");
+            return true;
         }
-        if (isGreenKeyHave)
+        else
         {
-            animator.SetTrigger("GreenKey");
+            return false;
         }
-        if (isBlueKeyHave)
-        {
-            animator.SetTrigger("BlueKey");
-        }
-        if (isWhiteKeyHave)
-        {
-            animator.SetTrigger("WhiteKey");
-        }
+    }
+    public bool UseRedKey()
+    {
+        return useRedKey;
+    }
+    public bool UseGreenKey()
+    {
+        return useGreenKey;
+    }
+    public bool UseBlueKey()
+    {
+        return useBlueKey;
+    }
+    public bool UseWhiteKey()
+    {
+        return useWhiteKey;
     }
 }
