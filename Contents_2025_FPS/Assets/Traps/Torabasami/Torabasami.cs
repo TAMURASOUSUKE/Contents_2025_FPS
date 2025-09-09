@@ -6,7 +6,7 @@ public class Torabasami : MonoBehaviour
 {
     Animator animator;
 
-    const int DAMAGE = 60;
+    const int DAMAGE = 30;
 
     bool isActive = true;
     // Start is called before the first frame update
