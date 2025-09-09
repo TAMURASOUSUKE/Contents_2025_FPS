@@ -69,4 +69,16 @@ public class KeyManager : MonoBehaviour
     {
         return isWhiteKeyHave;
     }
+
+    public bool CanDoorOpen()
+    {
+        if (isRedKeyHave && isGreenKeyHave && isBlueKeyHave && isWhiteKeyHave)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
