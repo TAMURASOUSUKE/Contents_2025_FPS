@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ImageGenerator : MonoBehaviour
 {
+    [SerializeField] GameObject parent;
     public int imageMax;
     float imageTimer;
     float imageCreateTime = 2f;
@@ -38,7 +39,7 @@ public class ImageGenerator : MonoBehaviour
                 float xPos = Random.Range(xPosMin, xPosMax);
                 float yPos = Random.Range(yPosMin, yPosMax);
                 GameObject prefab = image[index];
-                GameObject newImage = Instantiate(prefab, canvas.transform);
+                GameObject newImage = Instantiate(prefab, parent.transform);    //生成
                 RectTransform rt = newImage.GetComponent<RectTransform>();
 
                 Vector2 vec2 = new Vector2(xPos, yPos);     //生成位置のランダム化
@@ -60,7 +61,7 @@ public class ImageGenerator : MonoBehaviour
         }
         else
         {
-            MakeAllImagesTransparent();
+            StartCoroutine(FadeOut(1f));
         }
     }
     IEnumerator FadeIn(Image img, float duration)
@@ -83,12 +84,23 @@ public class ImageGenerator : MonoBehaviour
         img.color = c;
     }
 
-    void MakeAllImagesTransparent()
+    IEnumerator FadeOut(float duration)
     {
+        float alphaTime = 0f;
         foreach (GameObject img in spawnedImages)
         {
             Image imageComponent = img.GetComponent<Image>();
-            Color c = imageComponent.color;
+            Color c = imageComponent.color;     //現在の色(Alpha値)を取得
+            imageComponent.color = c;
+            float startAlpha = c.a;             //現在のAlpha値を保存
+            while (alphaTime < duration)
+            {
+                alphaTime += Time.deltaTime;
+                float t = alphaTime / duration;                       
+                c.a = Mathf.Lerp(startAlpha, 0f, t);
+                imageComponent.color = c;
+                yield return null;
+            }
             c.a = 0f;
             imageComponent.color = c;
         }
