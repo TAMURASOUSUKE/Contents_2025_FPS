@@ -4,56 +4,69 @@ using UnityEngine;
 
 public class KeyManager : MonoBehaviour
 {
+    [SerializeField] GameObject redKey;
+    [SerializeField] GameObject greenKey;
+    [SerializeField] GameObject blueKey;
+    [SerializeField] GameObject whiteKey;
     bool isRedKeyHave = false;
     bool isGreenKeyHave = false;
     bool isBlueKeyHave = false;
     bool isWhiteKeyHave = false;
-    Animator animator;
-    // Start is called before the first frame update
+
     void Start()
     {
-        animator = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        IsKeyHave();
+        InputKey();
+        
+    }
+
+    void InputKey()
+    {
         if (Input.GetKeyDown(KeyCode.R))
         {
             isRedKeyHave = true;
+            redKey.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.G)) 
-        { 
+        if (Input.GetKeyDown(KeyCode.G))
+        {
             isGreenKeyHave = true;
+            greenKey.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
             isBlueKeyHave = true;
+            blueKey.SetActive(true);
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
-            isWhiteKeyHave= true;
+            isWhiteKeyHave = true;
+            whiteKey.SetActive(true);
         }
     }
 
-    void IsKeyHave()
+    public bool GetIsRedKeyHave()
     {
-        if (isRedKeyHave)
-        {
-            animator.SetTrigger("RedKey");
-        }
-        if (isGreenKeyHave)
-        {
-            animator.SetTrigger("GreenKey");
-        }
-        if (isBlueKeyHave)
-        {
-            animator.SetTrigger("BlueKey");
-        }
-        if (isWhiteKeyHave)
-        {
-            animator.SetTrigger("WhiteKey");
-        }
+        Debug.Log("returnisRedKey");
+        return isRedKeyHave;
+    }
+
+    public bool GetIsGreenKeyHave()
+    {
+        return isGreenKeyHave;
+    }
+
+    public bool GetIsBlueKeyHave()
+    {
+        return isBlueKeyHave;
+    }
+
+    public bool GetIsWhiteKeyHave()
+    {
+        return isWhiteKeyHave;
     }
 }
