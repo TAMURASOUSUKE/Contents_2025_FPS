@@ -8,26 +8,20 @@ public class GhostTest : MonoBehaviour
     GameObject player;
 
     const int DAMAGE = 10;
+    float angle = 0;
+    float posY;
 
     Vector3 offset = new Vector3(0, 1.3f, 0);
-    // Start is called before the first frame update
     void Start()
     {
-        
+        posY = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetPos = player.transform.position + offset;
-        Vector3 dir = (targetPos - transform.position).normalized;
-
-        Vector3 moveVec = dir * 0.01f;
-
-        transform.position += moveVec;
-
-        transform.LookAt(targetPos);
-        
+        GhostMove();
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,4 +30,25 @@ public class GhostTest : MonoBehaviour
 
         Destroy(this.gameObject);
     }
+
+    void GhostMove()
+    {
+        Vector3 targetPos = player.transform.position + offset;
+        Vector3 dir = (targetPos - transform.position).normalized;
+
+        angle += Time.deltaTime;
+       
+        posY = Mathf.Sin(angle) * 0.007f;
+
+        Debug.Log(angle);
+
+        Vector3 moveVec = dir * 0.01f;
+        Vector3 moveUpDown = new Vector3(0f, posY, 0f);
+        transform.position += moveVec;
+        transform.position += moveUpDown;
+
+        transform.LookAt(targetPos);
+    }
 }
+
+
