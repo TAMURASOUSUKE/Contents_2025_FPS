@@ -8,77 +8,68 @@ public class KeyManager : MonoBehaviour
     [SerializeField] GameObject greenKey;
     [SerializeField] GameObject blueKey;
     [SerializeField] GameObject whiteKey;
-    bool isRedKeyHave = false;
-    bool isGreenKeyHave = false;
-    bool isBlueKeyHave = false;
-    bool isWhiteKeyHave = false;
+    [SerializeField] GameManager gameManager;
+    [SerializeField] KeyAnim keyAnim;
+    bool isRedKeyHave;
+    bool isGreenKeyHave;
+    bool isBlueKeyHave;
+    bool isWhiteKeyHave;
+    bool useRedKey = false;
+    bool useGreenKey = false;
+    bool useBlueKey = false;
+    bool useWhiteKey = false;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        InputKey();
-        
+        Initialoze();
+        KeyActive();
     }
-
-    void InputKey()
+    void KeyActive()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (useRedKey)
         {
-            isRedKeyHave = true;
             redKey.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.G))
+        if (useGreenKey)
         {
-            isGreenKeyHave = true;
             greenKey.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.B))
+        if (useBlueKey)
         {
-            isBlueKeyHave = true;
             blueKey.SetActive(true);
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (useWhiteKey)
         {
-            isWhiteKeyHave = true;
             whiteKey.SetActive(true);
         }
     }
 
-    public bool GetIsRedKeyHave()
+    void Initialoze()
     {
-        Debug.Log("returnisRedKey");
-        return isRedKeyHave;
+        isRedKeyHave = gameManager.GetRedKey();
+        isGreenKeyHave = gameManager.GetGreenKey();
+        isBlueKeyHave = gameManager.GetBlueKey();
+        isWhiteKeyHave = gameManager.GetWhiteKey();
+        useRedKey = keyAnim.UseRedKey();
+        useGreenKey = keyAnim.UseGreenKey();
+        useBlueKey = keyAnim.UseBlueKey();
+        useWhiteKey = keyAnim.UseWhiteKey();
     }
 
+    public bool GetIsRedKeyHave()
+    {
+        return isRedKeyHave;
+    }
     public bool GetIsGreenKeyHave()
     {
         return isGreenKeyHave;
     }
-
     public bool GetIsBlueKeyHave()
     {
         return isBlueKeyHave;
     }
-
     public bool GetIsWhiteKeyHave()
     {
         return isWhiteKeyHave;
-    }
-
-    public bool CanDoorOpen()
-    {
-        if (isRedKeyHave && isGreenKeyHave && isBlueKeyHave && isWhiteKeyHave)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }
