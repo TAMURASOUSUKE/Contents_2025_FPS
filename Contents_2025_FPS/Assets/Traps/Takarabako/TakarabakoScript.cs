@@ -1,10 +1,10 @@
 using System.Drawing;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TakarabakoScript : MonoBehaviour
 {
-    SphereCollider InteractArea;
     Animator animator;
     [SerializeField]
     Image image;
@@ -14,43 +14,26 @@ public class TakarabakoScript : MonoBehaviour
     GameObject key;
 
     bool isOpen = false; //宝箱が開かれたかどうか
-
+    bool isInteract = false;
+    
     [SerializeField]
     GameObject gameManager;
 
     [SerializeField]
     GameManager.KeyType type;
-
     private void Start()
     {
-        InteractArea = GetComponent<SphereCollider>();
         animator = GetComponent<Animator>();
     }
     private void Update()
     {  
         if(isOpen == false)
         {
-            if (Input.GetKey(KeyCode.E))
-            {
-                //カメラの中心にレイを飛ばす
-                Ray mainCamMidRay = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-
-                if (Physics.Raycast(mainCamMidRay, out RaycastHit hitInfo, InteractArea.radius))
-                {
-                    //あったオブジェクトが宝箱タグを持つなら
-                    if (hitInfo.collider.CompareTag("Takarabako"))
-                    {
-                        //ゲージを上昇
-                        hitInfo.collider.gameObject.GetComponentInParent<TakarabakoScript>().image.fillAmount += 0.01f;
-                    }
-                }
-            }
-            else if (image.fillAmount > 0)
+            if (isInteract == false && image.fillAmount > 0)
             {
                 //ゲージの上昇中以外はゲージが減少する
                 image.fillAmount -= 0.01f;
             }
-
         }
 
         //ゲージがマックスなら宝箱を開ける
@@ -58,7 +41,9 @@ public class TakarabakoScript : MonoBehaviour
         {           
             Open();
         }
-    }
+
+        isInteract = false;
+    }  
 
     private void Open()
     {
@@ -78,8 +63,14 @@ public class TakarabakoScript : MonoBehaviour
         //離れると描画しないようにする
         gauge.SetActive(false);
     }
+    //アニメーションの進み具合で鍵の動きを開始させる
     private void OnAnimationEnd()
     {
         key.GetComponent<KeyOpenMove>().SetIsOpen();
+    }
+    public void UpGuage()
+    {
+        isInteract = true;
+        image.fillAmount += 0.01f;
     }
 }

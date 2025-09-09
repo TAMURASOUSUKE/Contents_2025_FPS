@@ -14,8 +14,6 @@ public class CameraController : MonoBehaviour
     PlayerController playerController;
     float xRotation = 0f; // 上下回転の蓄積
     float timer = 0f; // ダメージ演出の時間
-
-
     // --------------------------------------------------------関数-----------------------------------------
     void Start()
     {
