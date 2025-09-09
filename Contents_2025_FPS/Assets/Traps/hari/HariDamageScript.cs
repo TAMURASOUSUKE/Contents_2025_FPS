@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HariDamageScript : MonoBehaviour
 {
-    const int DAMAGE = 70;
+    const int DAMAGE = 45;
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
