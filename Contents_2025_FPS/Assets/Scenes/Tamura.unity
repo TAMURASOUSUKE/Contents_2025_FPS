@@ -170,6 +170,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &700604569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -67250985290259028, guid: 6b21ba7d749f48e45814aacf0efccf81,
+    type: 3}
+  m_PrefabInstance: {fileID: 2076990503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &700604573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700604569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3682ec43dbe7b7f4ea6c4dbc2c25afb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backImages:
+  - {fileID: 2800000, guid: 3dd6a98f037581e43b6614013d076858, type: 3}
+  - {fileID: 2800000, guid: bbfec3b6e96838b4585f98bf69c26b03, type: 3}
+  - {fileID: 2800000, guid: 6fa6d01264adeed40b2e38b2a60e32d6, type: 3}
+  - {fileID: 2800000, guid: 97fbda1d5fb27ba44b6bcc6fda515bab, type: 3}
+  - {fileID: 2800000, guid: 7fe75a8823fe245448f03735c184a19d, type: 3}
+  - {fileID: 2800000, guid: 99532516897ed4c4b9d31cc53e2c5260, type: 3}
+  - {fileID: 2800000, guid: 0cf44d2073e98774aa1295d1a91a1fda, type: 3}
+  - {fileID: 2800000, guid: 53925b28477209647963bd5e010dd36e, type: 3}
+  - {fileID: 2800000, guid: b621207d300297c409d92b21f5afdb17, type: 3}
+  - {fileID: 2800000, guid: 3c88b14ccc0c2094993547e021bf3c57, type: 3}
+  - {fileID: 2800000, guid: 7eb533f99850a484da968fd590a6b301, type: 3}
+  - {fileID: 2800000, guid: 7deada22b758c6045ac89bcd460f363b, type: 3}
+  - {fileID: 2800000, guid: 105b5b9ce8780bc4ba10da8e5fbcef1a, type: 3}
+  - {fileID: 2800000, guid: 21b63531b2ef6574d9dc78222bcfdd48, type: 3}
+  - {fileID: 2800000, guid: f6cee2aec0d05c740a55772d30ba09ca, type: 3}
+  fps: 10
 --- !u!1001 &767607851
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -425,17 +460,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6b21ba7d749f48e45814aacf0efccf81,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.164
+      value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b21ba7d749f48e45814aacf0efccf81,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.358
+      value: 0.692
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b21ba7d749f48e45814aacf0efccf81,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.52
+      value: 21.546
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6b21ba7d749f48e45814aacf0efccf81,
         type: 3}
@@ -504,6 +539,16 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 02e5f35377e3fa44590811d9a100b356, type: 2}
     - target: {fileID: 3548115724719479394, guid: 6b21ba7d749f48e45814aacf0efccf81,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548115724719479394, guid: 6b21ba7d749f48e45814aacf0efccf81,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3548115724719479394, guid: 6b21ba7d749f48e45814aacf0efccf81,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.89
       objectReference: {fileID: 0}
@@ -548,6 +593,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2076990507}
+    - targetCorrespondingSourceObject: {fileID: -67250985290259028, guid: 6b21ba7d749f48e45814aacf0efccf81,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 700604573}
   m_SourcePrefab: {fileID: 100100000, guid: 6b21ba7d749f48e45814aacf0efccf81, type: 3}
 --- !u!1 &2076990504 stripped
 GameObject:
@@ -604,7 +653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076990504}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa92877125f071349afd330e201cdd61, type: 3}
   m_Name: 
