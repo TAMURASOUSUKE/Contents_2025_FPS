@@ -10,8 +10,17 @@ public class TakarabakoScript : MonoBehaviour
     Image image;
     [SerializeField]
     GameObject gauge;
+    [SerializeField]
+    GameObject key;
 
     bool isOpen = false; //•ó” ‚ªŠJ‚©‚ê‚½‚©‚Ç‚¤‚©
+
+    [SerializeField]
+    GameObject gameManager;
+
+    [SerializeField]
+    GameManager.KeyType type;
+
     private void Start()
     {
         InteractArea = GetComponent<SphereCollider>();
@@ -56,6 +65,7 @@ public class TakarabakoScript : MonoBehaviour
         //•ó” ‚ðŠJ‚¯‚é
         isOpen = true;
         animator.SetTrigger("PlayerInteract");
+        gameManager.GetComponent<GameManager>().GetKey(type);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,5 +77,9 @@ public class TakarabakoScript : MonoBehaviour
     {
         //—£‚ê‚é‚Æ•`‰æ‚µ‚È‚¢‚æ‚¤‚É‚·‚é
         gauge.SetActive(false);
+    }
+    private void OnAnimationEnd()
+    {
+        key.GetComponent<KeyOpenMove>().SetIsOpen();
     }
 }
