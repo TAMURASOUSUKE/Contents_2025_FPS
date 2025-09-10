@@ -7,7 +7,7 @@ public class GhostTest : MonoBehaviour
     [SerializeField]
     GameObject player;
 
-    const int DAMAGE = 60;
+    const int DAMAGE = 100;
     float angle = 0;
     float posY;
 
