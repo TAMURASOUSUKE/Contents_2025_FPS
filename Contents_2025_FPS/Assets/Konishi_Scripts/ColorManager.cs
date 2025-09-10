@@ -12,12 +12,26 @@ public class ColorManager : MonoBehaviour
 {
     private Volume volume;
     private ColorAdjustments colorAdjustments;
-    const int DAMAGE = 1;              //使用時のダメージ
-    public float filterCoolTime = 4f;   //切り替えのクールタイム
+    private ChromaticAberration chromaticAberration;
+    private DepthOfField depthOfField;
+    const int DAMAGE = 1;               //使用時のダメージ
+    public float filterCoolTime = 2.5f; //切り替えのクールタイム
     float timer;                        //クールタイムの時間計測
     float hitTimer;                     //ダメージを食らうまでのタイマー
     float damageTimer;                  //ダメージを食らった時に使うタイマー
-    public bool isColorChange = false;         //フィルターが有効か
+    float efectTimer;                   //エフェクトに使うタイマー
+    float chromaticEfect;               //フィルター使用時間に応じて視界エフェクトの追加
+    float focalEfect;                   //フィルター使用時間に応じて視界エフェクトの追加
+    float apertureEfect;                //フィルター使用時間に応じて視界エフェクトの追加
+    float depthSpeed;                   //ぼかすスピードを計算して入れる
+    float apertureSpeed;                //↑と同じ
+    float depthTimer = 5f;              //ぼかしがMAXになるまでの時間
+    float startDepth = 5f;              //フィルターが起動してからDepthが起動するまでの時間
+    public float maxChromatic = 1;      //各エフェクトの最大値
+    public float maxFocal = 80f;
+    public float maxAperture = 25f;
+    float chromaticDuration = 5f;       //chromaticが最大になるまでの時間
+    public bool isColorChange = false;  //フィルターが有効か
     bool canFilterChange = true;        //フィルターに切り替え可能か
     GameObject[] redVisibles;           //それぞれのオブジェクトを構造体で取得
     GameObject[] redHiddens;
@@ -36,14 +50,10 @@ public class ColorManager : MonoBehaviour
         volume = GetComponent<Volume>();
         //cubeMesh = otosiana.GetComponent<MeshRenderer>();
         // VolumeProfile から ColorAdjustments を取得
-        if (volume.profile.TryGet<ColorAdjustments>(out var color))
-        {
-            colorAdjustments = color;
-        }
-        else
-        {
-            Debug.Log("ColorAdjustments が VolumeProfile に設定されていません！");
-        }
+        //volume.profile.TryGet<ColorAdjustments>(out var color);
+        volume.profile.TryGet(out colorAdjustments);
+        volume.profile.TryGet(out chromaticAberration);
+        volume.profile.TryGet(out depthOfField);
 
         Player = GetComponentInParent<PlayerController>();
 
@@ -86,9 +96,10 @@ public class ColorManager : MonoBehaviour
 
     void Update()
     {
-        SelectColor();  //フィルター変更
-        Timer();        //フィルターのクールタイム
-        UseDamage();    //フィルター使用時間に応じてダメージ
+        SelectColor();      //フィルター変更
+        Timer();            //フィルターのクールタイム
+        UseDamage();        //フィルター使用時間に応じてダメージ
+        ColorDamageEfect(); //フィルター長時間使用に応じて視界不良
     }
     
     void SelectColor()  //カラー変更の大元  Updateで使う
@@ -245,6 +256,35 @@ public class ColorManager : MonoBehaviour
         {
             damageTimer = 0;
         }
+    }
+
+    //---------------カラー長時間使用時の視界エフェクト---------------
+    void ColorDamageEfect()
+    {
+        if (isColorChange)
+        {
+            efectTimer += Time.deltaTime;
+            float t = efectTimer / chromaticDuration;
+            chromaticEfect = Mathf.Lerp(0f, maxChromatic, t);
+            if (efectTimer > startDepth)
+            {
+                Debug.Log("true");
+                depthSpeed = maxFocal / depthTimer;
+                apertureSpeed = maxAperture / depthTimer;
+                focalEfect = Mathf.MoveTowards(focalEfect, maxFocal, depthSpeed * Time.deltaTime);
+                apertureEfect = Mathf.MoveTowards(apertureEfect, maxAperture, apertureSpeed * Time.deltaTime);
+            }
+        }
+        else
+        {
+            chromaticEfect = 0f;
+            focalEfect = 0f;
+            apertureEfect = 0f;
+            efectTimer = 0f;
+        }
+        chromaticAberration.intensity.value = chromaticEfect;
+        depthOfField.focalLength.value = focalEfect;
+        depthOfField.aperture.value = apertureEfect;
     }
 
     //-----------------------フィルターのON,OFF-----------------------
