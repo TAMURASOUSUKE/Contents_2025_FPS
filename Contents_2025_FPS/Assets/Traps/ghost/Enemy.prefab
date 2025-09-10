@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.81
+      value: -4.9279995
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28
+      value: 0.295
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.802
+      value: -0.6630001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
@@ -167,8 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa92877125f071349afd330e201cdd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 2
-  scenesManagers: {fileID: 0}
+  isHit: 0
 --- !u!95 &1880287708875757089
 Animator:
   serializedVersion: 5

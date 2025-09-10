@@ -1,9 +1,9 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GenerateCharacter : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] float distance;
@@ -20,7 +20,8 @@ public class GenerateCharacter : MonoBehaviour
     void Update()
     {
         CalculateRange();
-        Debug.Log(isRange);
+        Debug.Log(range);
+        Debug.Log(minRange);
     }
 
     void CalculateRange()
@@ -28,18 +29,18 @@ public class GenerateCharacter : MonoBehaviour
 
         if (enemys.Count == 0) return;
 
-        // Å¬‚Ì’·‚³‚ğ‹‚ß‚é
-        minRange = (player.transform.position - enemys[0].transform.position).magnitude;
+        // æœ€å°ã®é•·ã•ã‚’æ±‚ã‚ã‚‹
+        minRange = (enemys[0].transform.position - player.transform.position).sqrMagnitude;
         for (int i = 1; i < enemys.Count; i++)
         {
-            range = (player.transform.position - enemys[i].transform.position).magnitude;
+            range = (enemys[i].transform.position - player.transform.position).sqrMagnitude;
             if (minRange > range)
             {
                 minRange = range;
             }
         }
 
-        if (distance > minRange)
+        if (distance * distance > minRange)
         {
             isRange = true;
         }
@@ -47,5 +48,11 @@ public class GenerateCharacter : MonoBehaviour
         {
             isRange = false;
         }
+    }
+
+
+    public bool GetIsRange()
+    {
+        return isRange;
     }
 }
