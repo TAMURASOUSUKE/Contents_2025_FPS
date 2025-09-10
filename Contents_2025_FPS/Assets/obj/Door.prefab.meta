@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Contents_2025_FPS/Assets/obj/Door.prefab.meta
 guid: e91b835c140451042a4dbe6436d4c369
+========
+guid: be725d2ba5085fe46b1a779aa5b05c55
+>>>>>>>> feature/Scene:Contents_2025_FPS/Assets/obj/FI_002_zennkiseisaku_meiro2_01_44.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
