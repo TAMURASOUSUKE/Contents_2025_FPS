@@ -7,13 +7,17 @@ public class FilterUI : MonoBehaviour
 {
     [SerializeField] ColorManager Color;
     Image image;
-    public float redRatation = 15f;
-    public float greenRatation = 260f;
-    public float blueRatation = 135f;
+    float speed;
+    float targetRotate;
+    float currentRotate;
+    float duration = 0.2f;
+    public float spinSpeed = 1500f;
+    public float redRatation = 0f;
+    public float greenRatation = 240f;
+    public float blueRatation = 118f;
     bool isRedColor = false;
     bool isGreenColor = false;
     bool isBlueColor = false;
-    bool isWhiteColor = false;
 
 
 
@@ -24,14 +28,37 @@ public class FilterUI : MonoBehaviour
 
     void Update()
     {
-        isRedColor = true;
-        isGreenColor = true;
-        isBlueColor = true;
-        isWhiteColor = true;
+        Initialize();
+        Target();
+        UIChange(); 
+        image.rectTransform.localEulerAngles = new Vector3(0, 0, currentRotate);
 
-        float speed = 0f;
-        image.rectTransform.Rotate(0, 0, speed * Time.deltaTime);
-
+    }
+    void UIChange()
+    {
+        speed = spinSpeed / duration;
+        currentRotate = Mathf.MoveTowards(currentRotate, targetRotate, speed * Time.deltaTime);
+    }
+    void Target()
+    {
+        if (isRedColor)
+        {
+            targetRotate = redRatation;
+        }
+        else if (isGreenColor)
+        {
+            targetRotate = greenRatation;
+        }
+        else if (isBlueColor)
+        {
+            targetRotate = blueRatation;
+        }
+    }
+    void Initialize()
+    {
+        isRedColor = Color.isRed;
+        isGreenColor = Color.isGreen;
+        isBlueColor = Color.isBlue;
     }
 }
 
