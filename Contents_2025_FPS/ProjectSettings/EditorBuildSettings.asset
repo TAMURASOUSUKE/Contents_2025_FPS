@@ -8,13 +8,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameScene.unity
     guid: ffb78cdd3fede21458116da613ca1e32
-  - enabled: 1
+  - enabled: 0
     path: Assets/GoalScene.unity
     guid: 13b3df880619a8140b3af5b9bc7a53b5
-  - enabled: 1
+  - enabled: 0
     path: Assets/GameOverScene.unity
     guid: 55f56855dbe81bd4c95a8953c6a38310
+  - enabled: 0
+    path: Assets/Scenes/Tamura.unity
+    guid: 0ce3340080fe6aa4fb5700f45cf11b07
   m_configObjects: {}

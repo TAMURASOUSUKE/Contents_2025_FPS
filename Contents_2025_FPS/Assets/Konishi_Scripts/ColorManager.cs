@@ -33,6 +33,12 @@ public class ColorManager : MonoBehaviour
     float chromaticDuration = 5f;       //chromaticが最大になるまでの時間
     public bool isColorChange = false;  //フィルターが有効か
     bool canFilterChange = true;        //フィルターに切り替え可能か
+    bool isRed = false;
+    bool isGreen = false;
+    bool isBlue = false;
+    bool isCurrentR = false;
+    bool isCurrentG = false;
+    bool isCurrentB = false;
     GameObject[] redVisibles;           //それぞれのオブジェクトを構造体で取得
     GameObject[] redHiddens;
     GameObject[] redColliderOnrys;
@@ -104,9 +110,9 @@ public class ColorManager : MonoBehaviour
     
     void SelectColor()  //カラー変更の大元  Updateで使う
     {
-        bool isRed = Input.GetKeyDown(KeyCode.Alpha1);  //1キー
-        bool isGreen = Input.GetKeyDown(KeyCode.Alpha2);//2キー
-        bool isBlue = Input.GetKeyDown(KeyCode.Alpha3); //3キー
+        isRed = Input.GetKeyDown(KeyCode.Alpha1);  //1キー
+        isGreen = Input.GetKeyDown(KeyCode.Alpha2);//2キー
+        isBlue = Input.GetKeyDown(KeyCode.Alpha3); //3キー
         if (canFilterChange)
         {
             if (isRed)   
@@ -296,6 +302,7 @@ public class ColorManager : MonoBehaviour
         {
             redVisible.SetActive(false);
         }
+        isCurrentR = true;
     }
     void OffRedVisible()
     {
@@ -303,6 +310,7 @@ public class ColorManager : MonoBehaviour
         {
             redObject.SetActive(true);
         }
+        isCurrentR = false;
     }
     void OnRedHidden()
     {
@@ -348,6 +356,7 @@ public class ColorManager : MonoBehaviour
         {
             greenObject.SetActive(false);
         }
+        isCurrentG = true;
     }
     void OffGreenVisible()
     {
@@ -355,6 +364,7 @@ public class ColorManager : MonoBehaviour
         {
             greenObject.SetActive(true);
         }
+        isCurrentG = false;
     }
     void OnGreenHidden()
     {
@@ -400,6 +410,7 @@ public class ColorManager : MonoBehaviour
         {
             blueObject.SetActive(false);
         }
+        isCurrentB = true;
     }
     void OffBlueVisible()
     {
@@ -407,6 +418,7 @@ public class ColorManager : MonoBehaviour
         {
             blueObject.SetActive(true);
         }
+        isCurrentB = false;
     }
     void OnBlueHidden()
     {
@@ -443,5 +455,22 @@ public class ColorManager : MonoBehaviour
             MeshRenderer mr = blue.GetComponent<MeshRenderer>();
             mr.enabled = false;
         }
+    }
+
+
+
+    public bool IsCurrentColorR()
+    {
+        return isCurrentR;
+    }
+
+    public bool IsCurrentColorG()
+    {
+        return isCurrentG;
+    }
+
+    public bool IsCurrentColorB()
+    {
+        return isCurrentB;
     }
 }

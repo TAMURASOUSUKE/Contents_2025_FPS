@@ -206,9 +206,9 @@ public class PlayerController : MonoBehaviour
         if (Time.frameCount % 180 == 0)
         {
             hp++;
-            if (hp >= 150)
+            if (hp >= 300)
             {
-                hp = 150;
+                hp = 300;
             }
         }
     }
