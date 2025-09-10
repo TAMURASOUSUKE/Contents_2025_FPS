@@ -33,9 +33,9 @@ public class ColorManager : MonoBehaviour
     float chromaticDuration = 5f;       //chromaticが最大になるまでの時間
     public bool isColorChange = false;  //フィルターが有効か
     bool canFilterChange = true;        //フィルターに切り替え可能か
-    bool isRed = false;
-    bool isGreen = false;
-    bool isBlue = false;
+    public bool isRed = false;
+    public bool isGreen = false;
+    public bool isBlue = false;
     bool isCurrentR = false;
     bool isCurrentG = false;
     bool isCurrentB = false;
