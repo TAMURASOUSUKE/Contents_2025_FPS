@@ -9,7 +9,8 @@ public class GhostTest : MonoBehaviour
     GameObject player;
     GameObject enemyManagerObj;
     EnemyManager enemyManager;
-    [SerializeField] ScenesManagersScripts scenesManagers;
+    ScenesManagersScripts scenesManagers;
+    GenerateCharacter generateCharacter;
     const int DAMAGE = 100;
     float angle = 0;
     float posY;
@@ -20,8 +21,11 @@ public class GhostTest : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         enemyManagerObj = GameObject.Find("Enemy");
         scenesManagers = GameObject.Find("SceneManager").GetComponent<ScenesManagersScripts>();
+        generateCharacter = GameObject.Find("GenerateCharacter").GetComponent<GenerateCharacter>();
         enemyManager = enemyManagerObj.GetComponent<EnemyManager>();
         posY = transform.position.y;
+
+        generateCharacter.enemys.Add(this.gameObject); // 自身を文字用のリストに入れる
     }
 
     // Update is called once per frame
@@ -51,6 +55,8 @@ public class GhostTest : MonoBehaviour
         {
             enemyManager.isGeneratedN = false;
         }
+
+        generateCharacter.enemys.Remove(this.gameObject);
         Destroy(this.gameObject);
     }
 
@@ -62,8 +68,6 @@ public class GhostTest : MonoBehaviour
         angle += Time.deltaTime;
        
         posY = Mathf.Sin(angle) * 0.007f;
-
-        Debug.Log(angle);
 
         Vector3 moveVec = dir * 0.01f;
         Vector3 moveUpDown = new Vector3(0f, posY, 0f);
