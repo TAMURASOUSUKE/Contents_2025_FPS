@@ -39,6 +39,7 @@ public class ColorManager : MonoBehaviour
     bool isCurrentR = false;
     bool isCurrentG = false;
     bool isCurrentB = false;
+    public bool removeFilter = false;
     GameObject[] redVisibles;           //それぞれのオブジェクトを構造体で取得
     GameObject[] redHiddens;
     GameObject[] redColliderOnrys;
@@ -142,6 +143,7 @@ public class ColorManager : MonoBehaviour
         //赤い色フィルターを設定
         colorAdjustments.colorFilter.value = new Color(1f, 0.6f, 0.6f, 1f);
         isColorChange = true;
+        removeFilter = false;
         //Visible
         OnRedVisible();
         //Hidden
@@ -162,6 +164,7 @@ public class ColorManager : MonoBehaviour
         //緑色フィルターを設定
         colorAdjustments.colorFilter.value = new Color(0.6f, 1f, 0.6f, 1f);
         isColorChange = true;
+        removeFilter = false;
         //Visible
         OnGreenVisible();
         //Hidden
@@ -182,6 +185,7 @@ public class ColorManager : MonoBehaviour
         //青色フィルターを設定
         colorAdjustments.colorFilter.value = new Color(0.6f, 0.6f, 1f, 1f);
         isColorChange = true;
+        removeFilter = false;
         //Visible
         OnBlueVisible();
         //Hidden
@@ -205,6 +209,8 @@ public class ColorManager : MonoBehaviour
         colorAdjustments.colorFilter.value = new Color(1f, 1f, 1f, 1f); // 例：元の色に戻す
         isColorChange = false;
         canFilterChange = false;
+        removeFilter = true;
+
         //--------------赤--------------
         //Visible
         OffRedVisible();
