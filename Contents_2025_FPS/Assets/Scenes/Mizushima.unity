@@ -860,26 +860,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1474928170}
     m_Modifications:
-    - target: {fileID: 833696556287446683, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 833696556287446683, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 833696556287446683, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_fontStyle
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 833696556287446683, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 1558860348453212012, guid: e55d380c1c32b554fae3b776da719f1f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -980,60 +960,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2150888813214718100, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2150888813214718100, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5692341412473916744, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_Name
-      value: gauge
-      objectReference: {fileID: 0}
-    - target: {fileID: 5820044775227370690, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 85
-      objectReference: {fileID: 0}
-    - target: {fileID: 5820044775227370690, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132254061828849679, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6404734996331539957, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6860228043808357356, guid: e55d380c1c32b554fae3b776da719f1f,
         type: 3}
       propertyPath: m_Name
       value: OpenGauge
-      objectReference: {fileID: 0}
-    - target: {fileID: 6860228043808357356, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8477401645014238635, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8477401645014238635, guid: e55d380c1c32b554fae3b776da719f1f,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
