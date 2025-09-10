@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -13,8 +15,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject blueGene;
     [SerializeField] GameObject greenGene;
     [SerializeField] GameObject nomalGene;
-    [SerializeField] ColorManager colorManager;
-    List<GameObject> enemys = new List<GameObject>();
+    [SerializeField] CharacterManager characterManager;
+    GhostTest redScr;
+    GhostTest greenScr;
+    GhostTest blueScr;
+    GhostTest nomalScr;
 
     public bool isGeneratedR = false;
     public bool isGeneratedG = false;
@@ -26,67 +31,60 @@ public class EnemyManager : MonoBehaviour
     bool canGenerateB = false;
     bool canGenerateN = false;
 
-    public enum EnemyType
+    private void Start()
     {
-        RedEnemy,
-        BlueEnemy,
-        WhiteEnemy,
-        GreenEnemy
+        redScr = red.GetComponent<GhostTest>();
+        greenScr = green.GetComponent<GhostTest>();
+        blueScr = blue.GetComponent<GhostTest>();
+        nomalScr = nomal.GetComponent<GhostTest>();
+        redScr.enabled = false;
+        greenScr.enabled = false;
+        blueScr.enabled = false;
+        nomalScr.enabled = false;
     }
 
     private void Update()
     {
         Generate();
-        VisibleEnemy();
     }
 
     void Generate()
     {
         if (canGenerateR)
         {
-            Instantiate(red, redGene.transform.position, Quaternion.identity);
+            red.transform.position = new Vector3(redGene.transform.position.x, redGene.transform.position.y, redGene.transform.position.z);
+            redScr.isHit = false;
             canGenerateR = false;
+            redScr.enabled = true;
+            characterManager.enemys.Add(red);
         }
         if (canGenerateG)
         {
-            Instantiate(blue, greenGene.transform.position, Quaternion.identity);
+            green.transform.position = new Vector3(greenGene.transform.position.x, greenGene.transform.position.y, greenGene.transform.position.z);
+            greenScr.isHit = false;
             canGenerateG = false;
+            greenScr.enabled = true;
+            characterManager.enemys.Add(green);
         }
         if (canGenerateB)
         {
-            Instantiate(green, blueGene.transform.position, Quaternion.identity);
+            blue.transform.position = new Vector3(blueGene.transform.position.x, blueGene.transform.position.y, blueGene.transform.position.z);
+            blueScr.isHit = false;
             canGenerateB = false;
+            blueScr.enabled = true;
+            characterManager.enemys.Add(blue);
         }
         if (canGenerateN)
         {
-            Instantiate(nomal, nomalGene.transform.position, Quaternion.identity);
+            nomal.transform.position = new Vector3(nomalGene.transform.position.x, nomalGene.transform.position.y, nomalGene.transform.position.z);
+            nomalScr.isHit = false;
             canGenerateN = false;
+            nomalScr.enabled = true;
+            characterManager.enemys.Add(nomal);
         }
     }
 
-    void VisibleEnemy()
-    {
-        foreach (GameObject enemy in enemys)
-        {
-            GhostTest enemyscript = enemy.GetComponent<GhostTest>();
-            if(colorManager.IsCurrentColorR() && enemyscript.GetEnemyType() == EnemyType.RedEnemy)
-            {
-                enemy.SetActive(false);
-            }
-            else if (colorManager.IsCurrentColorG() && enemyscript.GetEnemyType() == EnemyType.GreenEnemy)
-            {
-                enemy.SetActive(false);
-            }
-            else if (colorManager.IsCurrentColorB() && enemyscript.GetEnemyType() == EnemyType.BlueEnemy)
-            {
-                enemy.SetActive(false);
-            }
-            else
-            {
-                enemy.SetActive(true);
-            }
-        }
-    }
+  
 
 
     public void SetGenerateFlagR(bool isGenerate)
@@ -107,16 +105,5 @@ public class EnemyManager : MonoBehaviour
     public void SetGenerateFlagN(bool isGenerate)
     {
         canGenerateN = isGenerate;
-    }
-
-
-    public void AddEnemy(GameObject obj)
-    {
-        enemys.Add(obj);
-    } 
-
-    public void RemoveEnemy(GameObject obj)
-    {
-        enemys.Remove(obj);
     }
 }

@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.81
+      value: -5.495
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.802
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
@@ -212,12 +212,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 695696290210291755}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa92877125f071349afd330e201cdd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
+  isHit: 0
 --- !u!95 &1880287708875757089
 Animator:
   serializedVersion: 5

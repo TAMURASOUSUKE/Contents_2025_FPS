@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ImageGenerator : MonoBehaviour
 {
     [SerializeField] GameObject parent;
-    public int imageMax;
+    [SerializeField] CharacterManager characterManager;
     float imageTimer;
     float imageCreateTime = 2f;
     public float xPosMax;
@@ -17,12 +17,10 @@ public class ImageGenerator : MonoBehaviour
     public float outDuration = 0.5f;
     public Canvas canvas;
     public GameObject[] image;
-    ColorManager colorManager;
     private List<GameObject> spawnedImages = new List<GameObject>(); // 生成したものをリストで管理する
 
     void Start()
     {
-        colorManager = FindObjectOfType<ColorManager>();
     }
 
     void Update()
@@ -32,7 +30,7 @@ public class ImageGenerator : MonoBehaviour
 
     void ImageCreate()
     {
-        if (colorManager.isColorChange)
+        if (characterManager.GetIsRange())
         {
             imageTimer += Time.deltaTime;
             if (imageTimer > imageCreateTime)
@@ -53,7 +51,7 @@ public class ImageGenerator : MonoBehaviour
                 float scale = Random.Range(0.5f, 1f);       //大きさのランダム化
                 rt.localScale = new Vector2(scale, scale);
 
-                Image img = newImage.GetComponent<Image>();
+                SpriteRenderer img = newImage.GetComponent<SpriteRenderer>();
                 StartCoroutine(FadeIn(img, inDuration));
 
                 spawnedImages.Add(newImage);            //生成したものをリストに追加
@@ -66,7 +64,7 @@ public class ImageGenerator : MonoBehaviour
             StartCoroutine(FadeOut(outDuration));
         }
     }
-    IEnumerator FadeIn(Image img, float duration)
+    IEnumerator FadeIn(SpriteRenderer img, float duration)
     {
         Color c = img.color;
         c.a = 0f; // 透明にしてからスタート
@@ -92,7 +90,7 @@ public class ImageGenerator : MonoBehaviour
         {   
             if (image != null)
             {
-                Image imageComponent = image.GetComponent<Image>();
+                SpriteRenderer imageComponent = image.GetComponent<SpriteRenderer>();
                 Color c = imageComponent.color;     //現在の色(Alpha値)を取得
                 imageComponent.color = c;
                 float alphaTime = 0f;
