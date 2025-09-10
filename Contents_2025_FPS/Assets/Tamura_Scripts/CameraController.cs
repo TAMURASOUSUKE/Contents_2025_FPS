@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
     //  ------------------------------------------------------変数------------------------------------------------
+    [SerializeField] ScenesManagersScripts scenesManagers;
     [SerializeField] Transform playerBody; // プレイヤー(親オブジェクト)
     [SerializeField] Transform cameraPivot; // カメラの基点
     [SerializeField] float topCameraLimit = 0.0f; // カメラの上側向きの制限
@@ -17,14 +19,13 @@ public class CameraController : MonoBehaviour
     // --------------------------------------------------------関数-----------------------------------------
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked; // マウスカーソルを画面中央に固定
-        Cursor.visible = false; // マウスカーソルを非表示
         playerController = playerBody.GetComponent<PlayerController>(); // プレイヤーのスクリプトを取得
     }
 
 
     void Update()
     {
+        if(scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
         Move();
     }
 

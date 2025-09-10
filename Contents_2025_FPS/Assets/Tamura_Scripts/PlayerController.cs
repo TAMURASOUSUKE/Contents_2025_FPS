@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // ------------------------------------------変数---------------------------------
-
+    [SerializeField] ScenesManagersScripts scenesManagers;
     [SerializeField] Transform cameraTransform; // しゃがむ際のカメラ移動に使う
     [SerializeField] Vector3 standCenter = new Vector3(0, 1.0f, 0); // 立っている時の判定の中心
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0); // しゃがんでいるときの判定の中心
@@ -60,11 +60,13 @@ public class PlayerController : MonoBehaviour
     // 入力処理はUpdate
     void Update()
     {
-
-        InputMove();
-        LimitHp();
-        ChangeSpeed();
-        RecoveryHp();
+        if(scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
+        {
+            InputMove();
+            LimitHp();
+            ChangeSpeed();
+            RecoveryHp();
+        }
     }
 
     //物理挙動はFixedUpdateで分ける
