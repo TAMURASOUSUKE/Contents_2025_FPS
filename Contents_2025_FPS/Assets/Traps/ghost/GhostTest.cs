@@ -31,8 +31,8 @@ public class GhostTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
-        GhostMove();
+        if (scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
+            GhostMove();
     }
 
     private void OnTriggerEnter(Collider other)
