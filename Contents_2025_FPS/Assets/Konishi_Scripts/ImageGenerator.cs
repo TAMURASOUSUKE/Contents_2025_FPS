@@ -33,38 +33,40 @@ public class ImageGenerator : MonoBehaviour
         if (characterManager.GetIsRange())
         {
             imageTimer += Time.deltaTime;
+            int index = Random.Range(0, image.Length);
+            float xPos = Random.Range(xPosMin, xPosMax);
+            float yPos = Random.Range(yPosMin, yPosMax);
+            GameObject prefab = image[index];
             if (imageTimer > imageCreateTime)
             {
-                int index = Random.Range(0, image.Length);
-                float xPos = Random.Range(xPosMin, xPosMax);
-                float yPos = Random.Range(yPosMin, yPosMax);
-                GameObject prefab = image[index];
+                
                 GameObject newImage = Instantiate(prefab, parent.transform);    //生成
                 RectTransform rt = newImage.GetComponent<RectTransform>();
 
                 Vector2 vec2 = new Vector2(xPos, yPos);     //生成位置のランダム化
                 rt.anchoredPosition = vec2;
 
-                float angle = Random.Range(0f, 360f);       //生成向きのランダム化
-                rt.rotation = Quaternion.Euler(0, 0, angle);
+                //float angle = Random.Range(0f, 360f);       //生成向きのランダム化
+                //rt.rotation = Quaternion.Euler(0, 0, angle);
 
-                float scale = Random.Range(0.5f, 1f);       //大きさのランダム化
+                float scale = Random.Range(30f, 40f);       //大きさのランダム化
                 rt.localScale = new Vector2(scale, scale);
 
-                SpriteRenderer img = newImage.GetComponent<SpriteRenderer>();
+                Image img = newImage.GetComponent<Image>();
                 StartCoroutine(FadeIn(img, inDuration));
+               
 
                 spawnedImages.Add(newImage);            //生成したものをリストに追加
 
                 imageTimer = 0;
             }
-        }
-        else
-        {
-            StartCoroutine(FadeOut(outDuration));
-        }
+        }        //else
+        //{
+        //    StartCoroutine(FadeOut(outDuration));
+        //}
+
     }
-    IEnumerator FadeIn(SpriteRenderer img, float duration)
+    IEnumerator FadeIn(Image img, float duration)
     {
         Color c = img.color;
         c.a = 0f; // 透明にしてからスタート
@@ -82,17 +84,16 @@ public class ImageGenerator : MonoBehaviour
 
         c.a = 1f;
         img.color = c;
+
+        yield return new WaitForSeconds(1.5f); // しばらく表示してから消す時間を調整（必要に応じて変える）
+        StartCoroutine(FadeOutSingle(img, outDuration));
     }
 
-    IEnumerator FadeOut(float duration)
+    IEnumerator FadeOutSingle(Image img, float duration)
     {
-        foreach (GameObject image in spawnedImages)
-        {   
             if (image != null)
             {
-                SpriteRenderer imageComponent = image.GetComponent<SpriteRenderer>();
-                Color c = imageComponent.color;     //現在の色(Alpha値)を取得
-                imageComponent.color = c;
+                Color c = img.color;     //現在の色(Alpha値)を取る
                 float alphaTime = 0f;
                 float startAlpha = c.a;             //現在のAlpha値を保存
                 while (alphaTime < duration)
@@ -100,13 +101,17 @@ public class ImageGenerator : MonoBehaviour
                     alphaTime += Time.deltaTime;
                     float t = alphaTime / duration;
                     c.a = Mathf.Lerp(startAlpha, 0f, t);
-                    imageComponent.color = c;
+                    img.color = c;
                     yield return null;
                 }
                 c.a = 0f;
-                imageComponent.color = c;
-                Destroy(image);
-            }
+                img.color = c;
+                Destroy(img);
         }
+    }
+
+    public void SetImageCreateTime(float time)
+    {
+        imageCreateTime = time;
     }
 }

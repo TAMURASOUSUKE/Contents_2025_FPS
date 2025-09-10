@@ -20,8 +20,8 @@ public class CharacterManager : MonoBehaviour
     void Update()
     {
         CalculateRange();
-        Debug.Log(range);
-        Debug.Log(minRange);
+        Debug.Log(isRange);
+      
     }
 
     void CalculateRange()
@@ -30,10 +30,10 @@ public class CharacterManager : MonoBehaviour
         if (enemys.Count == 0) return;
 
         // 最小の長さを求める
-        minRange = (enemys[0].transform.position - player.transform.position).sqrMagnitude;
+        minRange = (enemys[0].transform.position - player.transform.position).sqrMagnitude * -1f;
         for (int i = 1; i < enemys.Count; i++)
         {
-            range = (enemys[i].transform.position - player.transform.position).sqrMagnitude;
+            range = (enemys[i].transform.position - player.transform.position).sqrMagnitude * -1f;
             if (minRange > range)
             {
                 minRange = range;
