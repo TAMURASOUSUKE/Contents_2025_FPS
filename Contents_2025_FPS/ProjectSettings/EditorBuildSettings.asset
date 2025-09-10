@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/GameOverScene.unity
     guid: 55f56855dbe81bd4c95a8953c6a38310
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Tamura.unity
     guid: 0ce3340080fe6aa4fb5700f45cf11b07
   m_configObjects: {}
