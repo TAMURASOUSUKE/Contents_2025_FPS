@@ -2,20 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class DoorController : MonoBehaviour,IInteractObject
 {
-    [SerializeField] KeyAnim keyAnim;
+    [SerializeField] KeyManager keyManager;
     Animator animator;
+
+    bool isInteract = false;
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    public void OnTriggerInteract()
     {
-        if (keyAnim.CanDoorOpen())
+        isInteract = true;
+        animator.SetTrigger("isDoorOpen");
+    }
+    public bool GetCanInteract()
+    {
+        Debug.Log("doa");
+        if(isInteract == false)
         {
-            animator.SetTrigger("isDoorOpen");
+            if (keyManager.CanDoorOpen())
+            {
+                return true;
+            }
         }
+
+        return false;
     }
 }

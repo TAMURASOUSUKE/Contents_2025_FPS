@@ -23,6 +23,7 @@ TagManager:
   - Blue_ColliderOnry
   - Takarabako
   - Key
+  - InteractObject
   layers:
   - Default
   - TransparentFX
