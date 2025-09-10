@@ -6,21 +6,22 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    [SerializeField] float distance;
+    [SerializeField] ImageGenerator imageGenerator;
+    [SerializeField] float farDistance;
+    [SerializeField] float middleDistance;
+    [SerializeField] float nearDistance;
+    
     public List<GameObject> enemys = new List<GameObject>();
     float range;
-    float minRange = 0f;
+    float maxRange = 0f;
     bool isRange = false;
     void Start()
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
         CalculateRange();
-        Debug.Log(isRange);
       
     }
 
@@ -28,24 +29,43 @@ public class CharacterManager : MonoBehaviour
     {
 
         if (enemys.Count == 0) return;
-
-        // 最小の長さを求める
-        minRange = (enemys[0].transform.position - player.transform.position).sqrMagnitude * -1f;
+        maxRange = (enemys[0].transform.position - player.transform.position).sqrMagnitude;
         for (int i = 1; i < enemys.Count; i++)
         {
-            range = (enemys[i].transform.position - player.transform.position).sqrMagnitude * -1f;
-            if (minRange > range)
+            range = (enemys[i].transform.position - player.transform.position).sqrMagnitude;
+            if (maxRange < range)
             {
-                minRange = range;
+                maxRange = range;
             }
         }
-
-        if (distance * distance > minRange)
+       
+        if (nearDistance * nearDistance < maxRange)
         {
+            Debug.Log("近くにいるよ！");
+            imageGenerator.SetCreateTime(0.3f);
+            imageGenerator.SetImageCreateTime(0.3f);
+            imageGenerator.SetSize(9f, 11f);
+            isRange = true;
+        }
+        else if (middleDistance * middleDistance < maxRange)
+        {
+            Debug.Log("中くらいだよ！");
+            imageGenerator.SetCreateTime(1f);
+            imageGenerator.SetImageCreateTime(1f);
+            imageGenerator.SetSize(6f, 7.5f);
+            isRange = true;
+        }
+        else if (farDistance * farDistance < maxRange)
+        {
+            imageGenerator.SetCreateTime(1.3f);
+            imageGenerator.SetImageCreateTime(1.3f);
+            imageGenerator.SetSize(3f, 5f);
+            Debug.Log("遠いよ！");
             isRange = true;
         }
         else
         {
+            Debug.Log("完全に離れてるよ");
             isRange = false;
         }
     }

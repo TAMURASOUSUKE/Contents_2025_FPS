@@ -9,6 +9,9 @@ public class ImageGenerator : MonoBehaviour
     [SerializeField] CharacterManager characterManager;
     float imageTimer;
     float imageCreateTime = 2f;
+    float minSize = 0;  
+    float maxSize = 0;
+    float createTime = 0;
     public float xPosMax;
     public float xPosMin;
     public float yPosMax;
@@ -49,7 +52,7 @@ public class ImageGenerator : MonoBehaviour
                 //float angle = Random.Range(0f, 360f);       //生成向きのランダム化
                 //rt.rotation = Quaternion.Euler(0, 0, angle);
 
-                float scale = Random.Range(30f, 40f);       //大きさのランダム化
+                float scale = Random.Range(minSize, maxSize);       //大きさのランダム化
                 rt.localScale = new Vector2(scale, scale);
 
                 Image img = newImage.GetComponent<Image>();
@@ -85,7 +88,7 @@ public class ImageGenerator : MonoBehaviour
         c.a = 1f;
         img.color = c;
 
-        yield return new WaitForSeconds(1.5f); // しばらく表示してから消す時間を調整（必要に応じて変える）
+        yield return new WaitForSeconds(createTime); // しばらく表示してから消す時間を調整（必要に応じて変える）
         StartCoroutine(FadeOutSingle(img, outDuration));
     }
 
@@ -113,5 +116,16 @@ public class ImageGenerator : MonoBehaviour
     public void SetImageCreateTime(float time)
     {
         imageCreateTime = time;
+    }
+
+    public void SetCreateTime(float time)
+    {
+        createTime = time;
+    }
+
+    public void SetSize(float min, float max)
+    {
+        minSize = min;
+        maxSize = max;
     }
 }
