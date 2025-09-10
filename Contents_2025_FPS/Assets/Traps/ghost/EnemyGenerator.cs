@@ -7,7 +7,7 @@ public class EnemyGenerator : MonoBehaviour
 {
     [SerializeField] EnemyManager.EnemyType enemyType;
     [SerializeField] EnemyManager enemyManager;
-    [SerializeField] KeyManager keyManager;
+    [SerializeField] GameManager gameManager;
 
 
     // Update is called once per frame
@@ -15,19 +15,19 @@ public class EnemyGenerator : MonoBehaviour
     {
 
 
-        if (enemyType == EnemyManager.EnemyType.RedEnemy && keyManager.useRedKey && !enemyManager.isGeneratedR)
+        if (enemyType == EnemyManager.EnemyType.RedEnemy && gameManager.GetRedKey() && !enemyManager.isGeneratedR)
         {
             enemyManager.SetGenerateFlagR(true);
             enemyManager.isGeneratedR = true;
         }
 
-        if (enemyType == EnemyManager.EnemyType.BlueEnemy && keyManager.useBlueKey && !enemyManager.isGeneratedB)
+        if (enemyType == EnemyManager.EnemyType.BlueEnemy && gameManager.GetBlueKey() && !enemyManager.isGeneratedB)
         {
             enemyManager.SetGenerateFlagB(true);
             enemyManager.isGeneratedB = true;
         }
 
-        if (enemyType == EnemyManager.EnemyType.GreenEnemy && keyManager.useGreenKey && !enemyManager.isGeneratedG)
+        if (enemyType == EnemyManager.EnemyType.GreenEnemy && gameManager.GetGreenKey() && !enemyManager.isGeneratedG)
         {
             enemyManager.SetGenerateFlagG(true);
             enemyManager.isGeneratedG = true;
