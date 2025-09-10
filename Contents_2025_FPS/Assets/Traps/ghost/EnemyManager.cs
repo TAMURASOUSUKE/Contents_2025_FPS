@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject blueGene;
     [SerializeField] GameObject greenGene;
     [SerializeField] GameObject nomalGene;
+    [SerializeField] ColorManager colorManager;
+    List<GameObject> enemys = new List<GameObject>();
 
     public bool isGeneratedR = false;
     public bool isGeneratedG = false;
@@ -35,6 +37,7 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         Generate();
+        VisibleEnemy();
     }
 
     void Generate()
@@ -61,6 +64,30 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    void VisibleEnemy()
+    {
+        foreach (GameObject enemy in enemys)
+        {
+            GhostTest enemyscript = enemy.GetComponent<GhostTest>();
+            if(colorManager.IsCurrentColorR() && enemyscript.GetEnemyType() == EnemyType.RedEnemy)
+            {
+                enemy.SetActive(false);
+            }
+            else if (colorManager.IsCurrentColorG() && enemyscript.GetEnemyType() == EnemyType.GreenEnemy)
+            {
+                enemy.SetActive(false);
+            }
+            else if (colorManager.IsCurrentColorB() && enemyscript.GetEnemyType() == EnemyType.BlueEnemy)
+            {
+                enemy.SetActive(false);
+            }
+            else
+            {
+                enemy.SetActive(true);
+            }
+        }
+    }
+
 
     public void SetGenerateFlagR(bool isGenerate)
     {
@@ -80,5 +107,16 @@ public class EnemyManager : MonoBehaviour
     public void SetGenerateFlagN(bool isGenerate)
     {
         canGenerateN = isGenerate;
+    }
+
+
+    public void AddEnemy(GameObject obj)
+    {
+        enemys.Add(obj);
+    } 
+
+    public void RemoveEnemy(GameObject obj)
+    {
+        enemys.Remove(obj);
     }
 }

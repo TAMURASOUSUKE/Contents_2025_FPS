@@ -26,6 +26,7 @@ public class GhostTest : MonoBehaviour
         posY = transform.position.y;
 
         generateCharacter.enemys.Add(this.gameObject); // 自身を文字用のリストに入れる
+        enemyManager.AddEnemy(this.gameObject);
     }
 
     // Update is called once per frame
@@ -57,6 +58,7 @@ public class GhostTest : MonoBehaviour
         }
 
         generateCharacter.enemys.Remove(this.gameObject);
+        enemyManager.RemoveEnemy(this.gameObject);
         Destroy(this.gameObject);
     }
 
@@ -75,6 +77,12 @@ public class GhostTest : MonoBehaviour
         transform.position += moveUpDown;
 
         transform.LookAt(targetPos);
+    }
+
+
+    public EnemyManager.EnemyType GetEnemyType()
+    {
+        return enemyType;
     }
 }
 
