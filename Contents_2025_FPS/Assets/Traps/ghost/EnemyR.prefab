@@ -82,12 +82,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9d1a6ad4f74dea14dbf15aba209d6ee6, type: 2}
+      objectReference: {fileID: 2100000, guid: 08c51be095e1526459e13eff81272464, type: 2}
     - target: {fileID: -5282663575794708507, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fb792b444fbd9ac4b8ed60bb9be7f70a, type: 2}
+      objectReference: {fileID: 2100000, guid: 66b9ab441dd30034ba5a52dedc95de90, type: 2}
     - target: {fileID: -962280462779565586, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -96,7 +96,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: EnemyR
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 80f13e2863025ce49babae1084209193,
+        type: 3}
+      propertyPath: m_TagString
+      value: Red_Visible
       objectReference: {fileID: 0}
     - target: {fileID: 3260108340194770056, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
@@ -127,7 +132,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9cbb7fe36ad1717498bd51fd600511da, type: 2}
+      objectReference: {fileID: 2100000, guid: 4252970fb2799f04b89544ed7ecbb28c, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -163,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa92877125f071349afd330e201cdd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 2
+  enemyType: 0
 --- !u!95 &1880287708875757089
 Animator:
   serializedVersion: 5

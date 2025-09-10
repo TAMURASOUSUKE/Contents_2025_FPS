@@ -82,12 +82,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9d1a6ad4f74dea14dbf15aba209d6ee6, type: 2}
+      objectReference: {fileID: 2100000, guid: f1cad5caebf6c3f4aa8a608484636ba3, type: 2}
     - target: {fileID: -5282663575794708507, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fb792b444fbd9ac4b8ed60bb9be7f70a, type: 2}
+      objectReference: {fileID: 2100000, guid: 78942a90aec644444ac7411dd40dd996, type: 2}
     - target: {fileID: -962280462779565586, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -96,7 +96,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: EnemyG
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 80f13e2863025ce49babae1084209193,
+        type: 3}
+      propertyPath: m_TagString
+      value: Green_Visible
       objectReference: {fileID: 0}
     - target: {fileID: 3260108340194770056, guid: 80f13e2863025ce49babae1084209193,
         type: 3}
@@ -127,7 +132,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 9cbb7fe36ad1717498bd51fd600511da, type: 2}
+      objectReference: {fileID: 2100000, guid: 05a865ece4ef956438185d1be9a68aa2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
