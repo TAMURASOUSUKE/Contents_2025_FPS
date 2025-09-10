@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class KyosekiScript : MonoBehaviour
 {
+
     Rigidbody kyosekiRigidBody;
 
     //‹Î‚ÌˆÊ’uî•ñ‚Ì•Û‘¶‚Ég—p
@@ -52,7 +53,8 @@ public class KyosekiScript : MonoBehaviour
         if(player.gameObject.CompareTag("Player"))
         {
             PlayerController playerController = player.gameObject.GetComponent<PlayerController>();
-            playerController.TakeDamage(150);
+            int damage = playerController.GetHp();
+            playerController.TakeDamage(damage);
         }
     }
 }
