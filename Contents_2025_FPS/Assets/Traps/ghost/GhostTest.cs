@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GhostTest : MonoBehaviour
 {
-    [SerializeField]
-    GameObject player;
+    [SerializeField] EnemyManager.EnemyType enemyType;
 
+    GameObject player;
+    GameObject enemyManagerObj;
+    EnemyManager enemyManager;
     const int DAMAGE = 100;
     float angle = 0;
     float posY;
@@ -14,6 +16,9 @@ public class GhostTest : MonoBehaviour
     Vector3 offset = new Vector3(0, 1.3f, 0);
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
+        enemyManagerObj = GameObject.Find("Enemy");
+        enemyManager = enemyManagerObj.GetComponent<EnemyManager>();
         posY = transform.position.y;
     }
 
@@ -28,6 +33,22 @@ public class GhostTest : MonoBehaviour
     {
         player.GetComponent<PlayerController>().TakeDamage(DAMAGE);
 
+        if (enemyType == EnemyManager.EnemyType.RedEnemy)
+        {
+            enemyManager.isGeneratedR = false;
+        }
+        if (enemyType == EnemyManager.EnemyType.BlueEnemy)
+        {
+            enemyManager.isGeneratedB = false;
+        }
+        if (enemyType == EnemyManager.EnemyType.GreenEnemy)
+        {
+            enemyManager.isGeneratedG = false;
+        }
+        if (enemyType == EnemyManager.EnemyType.WhiteEnemy)
+        {
+            enemyManager.isGeneratedN = false;
+        }
         Destroy(this.gameObject);
     }
 
