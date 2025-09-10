@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class ScenesManagersScripts : MonoBehaviour
 {
-    [SerializeField] UIManager uIManager;
+    [SerializeField] UIManager uiManager;
     public enum Scene
     { 
         TITLE,
@@ -34,23 +34,21 @@ public class ScenesManagersScripts : MonoBehaviour
         currentHP = playerController.GetHp();   //現在の体力の取得
         if(currentHP <= 0)                      //体力が０以下の時ゲームオーバーシーンに移行
         {
-            SceneManager.LoadScene("GameOverScene");
+            GameOverSceneTransition();
         }
     }
 
     public void TItleSceneTransition() //タイトルシーンに遷移
     {
         currentScene = Scene.TITLE;
-        uIManager.TitleUiSetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        uiManager.TitleUiActive();
+        CursorMode();
     }
     public void GameSceneTransition() //ゲームシーンに遷移
     {
         currentScene = Scene.GAME;
-        uIManager.GameUiSetActive(true);
-        Cursor.lockState = CursorLockMode.Locked; // マウスカーソルを画面中央に固定
-        Cursor.visible = false; // マウスカーソルを非表示
+        uiManager.GameUiActive();
+        FpsMode();
     }
     public void MenuSceneTransition() //メニューシーンに遷移
     {
@@ -59,6 +57,8 @@ public class ScenesManagersScripts : MonoBehaviour
     public void GameOverSceneTransition() //ゲームオーバーシーンに遷移
     {
         currentScene = Scene.GAMEOVER;
+        uiManager.GameOverActive();
+        CursorMode();
     }
     public void ClearSceneTransition() //クリアーシーンに遷移
     {
@@ -75,4 +75,15 @@ public class ScenesManagersScripts : MonoBehaviour
 
     }
  
+    private void FpsMode()
+    {
+        Cursor.lockState = CursorLockMode.Locked; // マウスカーソルを画面中央に固定
+        Cursor.visible = false; // マウスカーソルを非表示
+    }
+
+    private void CursorMode()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 }
