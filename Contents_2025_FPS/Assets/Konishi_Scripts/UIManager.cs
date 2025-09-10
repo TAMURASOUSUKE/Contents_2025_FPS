@@ -9,12 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject greenEye;
     [SerializeField] GameObject blueEye;
     [SerializeField] GameObject whiteEye;
-    [SerializeField] KeyAnim keyAnim;
-    bool useRedKey = false;
-    bool useGreenKey = false;
-    bool useBlueKey = false;
-    bool useWhiteKey = false;
-
+    [SerializeField] KeyManager keyManager;
     void Start()
     {
         redEye.SetActive(false);
@@ -24,33 +19,25 @@ public class UIManager : MonoBehaviour
     }
     void Update()
     {
-        Initialize();
         UpdateUI();
     }
     void UpdateUI()
     {
-        if (useRedKey)
+        if (keyManager.useRedKey)
         {
             redEye.SetActive(true);
         }
-        if (useGreenKey)
+        if (keyManager.useGreenKey)
         {
             greenEye.SetActive(true);
         }
-        if (useBlueKey)
+        if (keyManager.useBlueKey)
         {
             blueEye.SetActive(true);
         }
-        if (useWhiteKey)
+        if (keyManager.useWhiteKey)
         {
             whiteEye.SetActive(true);
         }
-    }
-    void Initialize()
-    {
-        useRedKey = keyAnim.UseRedKey();
-        useGreenKey = keyAnim.UseGreenKey();
-        useBlueKey = keyAnim.UseBlueKey();
-        useWhiteKey = keyAnim.UseWhiteKey();
     }
 }
