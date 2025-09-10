@@ -13,6 +13,8 @@ public class ImageGenerator : MonoBehaviour
     public float xPosMin;
     public float yPosMax;
     public float yPosMin;
+    public float inDuration = 1f;
+    public float outDuration = 0.5f;
     public Canvas canvas;
     public GameObject[] image;
     ColorManager colorManager;
@@ -52,7 +54,7 @@ public class ImageGenerator : MonoBehaviour
                 rt.localScale = new Vector2(scale, scale);
 
                 Image img = newImage.GetComponent<Image>();
-                StartCoroutine(FadeIn(img, 1f));
+                StartCoroutine(FadeIn(img, inDuration));
 
                 spawnedImages.Add(newImage);            //生成したものをリストに追加
 
@@ -61,7 +63,7 @@ public class ImageGenerator : MonoBehaviour
         }
         else
         {
-            StartCoroutine(FadeOut(1f));
+            StartCoroutine(FadeOut(outDuration));
         }
     }
     IEnumerator FadeIn(Image img, float duration)
@@ -86,23 +88,27 @@ public class ImageGenerator : MonoBehaviour
 
     IEnumerator FadeOut(float duration)
     {
-        float alphaTime = 0f;
-        foreach (GameObject img in spawnedImages)
-        {
-            Image imageComponent = img.GetComponent<Image>();
-            Color c = imageComponent.color;     //現在の色(Alpha値)を取得
-            imageComponent.color = c;
-            float startAlpha = c.a;             //現在のAlpha値を保存
-            while (alphaTime < duration)
+        foreach (GameObject image in spawnedImages)
+        {   
+            if (image != null)
             {
-                alphaTime += Time.deltaTime;
-                float t = alphaTime / duration;                       
-                c.a = Mathf.Lerp(startAlpha, 0f, t);
+                Image imageComponent = image.GetComponent<Image>();
+                Color c = imageComponent.color;     //現在の色(Alpha値)を取得
                 imageComponent.color = c;
-                yield return null;
+                float alphaTime = 0f;
+                float startAlpha = c.a;             //現在のAlpha値を保存
+                while (alphaTime < duration)
+                {
+                    alphaTime += Time.deltaTime;
+                    float t = alphaTime / duration;
+                    c.a = Mathf.Lerp(startAlpha, 0f, t);
+                    imageComponent.color = c;
+                    yield return null;
+                }
+                c.a = 0f;
+                imageComponent.color = c;
+                Destroy(image);
             }
-            c.a = 0f;
-            imageComponent.color = c;
         }
     }
 }
