@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
-    [SerializeField] EnemyManager.EnemyType enemyType;
     [SerializeField] EnemyManager enemyManager;
     [SerializeField] GameManager gameManager;
 
@@ -15,25 +14,25 @@ public class EnemyGenerator : MonoBehaviour
     {
 
 
-        if (enemyType == EnemyManager.EnemyType.RedEnemy && gameManager.GetRedKey() && !enemyManager.isGeneratedR)
+        if (gameManager.GetRedKey() && !enemyManager.isGeneratedR)
         {
             enemyManager.SetGenerateFlagR(true);
             enemyManager.isGeneratedR = true;
         }
 
-        if (enemyType == EnemyManager.EnemyType.BlueEnemy && gameManager.GetBlueKey() && !enemyManager.isGeneratedB)
+        if (gameManager.GetBlueKey() && !enemyManager.isGeneratedB)
         {
             enemyManager.SetGenerateFlagB(true);
             enemyManager.isGeneratedB = true;
         }
 
-        if (enemyType == EnemyManager.EnemyType.GreenEnemy && gameManager.GetGreenKey() && !enemyManager.isGeneratedG)
+        if (gameManager.GetGreenKey() && !enemyManager.isGeneratedG)
         {
             enemyManager.SetGenerateFlagG(true);
             enemyManager.isGeneratedG = true;
         }
 
-        if (enemyType == EnemyManager.EnemyType.WhiteEnemy && !enemyManager.isGeneratedN)
+        if (!enemyManager.isGeneratedN)
         {
             enemyManager.SetGenerateFlagN(true);
             enemyManager.isGeneratedN = true;

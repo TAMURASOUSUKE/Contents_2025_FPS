@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class GhostTest : MonoBehaviour
 {
-    [SerializeField] EnemyManager.EnemyType enemyType;
 
     GameObject player;
     GameObject enemyManagerObj;
     EnemyManager enemyManager;
     ScenesManagersScripts scenesManagers;
-    GenerateCharacter generateCharacter;
+    CharacterManager generateCharacter;
+    Vector3 initPos;
     const int DAMAGE = 100;
     float angle = 0;
     float posY;
+    public bool isHit = false;
 
     Vector3 offset = new Vector3(0, 1.3f, 0);
     void Start()
@@ -21,12 +22,10 @@ public class GhostTest : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         enemyManagerObj = GameObject.Find("Enemy");
         scenesManagers = GameObject.Find("SceneManager").GetComponent<ScenesManagersScripts>();
-        generateCharacter = GameObject.Find("GenerateCharacter").GetComponent<GenerateCharacter>();
+        generateCharacter = GameObject.Find("GenerateCharacter").GetComponent<CharacterManager>();
         enemyManager = enemyManagerObj.GetComponent<EnemyManager>();
         posY = transform.position.y;
-
-        generateCharacter.enemys.Add(this.gameObject); // 自身を文字用のリストに入れる
-        enemyManager.AddEnemy(this.gameObject);
+        initPos = transform.position;
     }
 
     // Update is called once per frame
@@ -39,27 +38,11 @@ public class GhostTest : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         player.GetComponent<PlayerController>().TakeDamage(DAMAGE);
+        transform .position = initPos;
 
-        if (enemyType == EnemyManager.EnemyType.RedEnemy)
-        {
-            enemyManager.isGeneratedR = false;
-        }
-        if (enemyType == EnemyManager.EnemyType.BlueEnemy)
-        {
-            enemyManager.isGeneratedB = false;
-        }
-        if (enemyType == EnemyManager.EnemyType.GreenEnemy)
-        {
-            enemyManager.isGeneratedG = false;
-        }
-        if (enemyType == EnemyManager.EnemyType.WhiteEnemy)
-        {
-            enemyManager.isGeneratedN = false;
-        }
-
-        generateCharacter.enemys.Remove(this.gameObject);
-        enemyManager.RemoveEnemy(this.gameObject);
-        Destroy(this.gameObject);
+        // generateCharacter.enemys.Remove(this.gameObject);
+        // isHit = true;
+        // Destroy(this.gameObject);
     }
 
     void GhostMove()
@@ -79,11 +62,6 @@ public class GhostTest : MonoBehaviour
         transform.LookAt(targetPos);
     }
 
-
-    public EnemyManager.EnemyType GetEnemyType()
-    {
-        return enemyType;
-    }
 }
 
 
