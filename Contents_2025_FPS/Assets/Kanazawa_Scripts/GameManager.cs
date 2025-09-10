@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private bool isGetRedKey = false;
     private bool isGetGreenKey = false;
 
+    [SerializeField] GameObject reSpawnPos;
+    [SerializeField] GameObject player;
+
     public enum KeyType
     {
         WHITE_KEY,
@@ -56,5 +59,9 @@ public class GameManager : MonoBehaviour
         return isGetGreenKey;
     }
 
-
+    public void ReSpawn()
+    {
+        player.transform.position = reSpawnPos.transform.position;
+        player.GetComponent<PlayerController>().TakeDamage(-300);
+    }
 }

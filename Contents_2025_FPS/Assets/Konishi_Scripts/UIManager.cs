@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject greenEye;
     [SerializeField] GameObject blueEye;
     [SerializeField] GameObject whiteEye;
-    [SerializeField] GameObject button;
+    [SerializeField] GameObject titleButton;
+    [SerializeField] GameObject respawnButton;
 
     [SerializeField] KeyManager keyManager;
     void Start()
@@ -45,15 +46,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void TitleUiSetActive(bool setBool)
+    public void TitleUiActive()
     {
         AllUiDeActive();
-        button.SetActive(setBool);
+        titleButton.SetActive(true);
     }
-    public void GameUiSetActive(bool setBool)
+    public void GameUiActive()
     {
         AllUiDeActive();
-        keyFrame.SetActive(setBool);
+        keyFrame.SetActive(true);
+    }
+    public void GameOverActive()
+    {
+        AllUiDeActive();
+        respawnButton.SetActive(true);
     }
 
     private void AllUiDeActive()
@@ -63,6 +69,7 @@ public class UIManager : MonoBehaviour
         greenEye.SetActive(false);
         blueEye.SetActive(false);
         whiteEye.SetActive(false);
-        button.SetActive(false);
+        titleButton.SetActive(false);
+        respawnButton.SetActive(false);
     }
 }
