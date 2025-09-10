@@ -9,6 +9,7 @@ public class GhostTest : MonoBehaviour
     GameObject player;
     GameObject enemyManagerObj;
     EnemyManager enemyManager;
+    [SerializeField] ScenesManagersScripts scenesManagers;
     const int DAMAGE = 100;
     float angle = 0;
     float posY;
@@ -18,6 +19,7 @@ public class GhostTest : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         enemyManagerObj = GameObject.Find("Enemy");
+        scenesManagers = GameObject.Find("SceneManager").GetComponent<ScenesManagersScripts>();
         enemyManager = enemyManagerObj.GetComponent<EnemyManager>();
         posY = transform.position.y;
     }
@@ -25,8 +27,8 @@ public class GhostTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
         GhostMove();
-       
     }
 
     private void OnTriggerEnter(Collider other)
