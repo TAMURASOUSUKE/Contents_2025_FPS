@@ -83,7 +83,13 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-  
+    public void ResetGhost()
+    {
+        red.transform.position = redGene.transform.position;
+        green.transform.position = greenGene.transform.position;
+        blue.transform.position = blueGene.transform.position;
+        nomal.transform.position = nomalGene.transform.position;
+    }
 
 
     public void SetGenerateFlagR(bool isGenerate)

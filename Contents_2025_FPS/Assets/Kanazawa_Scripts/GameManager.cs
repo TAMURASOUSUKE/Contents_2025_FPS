@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject volume;
     [SerializeField] KeyManager keyManager;
+    [SerializeField] EnemyManager enemyManager;
 
     private int maxHp;
     private void Start()
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerController>().TakeDamage(-maxHp);
         player.GetComponent<PlayerController>().SetSpeed(1);
         volume.GetComponent<ColorManager>().ResetColorManager();
+        enemyManager.ResetGhost();
 
         if(keyManager.useRedKey == false)
         {
