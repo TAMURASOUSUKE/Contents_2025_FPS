@@ -7,11 +7,13 @@ public class ImageGenerator : MonoBehaviour
 {
     [SerializeField] GameObject parent;
     [SerializeField] CharacterManager characterManager;
+    [SerializeField] EnemyManager enemyManager;
     float imageTimer;
     float imageCreateTime = 2f;
     float minSize = 0;  
     float maxSize = 0;
     float createTime = 0;
+    int loopCount = 0;
     public float xPosMax;
     public float xPosMin;
     public float yPosMax;
@@ -29,6 +31,7 @@ public class ImageGenerator : MonoBehaviour
     void Update()
     {
         ImageCreate();
+        Debug.Log(enemyManager.GetIsHit());
     }
 
     void ImageCreate()
@@ -42,7 +45,7 @@ public class ImageGenerator : MonoBehaviour
             GameObject prefab = image[index];
             if (imageTimer > imageCreateTime)
             {
-                
+
                 GameObject newImage = Instantiate(prefab, parent.transform);    //生成
                 RectTransform rt = newImage.GetComponent<RectTransform>();
 
@@ -55,18 +58,16 @@ public class ImageGenerator : MonoBehaviour
                 float scale = Random.Range(minSize, maxSize);       //大きさのランダム化
                 rt.localScale = new Vector2(scale, scale);
 
-                Image img = newImage.GetComponent<Image>();
+                 Image img = newImage.GetComponent<Image>();
                 StartCoroutine(FadeIn(img, inDuration));
-               
 
-                spawnedImages.Add(newImage);            //生成したものをリストに追加
 
                 imageTimer = 0;
             }
-        }        //else
-        //{
-        //    StartCoroutine(FadeOut(outDuration));
-        //}
+
+            DamageAnim();
+           
+        }     
 
     }
     IEnumerator FadeIn(Image img, float duration)
@@ -110,6 +111,45 @@ public class ImageGenerator : MonoBehaviour
                 c.a = 0f;
                 img.color = c;
                 Destroy(img);
+        }
+    }
+
+    void DamageAnim()
+    {
+        
+        if (enemyManager.ConsumeHit())
+        {
+            while(loopCount < 30){
+                for (int i = 0; i < 15; i++)
+                {
+                    int index = Random.Range(0, image.Length);
+                    float xPos = Random.Range(xPosMin, xPosMax);
+                    float yPos = Random.Range(yPosMin, yPosMax);
+                    GameObject prefab = image[index];
+                    GameObject newImage = Instantiate(prefab, parent.transform);    //生成
+                    RectTransform rt = newImage.GetComponent<RectTransform>();
+
+                    Vector2 vec2 = new Vector2(xPos, yPos);     //生成位置のランダム化
+                    rt.anchoredPosition = vec2;
+
+                    float angle = Random.Range(0f, 360f);       //生成向きのランダム化
+                    rt.rotation = Quaternion.Euler(0, 0, angle);
+
+                    float scale = Random.Range(minSize, maxSize);       //大きさのランダム化
+                    rt.localScale = new Vector2(scale, scale);
+
+                    Image img = newImage.GetComponent<Image>();
+                    StartCoroutine(FadeIn(img, inDuration));
+
+
+                    spawnedImages.Add(newImage);            //生成したものをリストに追加
+
+                }
+
+                loopCount++;
+            }
+            loopCount = 0;
+            Debug.Log("入ってるよ");
         }
     }
 
