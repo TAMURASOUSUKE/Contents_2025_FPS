@@ -359,7 +359,7 @@ PrefabInstance:
     - target: {fileID: 988984889100615154, guid: a0b951aa55a90b64bbb47864a20c9592,
         type: 3}
       propertyPath: filterCoolTime
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1263609571041493646, guid: a0b951aa55a90b64bbb47864a20c9592,
         type: 3}
