@@ -26,11 +26,7 @@ public class ScenesManagersScripts : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60; // フレームレートを固定
-        if(GameManager.isFirstPlay == false)
-        {
-            TItleSceneTransition();
-        }
-        else
+        if(GameManager.isFirstPlay == true)
         {
             GameSceneTransition();
         }
