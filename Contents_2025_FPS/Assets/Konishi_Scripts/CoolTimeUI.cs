@@ -7,7 +7,6 @@ public class CoolTimeUI : MonoBehaviour
 {
     [SerializeField] ColorManager Color;
     Image image;
-    Animator animator;
     float duration;         //フィルターのクールタイム
     float speed;
     float maxRotate = -90f;
@@ -27,7 +26,7 @@ public class CoolTimeUI : MonoBehaviour
         removeFilter = Color.removeFilter;
         if (removeFilter)
         {
-            speed = Mathf.Abs(maxRotate) / duration;   // ← 必ず正の値にする
+            speed = Mathf.Abs(maxRotate) / duration;
             currentRotate = Mathf.MoveTowards(currentRotate, maxRotate, speed * Time.deltaTime);
         }
         else
