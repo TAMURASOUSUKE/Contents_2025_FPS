@@ -6,7 +6,7 @@ public class ReturnTitleButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
 {
     [SerializeField] private VideoPlayer ReturnTitleVideo; // 再生するVideoPlayer
     [SerializeField] private GameObject ReturnTitleMovie;      // RawImageなど、表示部分（任意）
-
+    [SerializeField] private GameObject returnTitleButton;
     // カーソルがボタンに乗った時
     public void OnPointerEnter(PointerEventData eventData)
     {
