@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject reSpawnPos;
     [SerializeField] GameObject player;
     [SerializeField] GameObject volume;
+    [SerializeField] GameObject[] takarabakos;
     [SerializeField] KeyManager keyManager;
     [SerializeField] EnemyManager enemyManager;
 
@@ -77,6 +78,10 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerController>().SetSpeed(1);
         volume.GetComponent<ColorManager>().ResetColorManager();
         enemyManager.ResetGhost();
+        foreach (GameObject takarabako in takarabakos)
+        {
+            takarabako.GetComponent<TakarabakoScript>().ResetTakarabako();
+        }
 
         if(keyManager.useRedKey == false)
         {
