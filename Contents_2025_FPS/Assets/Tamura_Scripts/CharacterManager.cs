@@ -59,7 +59,7 @@ public class CharacterManager : MonoBehaviour
         // 近い → 中くらい → 遠い の順に、距離 < 閾値で判定
         if (minRange < nearDistance)
         {
-            Debug.Log("近くにいるよ！");
+            // Debug.Log("近くにいるよ！");
             imageGenerator.SetCreateTime(nearCreateTime);
             imageGenerator.SetImageCreateTime(nearImageCreateTime);
             imageGenerator.SetSize(nearMinSize, nearMaxSize);
@@ -67,7 +67,7 @@ public class CharacterManager : MonoBehaviour
         }
         else if (minRange < middleDistance)
         {
-            Debug.Log("中くらいだよ！");
+            // Debug.Log("中くらいだよ！");
             imageGenerator.SetCreateTime(middleCreateTime);
             imageGenerator.SetImageCreateTime(middleImageCreateTime);
             imageGenerator.SetSize(middleMinSize, middleMaxSize);
@@ -75,7 +75,7 @@ public class CharacterManager : MonoBehaviour
         }
         else if (minRange < farDistance)
         {
-            Debug.Log("遠いよ！");
+            // Debug.Log("遠いよ！");
             imageGenerator.SetCreateTime(farCreateTime);
             imageGenerator.SetImageCreateTime(farImageCreateTime);
             imageGenerator.SetSize(farMinSize, farMaxSize);
@@ -87,6 +87,8 @@ public class CharacterManager : MonoBehaviour
             isRange = false;
         }
     }
+
+   
 
 
     public bool GetIsRange()
