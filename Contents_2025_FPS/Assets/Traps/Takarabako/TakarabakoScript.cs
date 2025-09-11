@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,10 @@ public class TakarabakoScript : MonoBehaviour,IInteractObject
     Animator animator;
     [SerializeField]
     GameObject key;
+
+    GameObject instanceKey;
+
+    Vector3 offset = new Vector3(0, 0.5f, 0);
 
     bool canIntract = true; //宝箱が開かれたかどうか
     
@@ -18,6 +23,7 @@ public class TakarabakoScript : MonoBehaviour,IInteractObject
     private void Start()
     {
         animator = GetComponent<Animator>();
+        instanceKey = Instantiate(key, transform.position + offset, transform.rotation);
     }
 
     private void Open()
@@ -30,7 +36,7 @@ public class TakarabakoScript : MonoBehaviour,IInteractObject
     //アニメーションの進み具合で鍵の動きを開始させる
     private void OnAnimationEnd()
     {
-        key.GetComponent<KeyOpenMove>().SetIsOpen();
+        instanceKey.GetComponent<KeyOpenMove>().SetIsOpen();
     }
     public void OnTriggerInteract()
     {
@@ -39,5 +45,11 @@ public class TakarabakoScript : MonoBehaviour,IInteractObject
     public bool GetCanInteract()
     {
         return canIntract;
+    }
+    public void ResetTakarabako()
+    {
+        animator.SetTrigger("Reset");
+        canIntract = true;
+        instanceKey = Instantiate(key, transform.position + offset, transform.rotation);
     }
 }
