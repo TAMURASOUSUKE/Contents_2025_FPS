@@ -7,6 +7,7 @@ public class CoolTimeUI : MonoBehaviour
 {
     [SerializeField] ColorManager Color;
     Image image;
+    Animator animator;
     float duration;         //フィルターのクールタイム
     float speed;
     float maxRotate = -90f;
