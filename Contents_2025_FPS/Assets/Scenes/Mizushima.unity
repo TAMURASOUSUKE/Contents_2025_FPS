@@ -379,7 +379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &198307348
 RectTransform:
   m_ObjectHideFlags: 0
@@ -506,114 +506,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 198307347}
   m_CullTransparentMesh: 1
---- !u!1001 &234701918
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 251639420721812283, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213408}
-    - target: {fileID: 1256332479001714807, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213408}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1899729878759707686, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2924825976686942902, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213408}
-    - target: {fileID: 3010234777284332285, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: m_Name
-      value: FI_002_zennkiseisaku_meiro2_01_44 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5135572536820602260, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213406}
-    - target: {fileID: 6126478269874308540, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213406}
-    - target: {fileID: 6706431692937057281, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213406}
-    - target: {fileID: 6954932500922528559, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213408}
-    - target: {fileID: 7104788747399334491, guid: 1c429a21bb8659b408bbea905faeaaf9,
-        type: 3}
-      propertyPath: gameManager
-      value: 
-      objectReference: {fileID: 775213406}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1c429a21bb8659b408bbea905faeaaf9, type: 3}
 --- !u!1 &339461477
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,18 +915,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!114 &485712710 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8959887100613127090, guid: 1c429a21bb8659b408bbea905faeaaf9,
-    type: 3}
-  m_PrefabInstance: {fileID: 234701918}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de4b635ff50717d468597f10cebb2aca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &500262747
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,7 +1451,7 @@ MonoBehaviour:
   reSpawnPos: {fileID: 20181559}
   player: {fileID: 366473974}
   volume: {fileID: 35914396}
-  keyManager: {fileID: 485712710}
+  keyManager: {fileID: 0}
 --- !u!1001 &784255593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3439,7 +3319,75 @@ MonoBehaviour:
   greenEye: {fileID: 1428439302}
   blueEye: {fileID: 1444267932}
   whiteEye: {fileID: 1379207599}
-  keyManager: {fileID: 485712710}
+  keyManager: {fileID: 0}
+--- !u!1001 &1475922909
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899729878759707686, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3010234777284332285, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: m_Name
+      value: FI_002_zennkiseisaku_meiro2_01_44
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e37a115e03f491549a22378ca665984d, type: 3}
 --- !u!1001 &1722298653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3718,6 +3666,6 @@ SceneRoots:
   - {fileID: 692183742}
   - {fileID: 1474928170}
   - {fileID: 81639200}
-  - {fileID: 234701918}
   - {fileID: 775213407}
   - {fileID: 20181560}
+  - {fileID: 1475922909}
