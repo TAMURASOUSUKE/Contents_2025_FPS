@@ -13,7 +13,7 @@ public class CharacterManager : MonoBehaviour
     
     public List<GameObject> enemys = new List<GameObject>();
     float range;
-    float maxRange = 0f;
+    float minRange = 0f;
     bool isRange = false;
     void Start()
     {
@@ -22,6 +22,7 @@ public class CharacterManager : MonoBehaviour
     void Update()
     {
         CalculateRange();
+        // Debug.Log(minRange);
       
     }
 
@@ -29,17 +30,17 @@ public class CharacterManager : MonoBehaviour
     {
 
         if (enemys.Count == 0) return;
-        maxRange = (enemys[0].transform.position - player.transform.position).sqrMagnitude;
+        minRange = (enemys[0].transform.position - player.transform.position).magnitude;
         for (int i = 1; i < enemys.Count; i++)
         {
-            range = (enemys[i].transform.position - player.transform.position).sqrMagnitude;
-            if (maxRange < range)
+            range = (enemys[i].transform.position - player.transform.position).magnitude;
+            if (minRange > range)
             {
-                maxRange = range;
+                minRange = range;
             }
         }
        
-        if (nearDistance * nearDistance < maxRange)
+        if (nearDistance > minRange)
         {
             Debug.Log("近くにいるよ！");
             imageGenerator.SetCreateTime(0.3f);
@@ -47,7 +48,7 @@ public class CharacterManager : MonoBehaviour
             imageGenerator.SetSize(9f, 11f);
             isRange = true;
         }
-        else if (middleDistance * middleDistance < maxRange)
+        else if (middleDistance > minRange)
         {
             Debug.Log("中くらいだよ！");
             imageGenerator.SetCreateTime(1f);
@@ -55,7 +56,7 @@ public class CharacterManager : MonoBehaviour
             imageGenerator.SetSize(6f, 7.5f);
             isRange = true;
         }
-        else if (farDistance * farDistance < maxRange)
+        else if (farDistance > minRange)
         {
             imageGenerator.SetCreateTime(1.3f);
             imageGenerator.SetImageCreateTime(1.3f);
