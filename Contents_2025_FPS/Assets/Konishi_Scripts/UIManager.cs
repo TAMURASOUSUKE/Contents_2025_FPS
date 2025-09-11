@@ -5,22 +5,27 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject keyFrame;
+    [SerializeField] GameObject[] firstTitleSceneUi;
+    [SerializeField] GameObject[] titleSceneUi;
+    [SerializeField] GameObject[] gameSceneUi;
+    [SerializeField] GameObject[] gameOverSceneUi;
+    [SerializeField] GameObject[] clearSceneUi;
     [SerializeField] GameObject redEye;
     [SerializeField] GameObject greenEye;
     [SerializeField] GameObject blueEye;
     [SerializeField] GameObject whiteEye;
-    [SerializeField] GameObject titleButton;
-    [SerializeField] GameObject respawnButton;
 
     [SerializeField] KeyManager keyManager;
     void Start()
     {
-        keyFrame.SetActive(false);
-        redEye.SetActive(false);
-        greenEye.SetActive(false);
-        blueEye.SetActive(false);
-        whiteEye.SetActive(false);
+        if (GameManager.isFirstPlay == false)
+        {
+            FirstTitleUiActive();
+        }
+        else
+        {
+            GameUiActive();
+        }
     }
     void Update()
     {
@@ -46,30 +51,70 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    private void FirstTitleUiActive()
+    {
+        AllUiDeActive();
+        foreach(GameObject ui in firstTitleSceneUi)
+        {
+            ui.SetActive(true);
+        }
+    }
+    
     public void TitleUiActive()
     {
         AllUiDeActive();
-        titleButton.SetActive(true);
+        foreach(GameObject ui in titleSceneUi)
+        {
+            ui.SetActive(true);
+        }
     }
     public void GameUiActive()
     {
         AllUiDeActive();
-        keyFrame.SetActive(true);
+        foreach (GameObject ui in gameSceneUi)
+        {
+            ui.SetActive(true);
+        }
     }
     public void GameOverActive()
     {
         AllUiDeActive();
-        respawnButton.SetActive(true);
+        foreach (GameObject ui in gameOverSceneUi)
+        {
+            ui.SetActive(true);
+        }
+    }
+
+    public void ClearSceneActive()
+    {
+        AllUiDeActive();
+        foreach (GameObject ui in clearSceneUi)
+        {
+            ui.SetActive(true);
+        }
     }
 
     private void AllUiDeActive()
     {
-        keyFrame.SetActive(false);
-        redEye.SetActive(false);
-        greenEye.SetActive(false);
-        blueEye.SetActive(false);
-        whiteEye.SetActive(false);
-        titleButton.SetActive(false);
-        respawnButton.SetActive(false);
+        foreach (GameObject ui in firstTitleSceneUi)
+        {
+            ui.SetActive(false);
+        }
+        foreach (GameObject ui in titleSceneUi)
+        {
+            ui.SetActive(false);
+        }
+        foreach (GameObject ui in gameSceneUi)
+        {
+            ui.SetActive(false);
+        }
+        foreach (GameObject ui in gameOverSceneUi)
+        {
+            ui.SetActive(false);
+        }
+        foreach (GameObject ui in clearSceneUi)
+        {
+            ui.SetActive(false);
+        }
     }
 }
