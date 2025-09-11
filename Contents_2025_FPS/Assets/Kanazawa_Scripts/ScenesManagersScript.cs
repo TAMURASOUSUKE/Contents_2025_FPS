@@ -16,6 +16,7 @@ public class ScenesManagersScripts : MonoBehaviour
         CLEAR
     }
 
+    [SerializeField]
     public Scene currentScene = Scene.TITLE;
 
     [SerializeField] PlayerController playerController; //プレイヤーの現在の数値の取得に使用
@@ -25,7 +26,14 @@ public class ScenesManagersScripts : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60; // フレームレートを固定
-        TItleSceneTransition();
+        if(GameManager.isFirstPlay == false)
+        {
+            TItleSceneTransition();
+        }
+        else
+        {
+            GameSceneTransition();
+        }
     }
 
     // Update is called once per frame

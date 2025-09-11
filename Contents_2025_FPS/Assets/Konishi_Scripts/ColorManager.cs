@@ -479,4 +479,14 @@ public class ColorManager : MonoBehaviour
     {
         return isCurrentB;
     }
+    public void ResetColorManager()
+    {
+        NormalColor();
+        chromaticEfect = 0f;
+        focalEfect = 0f;
+        apertureEfect = 0f;
+        efectTimer = 0f;
+        timer = 0;
+        canFilterChange = true;
+    }
 }
