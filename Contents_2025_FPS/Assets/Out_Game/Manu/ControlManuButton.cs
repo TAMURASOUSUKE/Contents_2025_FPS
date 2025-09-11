@@ -6,7 +6,7 @@ public class ControlManuButton : MonoBehaviour, IPointerEnterHandler, IPointerEx
 {
     [SerializeField] private VideoPlayer ControlManuVideo; // 再生するVideoPlayer
     [SerializeField] private GameObject ControlManuMovie;      // RawImageなど、表示部分（任意）
-
+    [SerializeField] private GameObject controlManuButton;
     // カーソルがボタンに乗った時
     public void OnPointerEnter(PointerEventData eventData)
     {

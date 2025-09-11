@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     [SerializeField] private GameObject menuPanel;       // メニュー全体
+    [SerializeField] private GameObject ReturnGameButton;       // ゲームに戻るボタン
+    [SerializeField] private GameObject ControlManuButton;       // 操作方法ボタン
+    [SerializeField] private GameObject ReturnTitleButton;       // タイトルに戻るボタン
     [SerializeField] private VideoPlayer videoPlayer;    // VideoPlayer
     [SerializeField] private RawImage videoDisplay;      // RawImage
+    [SerializeField] private RawImage buttonVideoDisplay;      // RawImage
 
     [SerializeField] private GameObject howToPanel;      // 操作方法画面
 
@@ -20,6 +24,7 @@ public class MenuController : MonoBehaviour
         {
             isMenuOpen = !isMenuOpen;
             menuPanel.SetActive(isMenuOpen);
+            PlayVideo();
         }
     }
 
@@ -40,21 +45,28 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("TitleScene");
     }
 
-    // ボタンにカーソルが乗ったときに動画再生
     public void PlayVideo()
     {
-        if (!videoPlayer.isPlaying)
+        if (videoPlayer != null && !videoPlayer.isPlaying)
         {
             videoPlayer.Play();
         }
     }
 
-    // ボタンからカーソルが外れたら動画停止
+
     public void StopVideo()
     {
-        if (videoPlayer.isPlaying)
+        if (videoPlayer != null && videoPlayer.isPlaying)
         {
             videoPlayer.Stop();
         }
+    }
+
+    // オプション：指定の VideoClip を再生したい場合
+    public void PlayClip(VideoClip clip)
+    {
+        if (videoPlayer == null) return;
+        if (clip != null) videoPlayer.clip = clip;
+        videoPlayer.Play();
     }
 }

@@ -1,29 +1,35 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Video;
 
-public class ReturnGameButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ReturnGameButton : MonoBehaviour, IPointerClickHandler//IPointerExitHandler
 {
-    [SerializeField] private VideoPlayer ReturnGameVideo; // 再生するVideoPlayer
-    [SerializeField] private GameObject ReturnGameMovie;      // RawImageなど、表示部分（任意）
+    [SerializeField] private VideoPlayer returnGameVideo; // 再生するVideoPlayer
+    [SerializeField] private GameObject returnGameMovie;      // RawImageなど、表示部分
+    [SerializeField] private GameObject returnGameButton;
+
+    private bool isMenuOpen = false;
 
     // カーソルがボタンに乗った時
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (ReturnGameMovie != null) ReturnGameMovie.SetActive(true);
-        if (ReturnGameVideo != null)
+        Debug.Log("tesuto");
+        /*returnGameButton.SetActive(true);
+        if (returnGameMovie != null) returnGameMovie.SetActive(true);
+        if (returnGameVideo != null)
         {
-            ReturnGameVideo.Play();
-        }
+            returnGameVideo.Play();
+        }*/
     }
 
     // カーソルが外れた時
-    public void OnPointerExit(PointerEventData eventData)
+    /*public void OnPointerExit(PointerEventData eventData)
     {
-        if (ReturnGameVideo != null)
+        if (returnGameVideo != null)
         {
-            ReturnGameVideo.Stop();
+            returnGameVideo.Stop();
         }
-        if (ReturnGameMovie != null) ReturnGameMovie.SetActive(false);
-    }
+        if (returnGameMovie != null) returnGameMovie.SetActive(false);
+    }*/
 }
