@@ -32,7 +32,7 @@ public class ColorManager : MonoBehaviour
     public float maxAperture = 25f;
     float chromaticDuration = 5f;       //chromaticが最大になるまでの時間
     public bool isColorChange = false;  //フィルターが有効か
-    bool canFilterChange = true;        //フィルターに切り替え可能か
+    public bool canFilterChange = true;        //フィルターに切り替え可能か
     public bool isRed = false;
     public bool isGreen = false;
     public bool isBlue = false;
@@ -242,6 +242,7 @@ public class ColorManager : MonoBehaviour
             {
                 timer = 0;
                 canFilterChange = true;
+                removeFilter = false;
             }
         }
     }
@@ -280,7 +281,6 @@ public class ColorManager : MonoBehaviour
             chromaticEfect = Mathf.Lerp(0f, maxChromatic, t);
             if (efectTimer > startDepth)
             {
-                Debug.Log("true");
                 depthSpeed = maxFocal / depthTimer;
                 apertureSpeed = maxAperture / depthTimer;
                 focalEfect = Mathf.MoveTowards(focalEfect, maxFocal, depthSpeed * Time.deltaTime);
@@ -478,5 +478,15 @@ public class ColorManager : MonoBehaviour
     public bool IsCurrentColorB()
     {
         return isCurrentB;
+    }
+    public void ResetColorManager()
+    {
+        NormalColor();
+        chromaticEfect = 0f;
+        focalEfect = 0f;
+        apertureEfect = 0f;
+        efectTimer = 0f;
+        timer = 0;
+        canFilterChange = true;
     }
 }

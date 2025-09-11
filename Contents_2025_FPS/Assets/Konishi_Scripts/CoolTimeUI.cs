@@ -26,7 +26,7 @@ public class CoolTimeUI : MonoBehaviour
         removeFilter = Color.removeFilter;
         if (removeFilter)
         {
-            speed = Mathf.Abs(maxRotate) / duration;   // Å© ïKÇ∏ê≥ÇÃílÇ…Ç∑ÇÈ
+            speed = Mathf.Abs(maxRotate) / duration;
             currentRotate = Mathf.MoveTowards(currentRotate, maxRotate, speed * Time.deltaTime);
         }
         else

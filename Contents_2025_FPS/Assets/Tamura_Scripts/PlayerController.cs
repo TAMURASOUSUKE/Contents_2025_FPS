@@ -63,16 +63,23 @@ public class PlayerController : MonoBehaviour
         if(scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
         {
             InputMove();
-            LimitHp();
-            ChangeSpeed();
-            RecoveryHp();
         }
+        else
+        {
+            rb.velocity = Vector3.zero;
+        }
+            LimitHp();
+        ChangeSpeed();
+        RecoveryHp();
     }
 
     //•¨—‹““®‚ÍFixedUpdate‚Å•ª‚¯‚é
     void FixedUpdate()
     {
-        CalculateMove();
+        if(scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
+        {
+            CalculateMove();
+        }
     }
 
     // Hp‚ğæ“¾‚·‚é—p
@@ -370,5 +377,4 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
 }

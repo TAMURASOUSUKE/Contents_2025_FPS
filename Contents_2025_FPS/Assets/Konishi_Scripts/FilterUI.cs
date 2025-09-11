@@ -7,6 +7,7 @@ public class FilterUI : MonoBehaviour
 {
     [SerializeField] ColorManager Color;
     Image image;
+    Animator animator;
     float speed;
     float targetRotate;
     float currentRotate;
@@ -18,12 +19,14 @@ public class FilterUI : MonoBehaviour
     bool isRedColor = false;
     bool isGreenColor = false;
     bool isBlueColor = false;
-
+    bool removeFilter = false;
+    bool canFilterChange;
 
 
     void Start()
     {
         image = GetComponent<Image>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -38,6 +41,14 @@ public class FilterUI : MonoBehaviour
     {
         speed = spinSpeed / duration;
         currentRotate = Mathf.MoveTowards(currentRotate, targetRotate, speed * Time.deltaTime);
+        if (removeFilter)
+        {
+            animator.SetBool("isCoolTime", true);
+        }
+        else
+        {
+            animator.SetBool("isCoolTime", false);
+        }
     }
     void Target()
     {
@@ -59,6 +70,8 @@ public class FilterUI : MonoBehaviour
         isRedColor = Color.isRed;
         isGreenColor = Color.isGreen;
         isBlueColor = Color.isBlue;
+        removeFilter = Color.removeFilter;
+        canFilterChange = Color.canFilterChange;
     }
 }
 

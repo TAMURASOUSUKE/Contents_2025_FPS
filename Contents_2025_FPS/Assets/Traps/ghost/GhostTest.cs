@@ -14,7 +14,7 @@ public class GhostTest : MonoBehaviour
     const int DAMAGE = 100;
     float angle = 0;
     float posY;
-    public bool isHit = false;
+    bool isHit = false;
 
     Vector3 offset = new Vector3(0, 1.3f, 0);
     void Start()
@@ -31,17 +31,16 @@ public class GhostTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
-        //    GhostMove();
+        if (scenesManagers.currentScene == ScenesManagersScripts.Scene.GAME)
+            GhostMove();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         player.GetComponent<PlayerController>().TakeDamage(DAMAGE);
         transform .position = initPos;
-
-        // generateCharacter.enemys.Remove(this.gameObject);
-        // isHit = true;
+        isHit = true;
+        Debug.Log("“–‚½‚Á‚½‚æ");
         // Destroy(this.gameObject);
     }
 
@@ -60,6 +59,16 @@ public class GhostTest : MonoBehaviour
         transform.position += moveUpDown;
 
         transform.LookAt(targetPos);
+    }
+
+    public bool GetIsHit()
+    {
+        return isHit;
+    }
+
+    public void SetIsHit(bool tf)
+    {
+        isHit = tf;
     }
 
 }
