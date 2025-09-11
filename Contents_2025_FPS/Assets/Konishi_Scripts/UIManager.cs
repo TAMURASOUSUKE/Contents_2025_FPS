@@ -37,17 +37,33 @@ public class UIManager : MonoBehaviour
         {
             redEye.SetActive(true);
         }
+        else
+        {
+            redEye.SetActive(false);
+        }
         if (keyManager.useGreenKey)
         {
             greenEye.SetActive(true);
+        }
+        else
+        {
+            greenEye.SetActive(false);
         }
         if (keyManager.useBlueKey)
         {
             blueEye.SetActive(true);
         }
+        else
+        {
+            blueEye.SetActive(false);
+        }
         if (keyManager.useWhiteKey)
         {
             whiteEye.SetActive(true);
+        }
+        else
+        {
+            whiteEye.SetActive(false);
         }
     }
 

@@ -29,6 +29,7 @@ public class EnemyManager : MonoBehaviour
     bool canGenerateG = false;
     bool canGenerateB = false;
     bool canGenerateN = false;
+    bool isHit = false;
 
     private void Start()
     {
@@ -45,6 +46,7 @@ public class EnemyManager : MonoBehaviour
     private void Update()
     {
         Generate();
+        CheckIsHit();
     }
 
     void Generate()
@@ -52,7 +54,7 @@ public class EnemyManager : MonoBehaviour
         if (canGenerateR)
         {
             red.transform.position = new Vector3(redGene.transform.position.x, redGene.transform.position.y, redGene.transform.position.z);
-            redScr.isHit = false;
+            redScr.SetIsHit(false);
             canGenerateR = false;
             redScr.enabled = true;
             characterManager.enemys.Add(red);
@@ -60,7 +62,7 @@ public class EnemyManager : MonoBehaviour
         if (canGenerateG)
         {
             green.transform.position = new Vector3(greenGene.transform.position.x, greenGene.transform.position.y, greenGene.transform.position.z);
-            greenScr.isHit = false;
+            greenScr.SetIsHit(false);
             canGenerateG = false;
             greenScr.enabled = true;
             characterManager.enemys.Add(green);
@@ -68,7 +70,7 @@ public class EnemyManager : MonoBehaviour
         if (canGenerateB)
         {
             blue.transform.position = new Vector3(blueGene.transform.position.x, blueGene.transform.position.y, blueGene.transform.position.z);
-            blueScr.isHit = false;
+            blueScr.SetIsHit(false);
             canGenerateB = false;
             blueScr.enabled = true;
             characterManager.enemys.Add(blue);
@@ -76,7 +78,7 @@ public class EnemyManager : MonoBehaviour
         if (canGenerateN)
         {
             nomal.transform.position = new Vector3(nomalGene.transform.position.x, nomalGene.transform.position.y, nomalGene.transform.position.z);
-            nomalScr.isHit = false;
+            nomalScr.SetIsHit(false);
             canGenerateN = false;
             nomalScr.enabled = true;
             characterManager.enemys.Add(nomal);
@@ -110,5 +112,30 @@ public class EnemyManager : MonoBehaviour
     public void SetGenerateFlagN(bool isGenerate)
     {
         canGenerateN = isGenerate;
+    }
+
+    public void CheckIsHit()
+    {
+        if (redScr.GetIsHit() || greenScr.GetIsHit() || blueScr.GetIsHit() || nomalScr.GetIsHit())
+        {
+            isHit = true;
+        }
+    }
+
+    public bool ConsumeHit()
+    {
+        if (!isHit) return false;
+
+        isHit = false;                 // 自分のフラグを落とす
+        redScr.SetIsHit(false);        // 各ゴースト側も落としておく
+        greenScr.SetIsHit(false);
+        blueScr.SetIsHit(false);
+        nomalScr.SetIsHit(false);
+        return true;
+    }
+
+    public bool GetIsHit()
+    {
+        return isHit;
     }
 }
