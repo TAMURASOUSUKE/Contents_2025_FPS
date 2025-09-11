@@ -31,6 +31,7 @@ public class SannnoyukaScript : MonoBehaviour
         {
             player = other.GetComponent<PlayerController>();
             player.TakeDamage(DAMAGE);
+            player.SetSpeed(0.5f);
             delta = 0.0f;
             isPlayer = true;
         }

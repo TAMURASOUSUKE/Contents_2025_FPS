@@ -7,9 +7,24 @@ public class CharacterManager : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] ImageGenerator imageGenerator;
-    [SerializeField] float farDistance;
-    [SerializeField] float middleDistance;
     [SerializeField] float nearDistance;
+    [SerializeField] float middleDistance;
+    [SerializeField] float farDistance;
+    [Header("表示し終わってから消すまでの時間")]
+    [SerializeField] float nearCreateTime;
+    [SerializeField] float middleCreateTime;
+    [SerializeField] float farCreateTime;
+    [Header("次の文字を表示するまでの時間")]
+    [SerializeField] float nearImageCreateTime;
+    [SerializeField] float middleImageCreateTime; 
+    [SerializeField] float farImageCreateTime;
+    [Header("文字のサイズ")]
+    [SerializeField] float nearMinSize;
+    [SerializeField] float nearMaxSize;
+    [SerializeField] float middleMinSize;
+    [SerializeField] float middleMaxSize;
+    [SerializeField] float farMinSize;
+    [SerializeField] float farMaxSize;
     
     public List<GameObject> enemys = new List<GameObject>();
     float range;
@@ -22,8 +37,6 @@ public class CharacterManager : MonoBehaviour
     void Update()
     {
         CalculateRange();
-        // Debug.Log(minRange);
-      
     }
 
     void CalculateRange()
@@ -39,29 +52,33 @@ public class CharacterManager : MonoBehaviour
                 minRange = range;
             }
         }
-       
-        if (nearDistance > minRange)
+
+
+
+
+        // 近い → 中くらい → 遠い の順に、距離 < 閾値で判定
+        if (minRange < nearDistance)
         {
             Debug.Log("近くにいるよ！");
-            imageGenerator.SetCreateTime(0.3f);
-            imageGenerator.SetImageCreateTime(0.3f);
-            imageGenerator.SetSize(9f, 11f);
+            imageGenerator.SetCreateTime(nearCreateTime);
+            imageGenerator.SetImageCreateTime(nearImageCreateTime);
+            imageGenerator.SetSize(nearMinSize, nearMaxSize);
             isRange = true;
         }
-        else if (middleDistance > minRange)
+        else if (minRange < middleDistance)
         {
             Debug.Log("中くらいだよ！");
-            imageGenerator.SetCreateTime(1f);
-            imageGenerator.SetImageCreateTime(1f);
-            imageGenerator.SetSize(6f, 7.5f);
+            imageGenerator.SetCreateTime(middleCreateTime);
+            imageGenerator.SetImageCreateTime(middleImageCreateTime);
+            imageGenerator.SetSize(middleMinSize, middleMaxSize);
             isRange = true;
         }
-        else if (farDistance > minRange)
+        else if (minRange < farDistance)
         {
-            imageGenerator.SetCreateTime(1.3f);
-            imageGenerator.SetImageCreateTime(1.3f);
-            imageGenerator.SetSize(3f, 5f);
             Debug.Log("遠いよ！");
+            imageGenerator.SetCreateTime(farCreateTime);
+            imageGenerator.SetImageCreateTime(farImageCreateTime);
+            imageGenerator.SetSize(farMinSize, farMaxSize);
             isRange = true;
         }
         else
