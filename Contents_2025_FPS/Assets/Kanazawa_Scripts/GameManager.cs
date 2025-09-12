@@ -8,9 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static bool isFirstPlay = false;
 
+    [SerializeField]
     private bool isGetWhiteKey = false;
+    [SerializeField]
     private bool isGetBlueKey = false;
+    [SerializeField]
     private bool isGetRedKey = false;
+    [SerializeField]
     private bool isGetGreenKey = false;
 
     [SerializeField] GameObject reSpawnPos;
@@ -32,7 +36,6 @@ public class GameManager : MonoBehaviour
         RED_KEY,
         GREEN_KEY
     }
-
 
     public void GetKey(KeyType type)
     {
