@@ -12,8 +12,8 @@ public class KyosekiScript : MonoBehaviour
     Vector3 kyosekiPos = new Vector3(0,0,0);
 
     //巨石を消滅させる位置の指定で使用
-    float KYOSEKIFINISHPOSY = -14;
-    float KYOSEKIFINISHPOSZ = 43;
+    float KYOSEKIFINISHPOSY = -13;
+    float KYOSEKIFINISHPOSZ = 42;
 
     //巨石の最大速度の指定に使用
     public float KYOSEKIMAXMOVESPEED;

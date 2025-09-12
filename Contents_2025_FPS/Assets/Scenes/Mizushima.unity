@@ -305,6 +305,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2069086410}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &50015833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8372907009393477873, guid: e37a115e03f491549a22378ca665984d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1475922909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &81639197
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +658,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 339461477}
   m_CullTransparentMesh: 1
+--- !u!114 &353966905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4408601479141686653, guid: a90f77923049139449cf79d4df626d1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 360073212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04dff867dfd9a0c45b5dcd4c14d33242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &354523196
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +881,11 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 775213408}
+    - target: {fileID: 4408601479141686653, guid: a90f77923049139449cf79d4df626d1a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4408601479141686653, guid: a90f77923049139449cf79d4df626d1a,
         type: 3}
       propertyPath: characterManager
@@ -1153,6 +1176,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500262747}
   m_CullTransparentMesh: 1
+--- !u!1 &590335447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7456219587377343152, guid: e37a115e03f491549a22378ca665984d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1475922909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &657516873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,10 +1582,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9629876a9075294a82e023cb4348095, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGetWhiteKey: 0
+  isGetBlueKey: 0
+  isGetRedKey: 0
+  isGetGreenKey: 0
   reSpawnPos: {fileID: 20181559}
   player: {fileID: 366473974}
   volume: {fileID: 35914396}
-  keyManager: {fileID: 0}
+  takarabakos:
+  - {fileID: 1382871774}
+  - {fileID: 1970408518}
+  - {fileID: 590335447}
+  - {fileID: 50015833}
+  keyManager: {fileID: 23029293}
+  enemyManager: {fileID: 353966905}
 --- !u!1001 &784255593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2797,6 +2836,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379207599}
   m_CullTransparentMesh: 1
+--- !u!1 &1382871774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5356699358488162686, guid: e37a115e03f491549a22378ca665984d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1475922909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1389806720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3324,6 +3369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1602971019}
   characterManager: {fileID: 1850299317}
+  enemyManager: {fileID: 353966905}
   xPosMax: 930
   xPosMin: -930
   yPosMax: 500
@@ -3411,11 +3457,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: FI_002_zennkiseisaku_meiro2_01_44
       objectReference: {fileID: 0}
+    - target: {fileID: 5135572536820602260, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 775213406}
     - target: {fileID: 5854911837430897036, guid: e37a115e03f491549a22378ca665984d,
         type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 775213408}
+    - target: {fileID: 6126478269874308540, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 775213406}
+    - target: {fileID: 6706431692937057281, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 775213406}
+    - target: {fileID: 7104788747399334491, guid: e37a115e03f491549a22378ca665984d,
+        type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 775213406}
     - target: {fileID: 8153548248299388812, guid: e37a115e03f491549a22378ca665984d,
         type: 3}
       propertyPath: gameManager
@@ -3431,6 +3497,54 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e37a115e03f491549a22378ca665984d, type: 3}
+--- !u!1 &1577801546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577801548}
+  - component: {fileID: 1577801547}
+  m_Layer: 0
+  m_Name: RockGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1577801547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577801546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40be66390e9c24e42bef7125b3fa5d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KyosekiPrefab: {fileID: 2904043367015058568, guid: 1e61b560e1923ba4ab3cf0fcabecdaab,
+    type: 3}
+  span1: 4
+  delta: 0
+--- !u!4 &1577801548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577801546}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.108, y: 3.478, z: 21.232}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1602971019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3617,6 +3731,12 @@ MonoBehaviour:
   farMinSize: 3
   farMaxSize: 5
   enemys: []
+--- !u!1 &1970408518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5890964394451941612, guid: e37a115e03f491549a22378ca665984d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1475922909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2069086410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3813,3 +3933,4 @@ SceneRoots:
   - {fileID: 20181560}
   - {fileID: 1475922909}
   - {fileID: 360073212}
+  - {fileID: 1577801548}
