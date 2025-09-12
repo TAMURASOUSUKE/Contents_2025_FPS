@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackImageController : MonoBehaviour
 {
-    [SerializeField] Texture[] backImages = new Texture[12]; // 動かすもやの枚数
+    [SerializeField] Texture[] backImages = new Texture[15]; // 動かすもやの枚数
     [SerializeField] int fps = 2;
     MaterialPropertyBlock mpb; // レンダラーのプロパティだけを上書きする
     MeshRenderer meshRenderer;

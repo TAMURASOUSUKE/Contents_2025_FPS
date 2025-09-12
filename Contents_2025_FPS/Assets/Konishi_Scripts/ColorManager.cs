@@ -15,6 +15,7 @@ public class ColorManager : MonoBehaviour
     private ChromaticAberration chromaticAberration;
     private DepthOfField depthOfField;
     const int DAMAGE = 1;               //使用時のダメージ
+    int currentColorIndex;
     public float filterCoolTime = 2.5f; //切り替えのクールタイム
     float timer;                        //クールタイムの時間計測
     float hitTimer;                     //ダメージを食らうまでのタイマー
@@ -27,6 +28,7 @@ public class ColorManager : MonoBehaviour
     float apertureSpeed;                //↑と同じ
     float depthTimer = 5f;              //ぼかしがMAXになるまでの時間
     float startDepth = 5f;              //フィルターが起動してからDepthが起動するまでの時間
+    float mouseScroll;
     public float maxChromatic = 1;      //各エフェクトの最大値
     public float maxFocal = 80f;
     public float maxAperture = 25f;
@@ -114,6 +116,19 @@ public class ColorManager : MonoBehaviour
         isRed = Input.GetKeyDown(KeyCode.Alpha1);  //1キー
         isGreen = Input.GetKeyDown(KeyCode.Alpha2);//2キー
         isBlue = Input.GetKeyDown(KeyCode.Alpha3); //3キー
+        float scroll = Input.GetAxis("Mouse ScrollWheel");  //マウスホイール
+        if (scroll > 0f)//上ホイール
+        {
+            currentColorIndex--;
+            if (currentColorIndex < 0) currentColorIndex = 2;
+            WheelColorChange();
+        }
+        else if (scroll < 0f)//下ホイール
+        {
+            currentColorIndex++;
+            if (currentColorIndex > 2) currentColorIndex = 0;
+            WheelColorChange();
+        }
         if (canFilterChange)
         {
             if (isRed)   
@@ -135,6 +150,31 @@ public class ColorManager : MonoBehaviour
             {
                 DefaultColor();
             }
+        }
+    }
+
+    void WheelColorChange()
+    {
+        switch (currentColorIndex)
+        {
+        case 0:
+            isRed = true;
+            isGreen = false;
+            isBlue = false;
+            break;
+        case 1:
+            isRed = false;
+            isGreen = true;
+            isBlue = false;
+            break;
+        case 2:
+            isRed = false;
+            isGreen = false;
+            isBlue = true;
+            break;
+        default:
+            DefaultColor();
+            break;
         }
     }
     //--------------赤--------------
