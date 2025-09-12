@@ -2214,6 +2214,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7805349642824703566}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: DestroyRigidbody
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1521861981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3094,6 +3106,12 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1097504409}
+    - target: {fileID: 476716308988630027, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8026413435286744654, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
     - target: {fileID: 2315132060793510505, guid: 70d3582c749b28b47af4ac1328cd38b5,
         type: 3}
       propertyPath: gameManager
@@ -3104,6 +3122,30 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1097504410}
+    - target: {fileID: 2782285036562867050, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 8578991229988381114, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
+    - target: {fileID: 3674510060217039033, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2096321119078024962, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
+    - target: {fileID: 3814350890486780280, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 8578991229988381114, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
+    - target: {fileID: 4610640084978288468, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -1535116757764144027, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
     - target: {fileID: 5017805845655730933, guid: 70d3582c749b28b47af4ac1328cd38b5,
         type: 3}
       propertyPath: gameManager
@@ -3114,6 +3156,24 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1097504409}
+    - target: {fileID: 5467876183965620657, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 8578991229988381114, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
+    - target: {fileID: 6201621318343844592, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7279523395200313993, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
+    - target: {fileID: 6454051889170872254, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 8578991229988381114, guid: d6e1884ac8555ee4985267d45b7469cc,
+        type: 3}
     - target: {fileID: 6533736256769828158, guid: 70d3582c749b28b47af4ac1328cd38b5,
         type: 3}
       propertyPath: controller
