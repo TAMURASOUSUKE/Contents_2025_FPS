@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject reSpawnPos;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject camera;
     [SerializeField] GameObject volume;
     [SerializeField] GameObject[] takarabakos;
     [SerializeField] KeyManager keyManager;
@@ -77,6 +79,8 @@ public class GameManager : MonoBehaviour
     public void ReSpawn()
     {
         player.transform.position = reSpawnPos.transform.position;
+        float camY = reSpawnPos.transform.position.y + 1.5f;
+        camera.transform.position = new Vector3(reSpawnPos.transform.position.x, camY, reSpawnPos.transform.position.z);
         player.GetComponent<PlayerController>().TakeDamage(-maxHp);
         player.GetComponent<PlayerController>().SetSpeed(1);
         volume.GetComponent<ColorManager>().ResetColorManager();
