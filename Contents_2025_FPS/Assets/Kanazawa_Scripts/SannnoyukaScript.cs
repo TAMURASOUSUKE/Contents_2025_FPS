@@ -5,7 +5,7 @@ using UnityEngine;
 public class SannnoyukaScript : MonoBehaviour
 {
     bool isPlayer = false;
-    [SerializeField] private int DAMAGE = 10;
+    [SerializeField] private int DAMAGE;
     [SerializeField] private float span;
     public float delta;
 
@@ -43,5 +43,12 @@ public class SannnoyukaScript : MonoBehaviour
             delta = 0.0f;
             isPlayer = false;
         }
+    }
+
+    private void OnDisable()
+    {
+        isPlayer = false;
+        player = null;
+        delta = 0.0f;
     }
 }
