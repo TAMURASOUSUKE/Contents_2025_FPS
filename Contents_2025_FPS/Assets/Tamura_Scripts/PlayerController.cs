@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     // ------------------------------------------変数---------------------------------
     [SerializeField] ScenesManagersScripts scenesManagers;
     [SerializeField] Transform cameraTransform; // しゃがむ際のカメラ移動に使う
+    [SerializeField] GameObject camera;
     [SerializeField] Vector3 standCenter = new Vector3(0, 1.0f, 0); // 立っている時の判定の中心
     [SerializeField] Vector3 crouchCenter = new Vector3(0, 0.5f, 0); // しゃがんでいるときの判定の中心
     [SerializeField] int hp = 100;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     bool isGround = false; // 地面に接触しているかどうか
     // ------------------------------------------関数---------------------------------------
 
+    
 
     void Start()
     {
@@ -104,6 +106,13 @@ public class PlayerController : MonoBehaviour
     {
         if (hp <= 0)
         {
+            camera.AddComponent<Rigidbody>();
+             
+            if (camera.TryGetComponent<Rigidbody>(out var component))
+            {
+                component = camera.GetComponent<Rigidbody>();
+                component.AddForce(Vector3.forward * 0.1f, ForceMode.Force);
+            }
             hp = 0;
         }
     }
@@ -207,6 +216,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    public void DestroyRigidbody()
+    {
+        if (camera.TryGetComponent<Rigidbody>(out var rb))
+        {
+            Destroy(rb);
+            
+        }
+        camera.transform.Rotate(Vector3.zero);
+    }
+
     // Hpの自動回復
     void RecoveryHp()
     {
@@ -269,9 +289,11 @@ public class PlayerController : MonoBehaviour
         float headClearance = 0.1f; // 少し余裕を持たせる
         Vector3 rayOrigin = transform.position + capsuleCollider.center; // キャラ中心
         float rayLength = (standHeight - crouchHeight) + headClearance; // 必要な高さ
+        int exclude = LayerMask.GetMask("Camera");
+
 
         // デバッグ用に Ray を可視化（赤:障害物あり, 緑:クリア）
-        bool hit = Physics.Raycast(rayOrigin, Vector3.up, rayLength, ~0, QueryTriggerInteraction.Ignore);
+        bool hit = Physics.Raycast(rayOrigin, Vector3.up, rayLength, ~exclude, QueryTriggerInteraction.Ignore);
         Color rayColor = hit ? Color.red : Color.green;
         Debug.DrawRay(rayOrigin, Vector3.up * rayLength, rayColor, 0.1f); // 0.1秒表示
 
