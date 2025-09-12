@@ -57,6 +57,7 @@ public class ScenesManagersScripts : MonoBehaviour
     public void MenuSceneTransition() //メニューシーンに遷移
     {
         currentScene = Scene.MENU;
+        CursorMode();
     }
     public void GameOverSceneTransition() //ゲームオーバーシーンに遷移
     {
