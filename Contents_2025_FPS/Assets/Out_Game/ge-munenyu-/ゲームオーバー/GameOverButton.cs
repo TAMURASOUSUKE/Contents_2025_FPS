@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class GameOverButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
+    public bool isHovering { get; private set; } // Getterïœêî
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isHovering = true;
+        Debug.Log("èÊÇ¡ÇΩÇ∫");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isHovering = false;
+        Debug.Log("èoÇΩÇ∫");
+    }
+}
