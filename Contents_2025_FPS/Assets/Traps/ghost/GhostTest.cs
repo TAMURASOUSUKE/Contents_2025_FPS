@@ -37,7 +37,7 @@ public class GhostTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player.GetComponent<PlayerController>().TakeDamage(DAMAGE);
+        player.GetComponent<PlayerController>().TakeDamage(DAMAGE, TrapIDManager.TrapID.Enemy);
         transform .position = initPos;
         isHit = true;
         Debug.Log("“–‚½‚Á‚½‚æ");
