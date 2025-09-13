@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameOverManager : MonoBehaviour
 {
     [SerializeField] ScenesManagersScripts scenesManagersScripts;
+    [SerializeField] PlayerController playerController;
     [SerializeField] GameObject blad;
     [SerializeField] GameObject gameOverTitle;
     [SerializeField] GameObject respwanObj;
@@ -14,6 +15,7 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] GameOverButton goTitle;
     [SerializeField] Sprite[] respawns = new Sprite[2];
     [SerializeField] Sprite[] goTitles = new Sprite[2];
+    [SerializeField] Text deadText;
 
     Image gameOverTitleImg;
     Image respawnImg;
@@ -37,11 +39,36 @@ public class GameOverManager : MonoBehaviour
     {
         if(scenesManagersScripts.currentScene == ScenesManagersScripts.Scene.GAMEOVER)
         {
+            TrapIDManager.TrapID trapID = playerController.GetDeadType();
+            switch (trapID)
+            {
+                case TrapIDManager.TrapID.BearTrap:
+                    deadText.text = "死因 : 足首から先が別の人生を歩んだ";
+                    break;
+                case TrapIDManager.TrapID.PitFall:
+                    deadText.text = "死因 : 重力を理解した";
+                    break;
+                case TrapIDManager.TrapID.Acid:
+                    deadText.text = "死因 : 化学を体感した";
+                    break;
+                case TrapIDManager.TrapID.Color:
+                    deadText.text = "死因 : 色に呑まれた";
+                    break;
+                case TrapIDManager.TrapID.Enemy:
+                    deadText.text = "死因 : 閾ｪ霄ｫに食われた";
+                    break;
+            }
+
+
+
+
             gameOverTitle.SetActive(true);
             blad.SetActive(true);
-            StartCoroutine(FadeIn(gameOverTitleImg, 3f));
-            StartCoroutine(FadeIn(respawnImg, 4f));
-            StartCoroutine(FadeIn(goTitleImg, 4f));
+            deadText.gameObject.SetActive(true);
+            StartCoroutine(FadeIn(null, deadText, 3.5f));
+            StartCoroutine(FadeIn(gameOverTitleImg, null, 3f));
+            StartCoroutine(FadeIn(respawnImg, null, 4f));
+            StartCoroutine(FadeIn(goTitleImg,null, 4f));
 
             if (respawn.isHovering)
             {
@@ -65,27 +92,50 @@ public class GameOverManager : MonoBehaviour
         {
             gameOverTitle.SetActive(false);
             blad.SetActive(false);
+            deadText.gameObject .SetActive(false);
         }
     }
 
-    IEnumerator FadeIn(Image img, float duration)
+    IEnumerator FadeIn(Image img = null, Text text = null, float duration = 0)
     {
-        Color c = img.color;
-        c.a = 0f; // �����ɂ��Ă���X�^�[�g
-        img.color = c;
+        if(img == null && text == null) yield break;
 
-        float timer = 0f;
-        while (timer < duration)
+        if (img != null && text == null)
         {
-            timer += Time.deltaTime;
-            float t = timer / duration;
-            c.a = Mathf.Lerp(0f, 1f, t);
+            Color c = img.color;
+            c.a = 0f; // 透明にしてからスタート
             img.color = c;
-            yield return null; // ���̃t���[���܂ő҂�
+
+            float timer = 0f;
+            while (timer < duration)
+            {
+                timer += Time.deltaTime;
+                float t = timer / duration;
+                c.a = Mathf.Lerp(0f, 1f, t);
+                img.color = c;
+                yield return null; // 次のフレームまで待つ
+            }
+
+            c.a = 1f;
+            img.color = c;
         }
 
-        c.a = 1f;
-        img.color = c;
+        if (text != null && img == null)
+        {
+            Color t = text.color;
+            t.a = 0f; // 透明にしてからスタート
+            text.color = t;
+
+            float timer = 0f;
+            while (timer < duration)
+            {
+                timer += Time.deltaTime;
+                float t1 = timer / duration;
+                t.a = Mathf.Lerp(0f, 1f, t1);
+                text.color = t;
+                yield return null; // 次のフレームまで待つ
+            }
+        }
     }
 
 }

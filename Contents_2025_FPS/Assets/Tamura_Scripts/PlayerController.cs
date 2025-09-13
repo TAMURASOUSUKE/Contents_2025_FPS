@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     List<GameObject> keys = new List<GameObject>(); // 鍵用
     CapsuleCollider capsuleCollider; // しゃがみに使う
     Rigidbody rb; // 移動に使う
+    TrapIDManager.TrapID deadType;
     Vector3 moveDir = Vector3.zero; // 移動方向
     Vector3 moveValue = Vector3.zero; // 移動する量
     float currentSpeed = 0.0f; // 現在のスピードを取得
@@ -90,9 +91,16 @@ public class PlayerController : MonoBehaviour
         return hp;
     }
 
-    // Hp変更用(中身を変える)
-    public void TakeDamage(int damage)
+    // タイプを取得する
+    public TrapIDManager.TrapID GetDeadType()
     {
+        return deadType;
+    }
+
+    // Hp変更用(中身を変える)
+    public void TakeDamage(int damage, TrapIDManager.TrapID damageType = TrapIDManager.TrapID.None)
+    {
+        this.deadType = damageType;
         hp -= damage;
     }
     public void SetSpeed(float adj)
