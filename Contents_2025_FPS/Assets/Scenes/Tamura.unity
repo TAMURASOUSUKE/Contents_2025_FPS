@@ -1240,6 +1240,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 467648467296823685, guid: dcf257dca36f3c2458518ad84edd1ca1,
         type: 3}
+    - target: {fileID: 1042304258543912402, guid: a9d97d211f971f049927cafb8d13b3e4,
+        type: 3}
+      propertyPath: scenesManagersScripts
+      value: 
+      objectReference: {fileID: 1563379961}
     - target: {fileID: 1480608025723018512, guid: a9d97d211f971f049927cafb8d13b3e4,
         type: 3}
       propertyPath: Color
@@ -3729,6 +3734,11 @@ PrefabInstance:
       propertyPath: m_Center.x
       value: -0.13307083
       objectReference: {fileID: 0}
+    - target: {fileID: 1437924508977939967, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1825221013750329964, guid: 70d3582c749b28b47af4ac1328cd38b5,
         type: 3}
       propertyPath: m_Size.y
@@ -3744,6 +3754,11 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1097504409}
+    - target: {fileID: 2641011044888563426, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2758242617137238353, guid: 70d3582c749b28b47af4ac1328cd38b5,
         type: 3}
       propertyPath: m_Size.x
@@ -3946,6 +3961,11 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 7805349642824703566}
+    - target: {fileID: 6591454073459766001, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6731092564555289717, guid: 70d3582c749b28b47af4ac1328cd38b5,
         type: 3}
       propertyPath: m_IsActive
@@ -4010,6 +4030,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FI_002_zennkiseisaku_meiro2_01_46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7588596541341350086, guid: 70d3582c749b28b47af4ac1328cd38b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7783260436562149860, guid: 70d3582c749b28b47af4ac1328cd38b5,
         type: 3}
@@ -4244,7 +4269,7 @@ PrefabInstance:
     - target: {fileID: 7051963158252084231, guid: a90f77923049139449cf79d4df626d1a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4277,6 +4302,11 @@ PrefabInstance:
       propertyPath: filterCoolTime
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 988984889100615154, guid: a0b951aa55a90b64bbb47864a20c9592,
+        type: 3}
+      propertyPath: scenesManagersScripts
+      value: 
+      objectReference: {fileID: 1563379961}
     - target: {fileID: 1263609571041493646, guid: a0b951aa55a90b64bbb47864a20c9592,
         type: 3}
       propertyPath: gauge
@@ -4336,6 +4366,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225931916722750472, guid: a0b951aa55a90b64bbb47864a20c9592,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225931916722750472, guid: a0b951aa55a90b64bbb47864a20c9592,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3225931916722750472, guid: a0b951aa55a90b64bbb47864a20c9592,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.143
       objectReference: {fileID: 0}
     - target: {fileID: 4973155704338791608, guid: a0b951aa55a90b64bbb47864a20c9592,
         type: 3}

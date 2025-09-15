@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Threading;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -10,6 +11,7 @@ using UnityEngine.Rendering.Universal;
 */
 public class ColorManager : MonoBehaviour
 {
+    [SerializeField] ScenesManagersScripts scenesManagersScripts;
     private Volume volume;
     private ColorAdjustments colorAdjustments;
     private ChromaticAberration chromaticAberration;
@@ -105,10 +107,14 @@ public class ColorManager : MonoBehaviour
 
     void Update()
     {
-        SelectColor();      //フィルター変更
-        Timer();            //フィルターのクールタイム
-        UseDamage();        //フィルター使用時間に応じてダメージ
-        ColorDamageEfect(); //フィルター長時間使用に応じて視界不良
+        if (scenesManagersScripts.currentScene == ScenesManagersScripts.Scene.GAME)
+        {
+            SelectColor();      //フィルター変更
+            Timer();            //フィルターのクールタイム
+            UseDamage();        //フィルター使用時間に応じてダメージ
+            ColorDamageEfect(); //フィルター長時間使用に応じて視界不良
+        }
+       
     }
     
     void SelectColor()  //カラー変更の大元  Updateで使う
