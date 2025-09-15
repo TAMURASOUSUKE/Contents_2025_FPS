@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ImageGenerator : MonoBehaviour
 {
+    [SerializeField] ScenesManagersScripts scenesManagersScripts;
     [SerializeField] GameObject parent;
     [SerializeField] CharacterManager characterManager;
     [SerializeField] EnemyManager enemyManager;
@@ -36,38 +37,41 @@ public class ImageGenerator : MonoBehaviour
 
     void ImageCreate()
     {
-        if (characterManager.GetIsRange())
+        if (scenesManagersScripts.currentScene == ScenesManagersScripts.Scene.GAME || scenesManagersScripts.currentScene == ScenesManagersScripts.Scene.GAMEOVER)
         {
-            imageTimer += Time.deltaTime;
-            int index = Random.Range(0, image.Length);
-            float xPos = Random.Range(xPosMin, xPosMax);
-            float yPos = Random.Range(yPosMin, yPosMax);
-            GameObject prefab = image[index];
-            if (imageTimer > imageCreateTime)
+            if (characterManager.GetIsRange())
             {
+                imageTimer += Time.deltaTime;
+                int index = Random.Range(0, image.Length);
+                float xPos = Random.Range(xPosMin, xPosMax);
+                float yPos = Random.Range(yPosMin, yPosMax);
+                GameObject prefab = image[index];
+                if (imageTimer > imageCreateTime)
+                {
 
-                GameObject newImage = Instantiate(prefab, parent.transform);    //生成
-                RectTransform rt = newImage.GetComponent<RectTransform>();
+                    GameObject newImage = Instantiate(prefab, parent.transform);    //生成
+                    RectTransform rt = newImage.GetComponent<RectTransform>();
 
-                Vector2 vec2 = new Vector2(xPos, yPos);     //生成位置のランダム化
-                rt.anchoredPosition = vec2;
+                    Vector2 vec2 = new Vector2(xPos, yPos);     //生成位置のランダム化
+                    rt.anchoredPosition = vec2;
 
-                //float angle = Random.Range(0f, 360f);       //生成向きのランダム化
-                //rt.rotation = Quaternion.Euler(0, 0, angle);
+                    //float angle = Random.Range(0f, 360f);       //生成向きのランダム化
+                    //rt.rotation = Quaternion.Euler(0, 0, angle);
 
-                float scale = Random.Range(minSize, maxSize);       //大きさのランダム化
-                rt.localScale = new Vector2(scale, scale);
+                    float scale = Random.Range(minSize, maxSize);       //大きさのランダム化
+                    rt.localScale = new Vector2(scale, scale);
 
-                 Image img = newImage.GetComponent<Image>();
-                StartCoroutine(FadeIn(img, inDuration));
+                    Image img = newImage.GetComponent<Image>();
+                    StartCoroutine(FadeIn(img, inDuration));
 
 
-                imageTimer = 0;
+                    imageTimer = 0;
+                }
             }
+
+            DamageAnim();
+
         }
-
-        DamageAnim();
-
     }
     IEnumerator FadeIn(Image img, float duration)
     {

@@ -11,7 +11,7 @@ public class GoalFix : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             int currentHP = controller.GetHp();
-            controller.TakeDamage(currentHP);
+            controller.TakeDamage(currentHP, TrapIDManager.TrapID.Rock);
         }
     }
 }
