@@ -5,17 +5,11 @@ using UnityEngine.EventSystems;
 
 public class ButtonCheck : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public bool isHovering { get; private set; } // Getter•Ï”
+    public bool isHovering { get; private set; }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        isHovering = true;
-        Debug.Log("æ‚Á‚½‚æ");
-    }
+    public void OnPointerEnter(PointerEventData e) => isHovering = true;
+    public void OnPointerExit(PointerEventData e) => isHovering = false;
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        isHovering = false;
-        Debug.Log("o‚½‚æ");
-    }
+    void OnDisable() => isHovering = false;   // š‚±‚ê‘åŽ–
+    public void ForceExit() => isHovering = false; // –¾Ž¦“I‚É—Ž‚Æ‚µ‚½‚¢Žž—p
 }

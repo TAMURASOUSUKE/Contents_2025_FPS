@@ -30,7 +30,7 @@ public class SannnoyukaScript : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player = other.GetComponent<PlayerController>();
-            player.TakeDamage(DAMAGE);
+            player.TakeDamage(DAMAGE, TrapIDManager.TrapID.Acid);
             player.SetSpeed(0.5f);
             delta = 0.0f;
             isPlayer = true;

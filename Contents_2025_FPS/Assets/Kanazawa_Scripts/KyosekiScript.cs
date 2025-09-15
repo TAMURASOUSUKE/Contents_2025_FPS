@@ -54,7 +54,7 @@ public class KyosekiScript : MonoBehaviour
         {
             PlayerController playerController = player.gameObject.GetComponent<PlayerController>();
             int damage = playerController.GetHp();
-            playerController.TakeDamage(damage);
+            playerController.TakeDamage(damage, TrapIDManager.TrapID.Rock);
         }
     }
 }

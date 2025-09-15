@@ -88,9 +88,13 @@ public class EnemyManager : MonoBehaviour
     public void ResetGhost()
     {
         red.transform.position = redGene.transform.position;
+        redScr.SetIsHit(false);
         green.transform.position = greenGene.transform.position;
+        greenScr.SetIsHit(false);
         blue.transform.position = blueGene.transform.position;
+        blueScr.SetIsHit(false);
         nomal.transform.position = nomalGene.transform.position;
+        nomalScr.SetIsHit(false);
     }
 
 

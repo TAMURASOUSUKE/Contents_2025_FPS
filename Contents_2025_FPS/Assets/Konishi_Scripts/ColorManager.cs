@@ -300,7 +300,7 @@ public class ColorManager : MonoBehaviour
                 hitTimer += Time.deltaTime;
                 if (hitTimer >= invincibleTime)
                 {
-                    Player.TakeDamage(DAMAGE);
+                    Player.TakeDamage(DAMAGE, TrapIDManager.TrapID.Color);
                     hitTimer = 0;
                 }
             }
