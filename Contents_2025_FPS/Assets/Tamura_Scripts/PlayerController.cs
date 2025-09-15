@@ -233,6 +233,8 @@ public class PlayerController : MonoBehaviour
             
         }
         camera.transform.Rotate(Vector3.zero);
+        isCliming = false;
+        this.rb.useGravity = true;
     }
 
     // Hp‚ÌŽ©“®‰ñ•œ

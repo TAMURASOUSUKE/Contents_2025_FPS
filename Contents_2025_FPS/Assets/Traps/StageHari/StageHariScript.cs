@@ -32,7 +32,7 @@ public class StageHariScript : MonoBehaviour
         {
             player = other.GetComponent<PlayerController>();
             isPlayer = true;
-            player.TakeDamage(DAMAGE);
+            player.TakeDamage(DAMAGE, TrapIDManager.TrapID.Needle);
             time = 0.0f;
         }
     }

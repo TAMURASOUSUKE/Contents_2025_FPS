@@ -9,6 +9,19 @@ public class BackImageController : MonoBehaviour
     MaterialPropertyBlock mpb; // レンダラーのプロパティだけを上書きする
     MeshRenderer meshRenderer;
     int index = 0;
+
+    void Awake()
+    {
+        // Renderer を確保
+        if (!meshRenderer && !TryGetComponent(out meshRenderer))
+        {
+            Debug.LogError("Renderer が見つかりません。Inspector で割り当てるか同一GameObjectに付けてください。", this);
+        }
+        // MPB を最速で生成（Start 依存にしない）
+        mpb = new MaterialPropertyBlock();
+    }
+
+
     void Start()
     {
         mpb =  new MaterialPropertyBlock();

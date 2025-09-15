@@ -25,7 +25,7 @@ public class Torabasami : MonoBehaviour
 
                 PlayerController player = other.GetComponent<PlayerController>();
                 //ƒ_ƒ[ƒWˆ—
-                player.TakeDamage(DAMAGE);
+                player.TakeDamage(DAMAGE, TrapIDManager.TrapID.BearTrap);
                 player.SetSpeed(0.2f);
 
                 isActive = false;

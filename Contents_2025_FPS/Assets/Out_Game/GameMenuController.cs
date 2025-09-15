@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 
 
-public enum PanelType { MainMenu, ControllerGuide, ChooseBackGame, ChooseBackTitle, ChooseControllerGuide }
+public enum PanelType { None, MainMenu, ControllerGuide, ChooseBackGame, ChooseBackTitle, ChooseControllerGuide }
 
 [Serializable]
 public class VideoPanel
@@ -45,6 +45,9 @@ public class GameMenuController : MonoBehaviour
     [SerializeField] ButtonCheck chooseControllerGuideScr;
 
     VideoPanel currentVideoPanel;
+
+    // 連続再生のキャンセル・識別用トークン ---
+    int _seqToken = 0;
     bool isImageView = false;　// 画像を描画するためのフラグ
     bool isDisp = false;
     bool prevChooseBackGame = false; // updateの中で1回だけ実行するもの
@@ -70,12 +73,13 @@ public class GameMenuController : MonoBehaviour
         InputDispMenu();
         ChooseButton();
         ImageView();
-
+     
     }
 
     // 初期化
     void Init(VideoPanel v)
     {
+        // v.Type = PanelType.None;
         v.player.playOnAwake = false;
         v.player.waitForFirstFrame = true;     // 最初のフレーム準備ができるまで再生をブロック
         v.player.sendFrameReadyEvents = true;  // frameReady を使うので必須
@@ -105,63 +109,63 @@ public class GameMenuController : MonoBehaviour
                 onChooseBackGame.SetActive(true);
                 onChooseBackTitle.SetActive(true);
                 onChooseControllerGuide.SetActive(true);
-                ShowImmediately(mainMenu);
-                backGameB.SetActive(true);
-                backTitleB.SetActive(true);
-                controllerGuideB.SetActive(true);
+                //backGameB.SetActive(true);
+                //backTitleB.SetActive(true);
+                //controllerGuideB.SetActive(true);
+
+                PlayWithCallback(mainMenu, afterFirstDone: () =>
+                {
+                    backGameB.SetActive(true);
+                    backTitleB.SetActive(true);
+                    controllerGuideB.SetActive(true);
+
+                    // ★前回ホバーの記憶を消す
+                    prevChooseBackGame = prevChooseBackTitle = prevChooseControllerGuide = false;
+                    chooseBackGameScr?.ForceExit();
+                    chooseBackTitleScr?.ForceExit();
+                    chooseControllerGuideScr?.ForceExit();
+
+                    // （任意）初期カーソルが中央＝戻るボタン上にある前提なら、明示的に切替えてしまう
+                    // SwitchTo(chooseBackGame);
+                }
+                );
+                
             }
             else
             {
                 if (scenesManager.currentScene == ScenesManagersScripts.Scene.MENU)
                 {
-                    scenesManager.GameSceneTransition();
                     if (currentVideoPanel == null) return;
-                    switch (currentVideoPanel.Type)
+
+                    // 操作説明からのescはゲームに戻さずメインメニューのアニメーションをする
+                    if (currentVideoPanel.Type == PanelType.ControllerGuide)
                     {
-                        case PanelType.MainMenu:
-                            isImageView = false;
-                            backGameB.SetActive(false);
-                            backTitleB.SetActive(false);
-                            controllerGuideB.SetActive(false);
-                            onMainMenu.SetActive(false);
-                            break;
-                        case PanelType.ControllerGuide:
-                            scenesManager.MenuSceneTransition();
-                            isDisp = true;
-                            SwitchTo(mainMenu);
-                            break;
-                        case PanelType.ChooseBackGame:
-                            isImageView = false;
-                            backGameB.SetActive(false);
-                            backTitleB.SetActive(false);
-                            controllerGuideB.SetActive(false);
-                            onChooseBackGame.SetActive(false);
-                            onMainMenu.SetActive(false);
-                            break;
-                        case PanelType.ChooseBackTitle:
-                            isImageView = false;
-                            backGameB.SetActive(false);
-                            backTitleB.SetActive(false);
-                            controllerGuideB.SetActive(false);
-                            onMainMenu.SetActive(false);
-                            onChooseBackTitle.SetActive(false);
-                            break;
-                        case PanelType.ChooseControllerGuide:
-                            isImageView = false;
-                            backGameB.SetActive(false);
-                            backTitleB.SetActive(false);
-                            controllerGuideB.SetActive(false);
-                            onMainMenu.SetActive(false);
-                            onChooseControllerGuide.SetActive(false);
-                            break;
-                        default:
-                            isImageView = false;
-                            backGameB.SetActive(false);
-                            backTitleB.SetActive(false);
-                            controllerGuideB.SetActive(false);
-                            break;
+                        isDisp = true; // メニューは開いたまま
+                        onMainMenu.SetActive(true);
+
+                        _seqToken++; // 古い再生をキャンセルする
+                        ResetPanel(mainMenu); // 0から再生するためリセット
+
+                        PlayWithCallback(mainMenu , afterFirstDone: () =>
+                        {
+                            // アニメーション終了後にボタンを出す
+                            backGameB.SetActive(true);
+                            backTitleB.SetActive(true);
+                            controllerGuideB.SetActive(true);
+
+                            // ホバー状態のリセット
+                            prevChooseBackGame = prevChooseBackTitle = prevChooseControllerGuide = false;
+                            chooseBackGameScr?.ForceExit();
+                            chooseBackTitleScr?.ForceExit();
+                            chooseControllerGuideScr?.ForceExit();
+                        });
+
+                        return; // ここで終了しゲームシーンにはいかない
                     }
 
+                    // それ以外の場合はescで閉じるようにする
+                    CloseMenuAndReset();
+                    scenesManager.GameSceneTransition();
                 }
             }
         }
@@ -170,29 +174,35 @@ public class GameMenuController : MonoBehaviour
     // ボタンにカーソルが重なった時の関数
     void ChooseButton()
     {
-        // 現在のホバー状態を先に読む
         bool hG = chooseBackGameScr.isHovering;
         bool hT = chooseBackTitleScr.isHovering;
         bool hC = chooseControllerGuideScr.isHovering;
 
-        // 実際の動作はガード
-        if (isDisp && currentVideoPanel != controllerGuide)
+        // ★メニューが開いていなければ一切何もしない
+        if (!isDisp || scenesManager.currentScene != ScenesManagersScripts.Scene.MENU)
         {
-            if (hG && !prevChooseBackGame) { /* isImageView=false; */ SwitchTo(chooseBackGame); }
+            prevChooseBackGame = hG;
+            prevChooseBackTitle = hT;
+            prevChooseControllerGuide = hC;
+            return;
+        }
+
+        if (currentVideoPanel != controllerGuide)
+        {
+            if (hG && !prevChooseBackGame) { SwitchTo(chooseBackGame); }
             else if (!hG && prevChooseBackGame) { isImageView = true; ResetPanel(chooseBackGame); currentVideoPanel = mainMenu; }
 
-            if (hT && !prevChooseBackTitle) { /* isImageView=false; */ SwitchTo(chooseBackTitle); }
+            if (hT && !prevChooseBackTitle) { SwitchTo(chooseBackTitle); }
             else if (!hT && prevChooseBackTitle) { isImageView = true; ResetPanel(chooseBackTitle); currentVideoPanel = mainMenu; }
 
-            if (hC && !prevChooseControllerGuide) { /* isImageView=false; */ SwitchTo(chooseControllerGuide); }
+            if (hC && !prevChooseControllerGuide) { SwitchTo(chooseControllerGuide); }
             else if (!hC && prevChooseControllerGuide) { isImageView = true; ResetPanel(chooseControllerGuide); currentVideoPanel = mainMenu; }
         }
 
-        // ★ ガードの外で“必ず”前回値を更新
         prevChooseBackGame = hG;
         prevChooseBackTitle = hT;
         prevChooseControllerGuide = hC;
-}
+    }
 
     void ImageView()
     {
@@ -210,11 +220,8 @@ public class GameMenuController : MonoBehaviour
     // ゲームに戻るボタンを押したとき
     public void OnclickBackGameScene()
     {
-        backGameB.SetActive(false);
-        backTitleB.SetActive(false);
-        controllerGuideB.SetActive(false);
-        isImageView = false;
-        onChooseBackGame.SetActive(false); // ゲームに戻る
+        CloseMenuAndReset();
+
         scenesManager.GameSceneTransition();
     }
     //　タイトルに戻るボタンを押したとき
@@ -241,30 +248,6 @@ public class GameMenuController : MonoBehaviour
         {
             onControllerGuide.SetActive(true);
             SwitchTo(controllerGuide);
-        }
-    }
-
-
-
-
-
-
-    // すぐ見せたいとき（起動直後など）
-    void ShowImmediately(VideoPanel v)
-    {
-        ClearRT(v.target);
-        v.image.enabled = true;
-        v.player.Stop();
-        v.player.time = 0; v.player.frame = 0;
-
-        currentVideoPanel = v;
-
-        v.player.Prepare();
-        v.player.prepareCompleted += OnPreparedThenPlayOnce;
-        void OnPreparedThenPlayOnce(VideoPlayer src)
-        {
-            src.prepareCompleted -= OnPreparedThenPlayOnce;
-            src.Play();
         }
     }
 
@@ -312,6 +295,94 @@ public class GameMenuController : MonoBehaviour
         v.player.Stop();
         v.player.time = 0; v.player.frame = 0;
         v.player.Prepare();
+    }
+
+    // 1本目 → 終了時に afterFirstDone 実行 →（必要なら）2本目再生
+    // shouldPlaySecond が null の場合は second があるだけで自動再生
+    public void PlayWithCallback(
+        VideoPanel first,
+        Action afterFirstDone,
+        VideoPanel second = null,
+        Func<bool> shouldPlaySecond = null)
+    {
+        if (first == null || first.player == null) return;
+
+        int token = ++_seqToken;
+
+        // 1本目を“チラつき無し”で表示＆再生開始
+        PrepareAndShowWhenFirstFrame(first, onShown: () =>
+        {
+            if (token != _seqToken) return;
+
+            if (currentVideoPanel != null && currentVideoPanel != first)
+                currentVideoPanel.image.enabled = false;
+            currentVideoPanel = first;
+
+            first.player.isLooping = false;
+
+            void OnFirstEnd(VideoPlayer src)
+            {
+                src.loopPointReached -= OnFirstEnd;
+                if (token != _seqToken) return;
+
+                // まず、1本目の終了時コールバックを実行
+                try { afterFirstDone?.Invoke(); } catch (Exception e) { Debug.LogException(e); }
+
+                // 2本目を再生するかを判定
+                bool wantSecond =
+                    (second != null && second.player != null) &&
+                    (shouldPlaySecond == null || shouldPlaySecond());
+
+                if (wantSecond)
+                {
+                    // 2本目へ（既存の“切替えはチラつかない”ポリシーを踏襲）
+                    SwitchTo(second);
+                }
+                // else: 再生せず終了（見た目の後処理は afterFirstDone 側で好きにやる）
+            }
+
+            first.player.loopPointReached += OnFirstEnd;
+        });
+
+        // 0秒から準備
+        first.player.Stop();
+        first.player.time = 0;
+        first.player.frame = 0;
+        first.player.Prepare();
+    }
+
+
+    void CloseMenuAndReset()
+    {
+        _seqToken++;                 // 遅延イベント無効化（シーケンスキャンセル）
+        isDisp = false;
+        isImageView = false;
+        imageMainMenu.SetActive(false);
+
+        // ホバー状態クリア
+        prevChooseBackGame = prevChooseBackTitle = prevChooseControllerGuide = false;
+        chooseBackGameScr?.ForceExit();
+        chooseBackTitleScr?.ForceExit();
+        chooseControllerGuideScr?.ForceExit();
+
+        // ボタン/装飾を閉じる
+        backGameB.SetActive(false);
+        backTitleB.SetActive(false);
+        controllerGuideB.SetActive(false);
+        onMainMenu.SetActive(false);
+        onChooseBackGame.SetActive(false);
+        onChooseBackTitle.SetActive(false);
+        onChooseControllerGuide.SetActive(false);
+        onControllerGuide.SetActive(false);
+
+        // ★動画・RawImageを確実に落とす
+        ResetPanel(mainMenu);
+        ResetPanel(controllerGuide);
+        ResetPanel(chooseBackGame);
+        ResetPanel(chooseBackTitle);          // ← ここが効く
+        ResetPanel(chooseControllerGuide);
+
+        currentVideoPanel = null;
     }
 
     void ClearRT(RenderTexture rt)

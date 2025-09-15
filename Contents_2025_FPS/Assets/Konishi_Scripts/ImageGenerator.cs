@@ -31,7 +31,7 @@ public class ImageGenerator : MonoBehaviour
     void Update()
     {
         ImageCreate();
-        Debug.Log(enemyManager.GetIsHit());
+        
     }
 
     void ImageCreate()
@@ -64,10 +64,9 @@ public class ImageGenerator : MonoBehaviour
 
                 imageTimer = 0;
             }
+        }
 
-            DamageAnim();
-           
-        }     
+        DamageAnim();
 
     }
     IEnumerator FadeIn(Image img, float duration)
@@ -149,7 +148,7 @@ public class ImageGenerator : MonoBehaviour
                 loopCount++;
             }
             loopCount = 0;
-            Debug.Log("ì¸Ç¡ÇƒÇÈÇÊ");
+            Debug.Log("êHÇÁÇ¡ÇΩÇÊ");
         }
     }
 
