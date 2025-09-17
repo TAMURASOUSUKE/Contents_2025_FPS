@@ -18,7 +18,7 @@ public class SannnoyukaScript : MonoBehaviour
             this.delta += Time.deltaTime;
             if (this.delta > this.span)
             {
-                player.TakeDamage(DAMAGE);
+                player.TakeDamage(DAMAGE, TrapIDManager.TrapID.Acid);
 
                 this.delta = 0;
             }
