@@ -57,6 +57,7 @@ public class ColorManager : MonoBehaviour
 
     void Start()
     {
+        removeFilter = false;
         // Volumeコンポーネントを取得
         volume = GetComponent<Volume>();
         //cubeMesh = otosiana.GetComponent<MeshRenderer>();
