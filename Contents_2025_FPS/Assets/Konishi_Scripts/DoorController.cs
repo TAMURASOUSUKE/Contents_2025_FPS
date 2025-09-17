@@ -35,7 +35,7 @@ public class DoorController : MonoBehaviour,IInteractObject
     private IEnumerator AnimatorStop()
     {
         animator.speed = 0;
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(1f);
         animator.speed = 1;
         isInteract = false;
     }
