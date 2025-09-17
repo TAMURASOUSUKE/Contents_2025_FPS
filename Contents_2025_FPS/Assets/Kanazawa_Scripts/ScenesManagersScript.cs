@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class ScenesManagersScripts : MonoBehaviour
 {
     [SerializeField] UIManager uiManager;
+    [SerializeField] GameObject restart;
+    [SerializeField] GameObject gotitle;
     public enum Scene
     { 
         TITLE,
@@ -30,6 +32,8 @@ public class ScenesManagersScripts : MonoBehaviour
         {
             GameSceneTransition();
         }
+        restart.SetActive(false);
+        gotitle.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,6 +72,9 @@ public class ScenesManagersScripts : MonoBehaviour
     public void ClearSceneTransition() //クリアーシーンに遷移
     {
         currentScene = Scene.CLEAR;
+        CursorMode();
+        restart.SetActive(true);
+        gotitle.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,7 +82,7 @@ public class ScenesManagersScripts : MonoBehaviour
         if (other.CompareTag("Player"))         //ゴール判定のコライダーにプレイヤーが接触したときゴールシーンに移行
         {
            Debug.Log("Goal");
-           SceneManager.LoadScene("GoalScene");
+           ClearSceneTransition();
         }
 
     }

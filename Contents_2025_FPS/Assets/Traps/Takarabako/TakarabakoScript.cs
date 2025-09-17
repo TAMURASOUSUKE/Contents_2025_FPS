@@ -48,8 +48,11 @@ public class TakarabakoScript : MonoBehaviour,IInteractObject
     }
     public void ResetTakarabako()
     {
-        animator.SetTrigger("Reset");
-        canIntract = true;
-        instanceKey = Instantiate(key, transform.position + offset, transform.rotation);
+        if(canIntract == false)
+        {
+            animator.SetTrigger("Reset");
+            canIntract = true;
+            instanceKey = Instantiate(key, transform.position + offset, transform.rotation);
+        }
     }
 }
