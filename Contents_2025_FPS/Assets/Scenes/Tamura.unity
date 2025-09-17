@@ -401,6 +401,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44868066}
   m_CullTransparentMesh: 1
+--- !u!1 &57056732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3013841405273914185, guid: 70d3582c749b28b47af4ac1328cd38b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 484068873586643884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &91887923 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6404734996331539957, guid: a9d97d211f971f049927cafb8d13b3e4,
@@ -953,6 +959,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &567400097 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 345818501562945089, guid: 70d3582c749b28b47af4ac1328cd38b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 484068873586643884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &572599270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +2163,11 @@ MonoBehaviour:
   player: {fileID: 4226980263176472468}
   camera: {fileID: 1654079397}
   volume: {fileID: 807578498}
-  takarabakos: []
+  takarabakos:
+  - {fileID: 2112098471}
+  - {fileID: 1854172838}
+  - {fileID: 567400097}
+  - {fileID: 57056732}
   keyManager: {fileID: 2100807177}
   enemyManager: {fileID: 1355256110}
 --- !u!4 &1097504411
@@ -3423,6 +3439,12 @@ MonoBehaviour:
   goTitles:
   - {fileID: 21300000, guid: 804b468c5d044c942ba794c7a1f67297, type: 3}
   - {fileID: 21300000, guid: 5cb1820747c5cda40b3929b35d2e2566, type: 3}
+--- !u!1 &1854172838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4803188234021190044, guid: 70d3582c749b28b47af4ac1328cd38b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 484068873586643884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!328 &1881336339 stripped
 VideoPlayer:
   m_CorrespondingSourceObject: {fileID: 8829696354253385384, guid: 05e836ac2bd336445b2ace71be842d6d,
@@ -3664,6 +3686,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4b635ff50717d468597f10cebb2aca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2112098471 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8224699728329524485, guid: 70d3582c749b28b47af4ac1328cd38b5,
+    type: 3}
+  m_PrefabInstance: {fileID: 484068873586643884}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2141039310 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 559435661921007547, guid: 70d3582c749b28b47af4ac1328cd38b5,
