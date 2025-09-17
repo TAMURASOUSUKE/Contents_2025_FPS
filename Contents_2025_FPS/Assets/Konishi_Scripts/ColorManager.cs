@@ -36,14 +36,14 @@ public class ColorManager : MonoBehaviour
     public float maxAperture = 25f;
     float chromaticDuration = 5f;       //chromaticが最大になるまでの時間
     public bool isColorChange = false;  //フィルターが有効か
-    public bool canFilterChange = true;        //フィルターに切り替え可能か
+    public bool canFilterChange = true; //フィルターに切り替え可能か
     public bool isRed = false;
     public bool isGreen = false;
     public bool isBlue = false;
     bool isCurrentR = false;
     bool isCurrentG = false;
     bool isCurrentB = false;
-    public bool removeFilter = false;
+    public bool removeFilter = false;   //フィルターを解除したか
     GameObject[] redVisibles;           //それぞれのオブジェクトを構造体で取得
     GameObject[] redHiddens;
     GameObject[] redColliderOnrys;
@@ -535,5 +535,6 @@ public class ColorManager : MonoBehaviour
         efectTimer = 0f;
         timer = 0;
         canFilterChange = true;
+        removeFilter = false;
     }
 }
