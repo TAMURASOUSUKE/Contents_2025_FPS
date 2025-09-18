@@ -37,10 +37,14 @@ public class GhostTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player.GetComponent<PlayerController>().TakeDamage(DAMAGE, TrapIDManager.TrapID.Enemy);
-        isHit = true;
-        transform .position = initPos;
-        Debug.Log("“–‚½‚Á‚½‚æ");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            player.GetComponent<PlayerController>().TakeDamage(DAMAGE, TrapIDManager.TrapID.Enemy);
+            isHit = true;
+            transform.position = initPos;
+            Debug.Log("“–‚½‚Á‚½‚æ");
+        }
+       
         // Destroy(this.gameObject);
     }
 
