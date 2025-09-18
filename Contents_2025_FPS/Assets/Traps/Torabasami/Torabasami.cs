@@ -5,6 +5,8 @@ using UnityEngine;
 public class Torabasami : MonoBehaviour
 {
     Animator animator;
+    AudioSource audio;
+    
 
     const int DAMAGE = 30;
 
@@ -13,6 +15,7 @@ public class Torabasami : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,6 +25,7 @@ public class Torabasami : MonoBehaviour
             if (other.CompareTag("Player"))
             {
                 animator.SetTrigger("PlayerEntry");
+                audio.Play();
 
                 PlayerController player = other.GetComponent<PlayerController>();
                 //É_ÉÅÅ[ÉWèàóù
