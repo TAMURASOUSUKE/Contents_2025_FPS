@@ -25,10 +25,6 @@ public class ImageGenerator : MonoBehaviour
     public GameObject[] image;
     private List<GameObject> spawnedImages = new List<GameObject>(); // ¶¬‚µ‚½‚à‚Ì‚ğƒŠƒXƒg‚ÅŠÇ—‚·‚é
 
-    void Start()
-    {
-    }
-
     void Update()
     {
         ImageCreate();
