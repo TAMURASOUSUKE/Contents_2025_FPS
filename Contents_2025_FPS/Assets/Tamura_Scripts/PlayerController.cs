@@ -25,9 +25,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float crouchCameraY = 0.8f; // しゃがんだ時のカメラの高さ
     [SerializeField] float ladderReenterDelay = 0.5f; // 梯子に再度上れるようになる時間
     [SerializeField] float damageSpeedTimer = 3f; // 足が遅くなる秒数
+    [SerializeField] AudioClip walk;                //歩いているときの足音
+    [SerializeField] AudioClip run;                 //走っているときの足音
     List<GameObject> keys = new List<GameObject>(); // 鍵用
     CapsuleCollider capsuleCollider; // しゃがみに使う
     Rigidbody rb; // 移動に使う
+    AudioSource audio;              //音の再生に使う
     TrapIDManager.TrapID deadType;
     Vector3 moveDir = Vector3.zero; // 移動方向
     Vector3 moveValue = Vector3.zero; // 移動する量
@@ -39,6 +42,7 @@ public class PlayerController : MonoBehaviour
     float lastLadderCancelTime = int.MinValue; // キャンセルした時間を記録する変数
     float slowFactor = 1f; // 1通常　0.5半分 0完全停止
     float slowTimer = 0f; // 減速の残り時間
+    bool isWalk = false;
     bool isCrouch = false; // しゃがみ用のフラグ
     bool isDash = false; // ダッシュ用のフラグ
     bool isCliming = false; // 梯子を上るとき用のフラグ
@@ -52,6 +56,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>(); // Rigidbodyを取得
         capsuleCollider = rb.GetComponent<CapsuleCollider>(); // カプセルコライダーを取得
+        audio = GetComponent<AudioSource>();                  // オーディオソリューシュを取得
 
         // もともとの速度を保存しておく
         baseMoveSpeed = moveSpeed;
@@ -137,6 +142,7 @@ public class PlayerController : MonoBehaviour
             // 状態切り替え：キーを押した「瞬間」でのみ判定
             if (Input.GetKeyDown(KeyCode.LeftControl) && !isCliming)
             {
+                isWalk = false;
                 isCrouch = true;
                 isDash = false;
             }
@@ -144,6 +150,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (CanStandUp()) // 頭上に障害がないときのみダッシュに移行
                 {
+                    isWalk = false;
                     isDash = true;
                     isCrouch = false;
                 }
@@ -154,6 +161,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (CanStandUp())
                 {
+                    isWalk = true;
                     isCrouch = false;
                     isDash = false;
                 }

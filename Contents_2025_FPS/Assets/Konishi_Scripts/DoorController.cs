@@ -6,11 +6,13 @@ public class DoorController : MonoBehaviour,IInteractObject
 {
     [SerializeField] KeyManager keyManager;
     Animator animator;
+    AudioSource audio;
 
     bool isInteract = false;
     void Start()
     {
         animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
     }
 
     public void OnTriggerInteract()
@@ -38,5 +40,9 @@ public class DoorController : MonoBehaviour,IInteractObject
         yield return new WaitForSeconds(1f);
         animator.speed = 1;
         isInteract = false;
+    }
+    void MoveDoor()
+    {
+        audio.Play();
     }
 }

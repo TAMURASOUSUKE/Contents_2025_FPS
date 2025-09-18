@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class TakarabakoScript : MonoBehaviour,IInteractObject
 {
     Animator animator;
+    AudioSource audio;
     [SerializeField]
     GameObject key;
 
@@ -23,6 +24,7 @@ public class TakarabakoScript : MonoBehaviour,IInteractObject
     private void Start()
     {
         animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
         instanceKey = Instantiate(key, transform.position + offset, transform.rotation);
     }
 
@@ -31,6 +33,7 @@ public class TakarabakoScript : MonoBehaviour,IInteractObject
         //宝箱を開ける
         canIntract = false;
         animator.SetTrigger("PlayerInteract");
+        audio.Play();
         gameManager.GetComponent<GameManager>().GetKey(type);
     }
     //アニメーションの進み具合で鍵の動きを開始させる
