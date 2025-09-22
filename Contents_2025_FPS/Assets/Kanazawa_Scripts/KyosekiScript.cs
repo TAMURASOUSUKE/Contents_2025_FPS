@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class KyosekiScript : MonoBehaviour
 {
-
+    AudioSource audio;
     Rigidbody kyosekiRigidBody;
 
     //‹Î‚ÌˆÊ’uî•ñ‚Ì•Û‘¶‚Ég—p
@@ -23,6 +23,8 @@ public class KyosekiScript : MonoBehaviour
     void Start()
     {
         kyosekiRigidBody = GetComponent<Rigidbody>();
+        audio = GetComponent<AudioSource>();
+        audio.Play();
     }
 
     // Update is called once per frame
